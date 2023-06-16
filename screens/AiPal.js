@@ -1,9 +1,10 @@
 import {
-  Text,
-  View,
-  SafeAreaView,
-  ScrollView,
-  ImageBackground,
+    Text,
+    View,
+    SafeAreaView,
+    TouchableOpacity,
+    ScrollView,
+    ImageBackground,
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons/faBriefcase";
