@@ -5,11 +5,11 @@ import Rewards from "./screens/Rewards";
 import Home from "./screens/Home";
 import NavBar from "./navigation/NavBar";
 import Forum from "./screens/Forum";
+import ApplyLeave from "./screens/ApplyLeave";
 
 export default function App() {
   return (
     // <View className="flex-1 items-center justify-center">
-
     <View className="flex-1 ">
       <NavBar />
       <StatusBar style="auto" />
