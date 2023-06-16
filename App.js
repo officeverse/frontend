@@ -8,10 +8,7 @@ import Forum from "./screens/Forum";
 
 export default function App() {
   return (
-    // <View className="flex-1 items-center justify-center">
-
-    <View className="flex-1 items-center">
-      <AiPal />
+    <View className="flex-1">
       <NavBar/>
       <StatusBar style="auto" />
     </View>
