@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Rewards from "./screens/Rewards";
 import Home from "./screens/Home";
 import NavBar from "./navigation/NavBar";
+import Forum from "./screens/Forum";
 
 export default function App() {
   return (
