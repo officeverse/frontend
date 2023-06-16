@@ -14,7 +14,7 @@ export default function Forum() {
   ];
   return (
     <SafeAreaView className="">
-      <View className="flex-row items-center justify-center mt-14">
+      <View className="flex-row items-center justify-center mt-8">
         <Text className="text-3xl mb-3 font-semibold">Our Forum</Text>
         <Text className="mb-2 ml-2">
           <FontAwesomeIcon icon={faUserGroup} size={32} />
