@@ -9,10 +9,13 @@ import {
     TouchableOpacity,
     Modal,
     Image,
+    ImageBackground,
 } from "react-native";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faDumbbell } from "@fortawesome/free-solid-svg-icons/faDumbbell";
+
+const image = require("../assets/background.png");
 
 export default function Challenges() {
     const challenges = [
@@ -90,8 +93,13 @@ export default function Challenges() {
     };
 
     return (
-        <SafeAreaView>
-            <View className="flex-row items-center justify-center">
+         <ImageBackground
+      source={image}
+      resizeMode="cover"
+      className=" justify-center"
+    >
+      <SafeAreaView className="h-[100vh]">
+            <View className="flex-row items-center justify-center mt-8">
                 <Text className="text-3xl mb-3 font-semibold">Challenges</Text>
                 <Text className="mb-2 ml-2">
                     <FontAwesomeIcon icon={faDumbbell} size={32} />
@@ -110,5 +118,7 @@ export default function Challenges() {
                 // extraData={selectedId}
             />
         </SafeAreaView>
+       </ImageBackground>
     );
+
 }
