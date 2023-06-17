@@ -8,8 +8,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function Team() {
+export default function Team({navigation}) {
   const [number, onChangeNumber] = React.useState("");
+  const pressHandler = () => {
+    navigation.navigate('EndTour')
+  }
   return (
     <SafeAreaView className="h-[100vh]">
       <View className="px-10 mt-14">
@@ -25,7 +28,7 @@ export default function Team() {
         </Text>
       </View>
 
-      <TouchableOpacity className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-8 py-2 shadow-lg">
+      <TouchableOpacity onPress={pressHandler} className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-8 py-2 shadow-lg">
         <Text className="text-lg text-center font-semibold">
           Collect My Reward!
         </Text>

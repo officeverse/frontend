@@ -30,6 +30,7 @@ export default function EndTour() {
       <TouchableOpacity className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-4 py-4 shadow-lg">
         <Text className="text-lg text-center font-semibold">+ 150 EXP</Text>
       </TouchableOpacity>
+      
       <View className="justify-center mx-auto mt-16">
         <Image
           style={styles.forest}
