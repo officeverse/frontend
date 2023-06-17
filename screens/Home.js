@@ -9,7 +9,7 @@ import {
 
 const image = require("../assets/office_home.png");
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
   return (
     <ImageBackground
       source={image}
@@ -17,14 +17,21 @@ export default function Home({navigation}) {
       className=" justify-center"
     >
       <SafeAreaView className="h-[100vh]">
-        <View className="flex-row items-center justify-center mt-12">
-          <Text className="text-3xl mb-3 font-bold color-white">Officeverse.</Text>
+        <View className="flex-row items-center justify-center mt-20">
+          <Text className="text-5xl mb-2 font-bold color-white">
+            Officeverse.
+          </Text>
         </View>
-        <View className="flex-row items-center justify-center mt-3">
-          <Text className="text-1xl mb-3 font-semibold color-white">Welcome back, Babybear380.</Text>
+        <View className=" items-center justify-center mt-1">
+          <Text className="text-2xl font-semibold color-white">
+            Welcome back,
+          </Text>
+          <Text className="text-2xl font-semibold color-white">
+            {" "}
+            Babybear380.
+          </Text>
         </View>
       </SafeAreaView>
     </ImageBackground>
   );
-  
 }
