@@ -34,7 +34,7 @@ export default function Profile() {
             <Text className="text-sm  text-gray-600">Apply Now</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity className=" bg-blue-100 items-center justify-center p-5 py-8 rounded-lg mx-14">
+          <TouchableOpacity className="my-1 bg-blue-100 items-center justify-center p-5 py-8 rounded-lg mx-14">
             <Text className="text-2xl mb-3 font-semibold">4 Leaves left</Text>
             <Text className="text-sm  text-gray-600">Apply Now</Text>
           </TouchableOpacity>
