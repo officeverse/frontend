@@ -7,12 +7,13 @@ import OptionC from "./onboarding/OptionC";
 import ApplyLeave from "./screens/ApplyLeave";
 import OptionA from "./onboarding/OptionA";
 import OnboardingStack from "./navigation/OnboardingStack";
+import Profile from "./screens/Profile";
+
 
 export default function App() {
   return (
     // <View className="flex-1 items-center justify-center">
     <View className="flex-1 ">
-      {/* <OptionC /> */}
       <OnboardingStack />
       <StatusBar style="auto" />
     </View>
