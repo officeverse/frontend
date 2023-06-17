@@ -93,32 +93,39 @@ export default function Challenges() {
     };
 
     return (
-         <ImageBackground
-      source={image}
-      resizeMode="cover"
-      className=" justify-center"
-    >
-      <SafeAreaView className="h-[100vh]">
-            <View className="flex-row items-center justify-center mt-8">
-                <Text className="text-3xl mb-3 font-semibold">Challenges</Text>
-                <Text className="mb-2 ml-2">
-                    <FontAwesomeIcon icon={faDumbbell} size={32} />
-                </Text>
-            </View>
-            <View className="flex-row items-center justify-center mb-3">
-                <Text>Gain EXP and BBC coins today!</Text>
-            </View>
-            <FlatList
-                className="mb-[55px]"
-                data={challenges}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id}
-                showsVerticalScrollIndicator={false}
+        <ImageBackground
+            source={image}
+            resizeMode="cover"
+            className=" justify-center"
+        >
+            <SafeAreaView className="h-[100vh]">
+                <View className="flex-row items-center justify-center mt-8">
+                    <Text className="text-3xl mb-3 font-semibold text-white">
+                        Challenges
+                    </Text>
+                    <Text className="mb-2 ml-2">
+                        <FontAwesomeIcon
+                            icon={faDumbbell}
+                            size={32}
+                            color="white"
+                        />
+                    </Text>
+                </View>
+                <View className="flex-row items-center justify-center mb-3 ">
+                    <Text className="text-white">
+                        Gain EXP and BBC coins today!
+                    </Text>
+                </View>
+                <FlatList
+                    className="mb-[55px]"
+                    data={challenges}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                    showsVerticalScrollIndicator={false}
 
-                // extraData={selectedId}
-            />
-        </SafeAreaView>
-       </ImageBackground>
+                    // extraData={selectedId}
+                />
+            </SafeAreaView>
+        </ImageBackground>
     );
-
 }
