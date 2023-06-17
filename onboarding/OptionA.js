@@ -8,8 +8,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function OptionA() {
+export default function OptionA({navigation}) {
   const [number, onChangeNumber] = React.useState("");
+  const pressHandler = () => {
+    navigation.navigate('Values')
+  }
   return (
     <SafeAreaView className="h-[100vh]">
       <View className="px-10 mt-20">
@@ -24,7 +27,7 @@ export default function OptionA() {
         </Text>
       </View>
 
-      <TouchableOpacity className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-14 py-2 shadow-lg">
+      <TouchableOpacity onPress={pressHandler} className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-14 py-2 shadow-lg">
         <Text className="text-lg text-center font-semibold">
           Water My Plant
         </Text>

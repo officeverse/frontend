@@ -10,7 +10,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
 
-export default function Benefits() {
+export default function Benefits({navigation}) {
+  const pressHandler = () => {
+    navigation.navigate('OptionC')
+  }
   return (
     <SafeAreaView className="h-[100vh]">
       <View className="px-10 mt-14">
@@ -32,7 +35,7 @@ export default function Benefits() {
         </Text>
       </View>
 
-      <TouchableOpacity className="flex-row w-[60vw] justify-center mx-auto rounded-2xl mt-8 py-2 shadow-lg">
+      <TouchableOpacity onPress={pressHandler} className="flex-row w-[60vw] justify-center mx-auto rounded-2xl mt-8 py-2 shadow-lg">
         <Text className="text-lg text-center font-semibold">
           Collect 50 EXP Now!
         </Text>
