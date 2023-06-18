@@ -96,6 +96,7 @@ export default function Profile({navigation}) {
                     </Text>
                     {/* Personal Badges */}
                     <ScrollView
+                        contentOffset={{ x: 20, y: 0 }}
                         className="flex-row w-3/4"
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
@@ -122,7 +123,7 @@ export default function Profile({navigation}) {
                         </View>
                     </ScrollView>
                     {/* EXP and Coins */}
-                    <Text className="text-white my-2">EXP</Text>
+                    <Text className="text-white my-2 font-bold">EXP</Text>
                     <View className="h-4 bg-slate-100 rounded-full w-1/2">
                         <View className="h-4 bg-blue-400 rounded-full w-2/5" />
                     </View>
@@ -133,7 +134,9 @@ export default function Profile({navigation}) {
                                 icon={faCoins}
                                 size={15}
                             />
-                            <Text className="text-white mx-2">150 coins</Text>
+                            <Text className="text-white mx-2 font-bold">
+                                150 coins
+                            </Text>
                         </View>
 
                         <Text className="text-white mx-2 text-xs">
