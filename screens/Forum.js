@@ -19,6 +19,7 @@ import React from "react";
 const image = require("../assets/background.png");
 
 export default function Forum() {
+
   const [text, onChangeText] = React.useState("");
   const announcements = [
     { date: "25 June", event: "Company Retreat" },
@@ -65,6 +66,7 @@ export default function Forum() {
                   <Text className="text-white text-center mt-5 mb-3">
                     Company Calendar
                   </Text>
+
                 </View>
                 <ScrollView className="mx-10 max-h-[15.5vh] overflow-hidden rounded-lg mt-1 shadow-xl">
                   {announcements.map((item, index) => (
@@ -87,6 +89,7 @@ export default function Forum() {
                   ))}
                 </ScrollView>
               </View>
+
 
               <View>
                 <View className="text-center">
@@ -125,6 +128,7 @@ export default function Forum() {
                     Employee of the Month
                   </Text>
                 </View>
+
 
                 <View className="mx-10 rounded-lg bg-blue-100 px-10 py-5">
                   <View className="text-center">
