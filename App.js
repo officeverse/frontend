@@ -10,11 +10,11 @@ import OnboardingStack from "./navigation/OnboardingStack";
 import PaymentHistory from "./screens/PaymentHistory";
 
 export default function App() {
-  return (
-    // <View className="flex-1 items-center justify-center">
-    <View className="flex-1 ">
-      <PaymentHistory />
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        // <View className="flex-1 items-center justify-center">
+        <View className="flex-1 ">
+            <NavBar />
+            <StatusBar style="auto" />
+        </View>
+    );
 }

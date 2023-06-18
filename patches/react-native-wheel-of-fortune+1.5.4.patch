@@ -1,11 +1,19 @@
 diff --git a/node_modules/react-native-wheel-of-fortune/assets/images/knob.png b/node_modules/react-native-wheel-of-fortune/assets/images/knob.png
 new file mode 100644
-index 0000000..78832cc
-Binary files /dev/null and b/node_modules/react-native-wheel-of-fortune/assets/images/knob.png differ
+index 0000000..e69de29
 diff --git a/node_modules/react-native-wheel-of-fortune/src/index.js b/node_modules/react-native-wheel-of-fortune/src/index.js
-index 0cdb2a1..ec150fd 100644
+index 0cdb2a1..c023950 100644
 --- a/node_modules/react-native-wheel-of-fortune/src/index.js
 +++ b/node_modules/react-native-wheel-of-fortune/src/index.js
+@@ -9,7 +9,7 @@ import {
+ } from 'react-native';
+ import * as d3Shape from 'd3-shape';
+ 
+-import Svg, {G, Text, TSpan, Path, Pattern} from 'react-native-svg';
++import Svg, {G, Text, TSpan, Path, Pattern} from '../../react-native-svg';
+ 
+ const AnimatedSvg = Animated.createAnimatedComponent(Svg);
+ 
 @@ -36,6 +36,7 @@ class WheelOfFortune extends Component {
    prepareWheel = () => {
      this.Rewards = this.props.options.rewards;

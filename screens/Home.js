@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import { useState, useRef } from "react";
 import WheelOfFortune from "react-native-wheel-of-fortune";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faDharmachakra } from "@fortawesome/free-solid-svg-icons/faDharmachakra";
 
 const image = require("../assets/office_home.png");
 
@@ -62,21 +64,26 @@ export default function Home({ navigation }) {
                             onRef: (ref) => (wheelRef.current = ref),
                         }}
                     />
-                    {/* <TouchableOpacity onPress={closeDailyWheel}>
-                        <Text>Close</Text>
-                    </TouchableOpacity> */}
-                    <Button
-                        title="Press me"
+                </View>
+                <Text className="mx-auto my-2">
+                    Stand a chance to win coins and other prizes!
+                </Text>
+                <View className="bg-slate-800 rounded-lg w-auto mx-auto p-2 my-2">
+                    <TouchableOpacity
+                        className="p-1 px-3"
                         onPress={() => {
                             wheelRef.current._onPress();
                         }}
-                    />
+                    >
+                        <Text className="text-xl text-white">Spin now!</Text>
+                    </TouchableOpacity>
                 </View>
                 {prize && (
-                    <Text className="mx-auto mb-40">
-                        You won {prize} coins!
-                    </Text>
+                    <Text className="mx-auto">You won {prize} coins!</Text>
                 )}
+                <TouchableOpacity onPress={closeDailyWheel}>
+                    <Text className="mx-auto mb-40 pt-4 underline">Close</Text>
+                </TouchableOpacity>
             </Modal>
             <SafeAreaView className="h-[100vh]">
                 <View className="flex-row items-center justify-center mt-12">
@@ -89,14 +96,19 @@ export default function Home({ navigation }) {
                         Welcome back, Babybear380.
                     </Text>
                 </View>
-                <TouchableOpacity className="mx-auto">
+                <TouchableOpacity className="mx-auto flex flex-row justify-center items-center bg-slate-800 p-2 px-4 rounded-lg">
+                    <FontAwesomeIcon
+                        color={"white"}
+                        icon={faDharmachakra}
+                        size={32}
+                    />
                     <Text
-                        className="text-white"
+                        className="text-white mx-2"
                         onPress={() => {
                             setDailyWheelOpen(true);
                         }}
                     >
-                        Touch me
+                        Daily Spin
                     </Text>
                 </TouchableOpacity>
             </SafeAreaView>
