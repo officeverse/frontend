@@ -32,6 +32,7 @@ export default function ApplyLeave({navigation}) {
       "We will process your leave as soon as possible",
       [{ text: "OK" }]
     );
+    navigation.goBack();
   };
 
   const [name, onChangeName] = React.useState("");
