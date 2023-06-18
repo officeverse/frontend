@@ -18,7 +18,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 
 const image = require("../assets/background.png");
 
-export default function ApplyLeave() {
+export default function ApplyLeave({navigation}) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -32,9 +32,14 @@ export default function ApplyLeave() {
       "We will process your leave as soon as possible",
       [{ text: "OK" }]
     );
+    navigation.goBack();
   };
 
   const [name, onChangeName] = React.useState("");
+
+  const goback = () => {
+    navigation.goBack();
+  };
 
   return (
     <KeyboardAvoidingView
@@ -49,7 +54,7 @@ export default function ApplyLeave() {
         <SafeAreaView className="h-[100vh]">
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View>
-              <TouchableOpacity className="ml-5 flex-row mb-4 mt-2">
+              <TouchableOpacity onPress={goback} className="ml-5 flex-row mb-4 mt-2">
                 <Text className="text-white mt-1 mr-2">
                   <FontAwesomeIcon
                     color={"white"}
