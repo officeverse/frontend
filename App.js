@@ -7,13 +7,13 @@ import OptionC from "./onboarding/OptionC";
 import ApplyLeave from "./screens/ApplyLeave";
 import OptionA from "./onboarding/OptionA";
 import OnboardingStack from "./navigation/OnboardingStack";
-import PaymentHistory from "./screens/PaymentHistory";
+import Forum from "./screens/Forum";
 
 export default function App() {
   return (
     // <View className="flex-1 items-center justify-center">
     <View className="flex-1 ">
-      <PaymentHistory />
+      <Forum />
       <StatusBar style="auto" />
     </View>
   );
