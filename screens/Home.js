@@ -13,6 +13,7 @@ import { useState, useRef } from "react";
 import WheelOfFortune from "react-native-wheel-of-fortune";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faDharmachakra } from "@fortawesome/free-solid-svg-icons/faDharmachakra";
+import Character from "../components/Character";
 
 const image = require("../assets/office_home.png");
 
@@ -96,21 +97,20 @@ export default function Home({ navigation }) {
                         Welcome back, Babybear380.
                     </Text>
                 </View>
-                <TouchableOpacity className="mx-auto flex flex-row justify-center items-center bg-slate-800 p-2 px-4 rounded-lg">
+                <TouchableOpacity
+                    onPress={() => {
+                        setDailyWheelOpen(true);
+                    }}
+                    className="mx-auto flex flex-row justify-center items-center bg-slate-800 p-2 px-4 rounded-lg"
+                >
                     <FontAwesomeIcon
                         color={"white"}
                         icon={faDharmachakra}
                         size={32}
                     />
-                    <Text
-                        className="text-white mx-2"
-                        onPress={() => {
-                            setDailyWheelOpen(true);
-                        }}
-                    >
-                        Daily Spin
-                    </Text>
+                    <Text className="text-white mx-2">Daily Spin</Text>
                 </TouchableOpacity>
+                <Character />
             </SafeAreaView>
         </ImageBackground>
     );
