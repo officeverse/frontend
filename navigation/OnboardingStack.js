@@ -35,6 +35,7 @@ export default function OnboardingStack() {
                 <Stack.Screen name="EndTour" component={EndTour}/>
                 <Stack.Screen name="NavBar" component={NavBar}/>
                 <Stack.Screen name="PaymentHistory" component={PaymentHistory}/>
+                <Stack.Screen name="ApplyLeave" component={ApplyLeave}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
