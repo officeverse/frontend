@@ -8,7 +8,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function EndTour() {
+export default function EndTour({ navigation }) {
+  const pressHandler = () => {
+    navigation.navigate("NavBar");
+  };
   return (
     <SafeAreaView className="h-[100vh]">
       <View className="px-6 mt-16">
@@ -27,7 +30,7 @@ export default function EndTour() {
         </Text>
       </View>
 
-      <TouchableOpacity className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-4 py-4 shadow-lg">
+      <TouchableOpacity onPress={pressHandler} className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-4 py-4 shadow-lg">
         <Text className="text-lg text-center font-semibold">+ 150 EXP</Text>
       </TouchableOpacity>
       
