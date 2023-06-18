@@ -1,3 +1,7 @@
+diff --git a/node_modules/react-native-wheel-of-fortune/assets/images/knob.png b/node_modules/react-native-wheel-of-fortune/assets/images/knob.png
+new file mode 100644
+index 0000000..78832cc
+Binary files /dev/null and b/node_modules/react-native-wheel-of-fortune/assets/images/knob.png differ
 diff --git a/node_modules/react-native-wheel-of-fortune/src/index.js b/node_modules/react-native-wheel-of-fortune/src/index.js
 index 0cdb2a1..ec150fd 100644
 --- a/node_modules/react-native-wheel-of-fortune/src/index.js
