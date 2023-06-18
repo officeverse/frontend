@@ -26,12 +26,21 @@ export default function ApplyLeave({navigation}) {
     { label: "Leave", value: " Leave" },
   ]);
 
+  const [name, setName] = React.useState("");
+  const [dept, setDept] = React.useState("");
+  const [date, setDate] = React.useState("");
   const handleButtonPress = () => {
     Alert.alert(
       "Sucessfully Submitted!",
       "We will process your leave as soon as possible",
       [{ text: "OK" }]
     );
+    setName("");
+    setDept("");
+    setDate("");
+    setValue(null);
+  };
+
     navigation.goBack();
   };
 
@@ -77,7 +86,7 @@ export default function ApplyLeave({navigation}) {
 
               <View className=" mt-1">
                 <TextInput
-                  //   onChangeName={onChangeNumber}
+                  onChangeText={setName}
                   value={name}
                   placeholder="eg. John Doe"
                   className="mx-10 rounded-lg bg-white text-black px-4 py-4"
@@ -90,8 +99,8 @@ export default function ApplyLeave({navigation}) {
 
               <View className=" mt-1">
                 <TextInput
-                  //   onChangeName={onChangeNumber}
-                  value={name}
+                  onChangeText={setDept}
+                  value={dept}
                   placeholder="eg. Marketing"
                   className="mx-10 rounded-lg bg-white text-black px-4 py-4"
                 ></TextInput>
@@ -106,8 +115,8 @@ export default function ApplyLeave({navigation}) {
 
               <View className=" mt-1">
                 <TextInput
-                  //   onChangeName={onChangeNumber}
-                  value={name}
+                  onChangeText={setDate}
+                  value={date}
                   placeholder="eg. 02 March 2023 - 04 March 2023"
                   className="mx-10 rounded-lg bg-white text-black px-4 py-4"
                 ></TextInput>
