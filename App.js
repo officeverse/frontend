@@ -8,6 +8,7 @@ import ApplyLeave from "./screens/ApplyLeave";
 import OptionA from "./onboarding/OptionA";
 import OnboardingStack from "./navigation/OnboardingStack";
 import Forum from "./screens/Forum";
+import Login from "./onboarding/Login";
 
 export default function App() {
     return (

@@ -17,8 +17,11 @@ import { faCoins } from "@fortawesome/free-solid-svg-icons/faCoins";
 
 const image = require("../assets/background.png");
 
-export default function Profile() {
+export default function Profile({navigation}) {
     const [countdown, setCountdown] = useState("");
+    const pressHandler = () => {
+        navigation.navigate("PaymentHistory");
+      };
     useEffect(() => {
         // Calculate the remaining time until the first day of the next month
         const calculateCountdown = () => {
@@ -136,7 +139,7 @@ export default function Profile() {
                     </TouchableOpacity>
                 </View>
                 <ScrollView>
-                    <TouchableOpacity className="bg-white items-center justify-center p-3 rounded-lg w-3/4 my-2 mx-auto">
+                    <TouchableOpacity onPress={pressHandler} className="bg-white items-center justify-center p-3 rounded-lg w-3/4 my-2 mx-auto">
                         <Text className="text-2xl font-semibold mb-2 p-2">
                             Paycheck in
                         </Text>
