@@ -7,10 +7,9 @@ import React from "react";
 
 export default function AiCard({ desc, icon, sizing }) {
     return (
-        <TouchableOpacity className="mx-4 bg-white items-center justify-center mb-6 px-2 py-5 rounded-lg w-[40vw] shadow-xl">
+        <View className="mx-4 bg-white items-center justify-center mb-6 px-2 py-5 rounded-lg w-[40vw] shadow-xl">
             <View className="flex-row">
                 <Text className="mt-1">
-                    {" "}
                     <FontAwesomeIcon
                         icon={icon}
                         size={sizing}
@@ -21,6 +20,6 @@ export default function AiCard({ desc, icon, sizing }) {
             <Text className="text-center mt-2 text-sm font-semibold text-gray-500">
                 {desc}
             </Text>
-        </TouchableOpacity>
+        </View>
     );
 }
