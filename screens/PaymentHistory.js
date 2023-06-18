@@ -14,7 +14,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 
 const image = require("../assets/background.png");
 
-export default function PaymentHistory() {
+export default function PaymentHistory({navigation}) {
   const reward = [
     { title: "June 2023", points: "$4800" },
     { title: "May 2023", points: "$4800" },
@@ -37,6 +37,10 @@ export default function PaymentHistory() {
     });
   };
 
+  const goback = () => {
+    navigation.goBack();
+  };
+
   return (
     <ImageBackground
       source={image}
@@ -44,7 +48,7 @@ export default function PaymentHistory() {
       className=" justify-center"
     >
       <SafeAreaView className="h-[100vh]">
-        <TouchableOpacity className="ml-5 flex-row mb-4 mt-6">
+        <TouchableOpacity onPress={goback} className="ml-5 flex-row mb-4 mt-6">
           <Text className="text-white mt-1 mr-2">
             <FontAwesomeIcon color={"white"} icon={faArrowLeft} size={24} />
           </Text>
