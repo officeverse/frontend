@@ -6,22 +6,21 @@ import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 import React from "react";
 
 export default function AiCard({ desc, icon, sizing }) {
-  return (
-    <TouchableOpacity className="mx-4 bg-blue-100 items-center justify-center mb-6 px-2 py-5 rounded-lg w-[40vw]">
-      <View className="flex-row">
-        <Text className="text-[#78BEFF] mt-1">
-          {" "}
-          <FontAwesomeIcon
-            className="text-blue-400"
-            icon={icon}
-            size={sizing}
-            color="#78BEFF"
-          />{" "}
-        </Text>
-      </View>
-      <Text className="text-center mt-2 text-sm font-semibold text-gray-500">
-        {desc}
-      </Text>
-    </TouchableOpacity>
-  );
+    return (
+        <TouchableOpacity className="mx-4 bg-white items-center justify-center mb-6 px-2 py-5 rounded-lg w-[40vw] shadow-xl">
+            <View className="flex-row">
+                <Text className="mt-1">
+                    {" "}
+                    <FontAwesomeIcon
+                        icon={icon}
+                        size={sizing}
+                        color="#3b3b3b"
+                    />{" "}
+                </Text>
+            </View>
+            <Text className="text-center mt-2 text-sm font-semibold text-gray-500">
+                {desc}
+            </Text>
+        </TouchableOpacity>
+    );
 }
