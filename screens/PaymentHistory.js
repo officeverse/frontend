@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -6,25 +5,37 @@ import {
   SafeAreaView,
   ScrollView,
   ImageBackground,
+  TouchableOpacity,
+  Linking,
 } from "react-native";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faGift } from "@fortawesome/free-solid-svg-icons/faGift";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 
 const image = require("../assets/background.png");
 
 export default function PaymentHistory() {
   const reward = [
-    { title: "$5 Grab Voucher", points: "- 100 exp" },
-    { title: "$5 Food Panda Voucher", points: "- 100 EXP" },
-    { title: "15% OFF Swensons Voucher", points: "- 80 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
-    { title: "$2 KOI Voucher", points: "- 60 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
+    { title: "June 2023", points: "$4800" },
+    { title: "May 2023", points: "$4800" },
+    { title: "April 2023", points: "$4800" },
+    { title: "March 2023", points: "$4800" },
+    { title: "Febuary 2023", points: "$4800" },
+    { title: "January 2023", points: "$4800" },
+    { title: "December 2022", points: "$4600" },
+    { title: "November 2022", points: "$4600" },
+    { title: "October 2022", points: "$4600" },
+    { title: "September 2022", points: "$4600" },
   ];
+
+  const handleDownload = () => {
+    const fileUrl =
+      "https://docs.google.com/document/d/14N51Z5BW6YMaQtlogRqbAin8GIUCMnKBiaPepPSisRw/edit?usp=sharing";
+    Linking.openURL(fileUrl).catch((error) => {
+      // Handle the error here
+      console.error("Error occurred while opening URL:", error);
+    });
+  };
 
   return (
     <ImageBackground
@@ -33,33 +44,43 @@ export default function PaymentHistory() {
       className=" justify-center"
     >
       <SafeAreaView className="h-[100vh]">
-        <View className="flex-row items-center justify-center mt-10">
+        <TouchableOpacity className="ml-5 flex-row mb-4 mt-6">
+          <Text className="text-white mt-1 mr-2">
+            <FontAwesomeIcon color={"white"} icon={faArrowLeft} size={24} />
+          </Text>
+          <Text className="text-lg font-semibold text-white">Back</Text>
+        </TouchableOpacity>
+        <View className="flex-row items-center justify-center mt-20">
           <Text className="text-white text-3xl mb-3 font-semibold">
-            Rewards
-          </Text>
-          <Text className="mb-2 ml-2">
-            <FontAwesomeIcon color={"white"} icon={faGift} size={32} />
-          </Text>
-        </View>
-
-        <View className="flex-row items-center justify-center mb-3">
-          <Text className="text-white">
-            Start exchanging BBC coins for rewards now!
+            Your Payment History
           </Text>
         </View>
 
         {/* change to ensure navbar doesnt block challenges */}
-        <ScrollView className="max-h-[73vh] overflow-hidden">
+        <ScrollView className="max-h-[34vh] overflow-hidden mt-12">
           {reward.map((item, index) => (
             <View
-              className="mx-10 bg-blue-100 items-center justify-center mb-6 px-5 py-2 rounded-lg"
+              className="flex-row mx-10 bg-blue-100  border-b border-gray-300 px-5 py-4 "
               key={index}
             >
-              <Text className="text-lg mb-1 font-medium">{item.title}</Text>
-              <Text className="text-xs text-gray-600">{item.points}</Text>
+              <View className=" w-[50vw]">
+                <Text className="text-left text-base">{item.title}</Text>
+              </View>
+              <View className=" ">
+                <Text className=" text-base font-medium">{item.points}</Text>
+              </View>
             </View>
           ))}
         </ScrollView>
+
+        <TouchableOpacity
+          className=" mt-8 justify-center mx-auto"
+          onPress={handleDownload}
+        >
+          <Text className="text-white text-center text-lg font-semibold">
+            Download Here
+          </Text>
+        </TouchableOpacity>
       </SafeAreaView>
     </ImageBackground>
   );
