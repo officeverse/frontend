@@ -17,8 +17,14 @@ import { faCoins } from "@fortawesome/free-solid-svg-icons/faCoins";
 
 const image = require("../assets/background.png");
 
-export default function Profile() {
+export default function Profile({navigation}) {
     const [countdown, setCountdown] = useState("");
+    const pressHandlerPaymentHistory = () => {
+        navigation.navigate("PaymentHistory");
+      };
+    const pressHandlerApplyLeave = () => {
+    navigation.navigate("ApplyLeave");
+    };
     useEffect(() => {
         // Calculate the remaining time until the first day of the next month
         const calculateCountdown = () => {
@@ -90,6 +96,7 @@ export default function Profile() {
                     </Text>
                     {/* Personal Badges */}
                     <ScrollView
+                        contentOffset={{ x: 20, y: 0 }}
                         className="flex-row w-3/4"
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
@@ -116,7 +123,7 @@ export default function Profile() {
                         </View>
                     </ScrollView>
                     {/* EXP and Coins */}
-                    <Text className="text-white my-2">EXP</Text>
+                    <Text className="text-white my-2 font-bold">EXP</Text>
                     <View className="h-4 bg-slate-100 rounded-full w-1/2">
                         <View className="h-4 bg-blue-400 rounded-full w-2/5" />
                     </View>
@@ -127,7 +134,9 @@ export default function Profile() {
                                 icon={faCoins}
                                 size={15}
                             />
-                            <Text className="text-white mx-2">150 coins</Text>
+                            <Text className="text-white mx-2 font-bold">
+                                150 coins
+                            </Text>
                         </View>
 
                         <Text className="text-white mx-2 text-xs">
@@ -136,7 +145,7 @@ export default function Profile() {
                     </TouchableOpacity>
                 </View>
                 <ScrollView>
-                    <TouchableOpacity className="bg-white items-center justify-center p-3 rounded-lg w-3/4 my-2 mx-auto">
+                    <TouchableOpacity onPress={pressHandlerPaymentHistory} className="bg-white items-center justify-center p-3 rounded-lg w-3/4 my-2 mx-auto">
                         <Text className="text-2xl font-semibold mb-2 p-2">
                             Paycheck in
                         </Text>
@@ -148,7 +157,7 @@ export default function Profile() {
                         </Text>
                     </TouchableOpacity>
                     <View className="flex-row w-3/4 justify-evenly mx-auto">
-                        <TouchableOpacity className="bg-white items-center justify-center p-3 rounded-lg w-[50%] mx-2 m-4">
+                        <TouchableOpacity onPress={pressHandlerApplyLeave} className="bg-white items-center justify-center p-3 rounded-lg w-[50%] mx-2 m-4">
                             <Text className="text-2xl font-semibold mb-2">
                                 MCs
                             </Text>
@@ -162,7 +171,7 @@ export default function Profile() {
                                 Apply Now
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity className="bg-white items-center justify-center p-3 rounded-lg w-[50%] mx-2 m-4">
+                        <TouchableOpacity onPress={pressHandlerApplyLeave} className="bg-white items-center justify-center p-3 rounded-lg w-[50%] mx-2 m-4">
                             <Text className="text-2xl font-semibold mb-2">
                                 Off Days
                             </Text>

@@ -1,15 +1,15 @@
 import {
-  Text,
-  View,
-  SafeAreaView,
-  ScrollView,
-  TextInput,
-  ImageBackground,
-  KeyboardAvoidingView,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Alert,
+    Text,
+    View,
+    SafeAreaView,
+    ScrollView,
+    TextInput,
+    ImageBackground,
+    KeyboardAvoidingView,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard,
+    Alert,
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUserGroup } from "@fortawesome/free-solid-svg-icons/faUserGroup";
@@ -19,6 +19,7 @@ import React from "react";
 const image = require("../assets/background.png");
 
 export default function Forum() {
+
   const [text, setText] = React.useState("");
 
   const announcements = [
@@ -80,15 +81,15 @@ export default function Forum() {
                         </Text>
                       </View>
 
-                      <View className="">
-                        <Text className="text-left text-base text-gray-600 ">
-                          {item.event}
-                        </Text>
-                      </View>
-                    </View>
-                  ))}
-                </ScrollView>
-              </View>
+
+                                <View className="flex-row justify-center mx-auto">
+                                    <TextInput
+                                        onChangeText={onChangeText}
+                                        value={text}
+                                        placeholder="Leave a Feedback"
+                                        className="mx-2 rounded-lg bg-blue-100 px-10 py-4 h-[11vh] w-[74vw]"
+                                    ></TextInput>
+
 
               <View>
                 <View className="text-center">
@@ -148,4 +149,5 @@ export default function Forum() {
       </ImageBackground>
     </KeyboardAvoidingView>
   );
+
 }
