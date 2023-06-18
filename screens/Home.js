@@ -1,13 +1,13 @@
 import {
-  Text,
-  View,
-  SafeAreaView,
-  ScrollView,
-  TextInput,
-  ImageBackground,
-  TouchableOpacity,
-  Modal,
-  Button,
+    Text,
+    View,
+    SafeAreaView,
+    ScrollView,
+    TextInput,
+    ImageBackground,
+    TouchableOpacity,
+    Modal,
+    Button,
 } from "react-native";
 import { useState, useRef } from "react";
 import WheelOfFortune from "react-native-wheel-of-fortune";
@@ -20,64 +20,26 @@ const image = require("../assets/office_home.png");
 const participants = ["10", "20", "30", "40", "50", "60", "70", "80", "90"];
 
 export default function Home({ navigation }) {
-  const wheelRef = useRef(null);
+    const wheelRef = useRef(null);
 
-  const [dailyWheelOpen, setDailyWheelOpen] = useState(false);
-  const [prize, setPrize] = useState("");
+    const [dailyWheelOpen, setDailyWheelOpen] = useState(false);
+    const [prize, setPrize] = useState("");
 
-  const closeDailyWheel = () => {
-    setDailyWheelOpen(false);
-  };
+    const closeDailyWheel = () => {
+        setDailyWheelOpen(false);
+    };
 
-  return (
-    <ImageBackground
-      source={image}
-      resizeMode="cover"
-      className=" justify-center"
-    >
-      <SafeAreaView>
-        <Modal
-          visible={dailyWheelOpen}
-          animationType="slide"
-          onRequestClose={closeDailyWheel}
+    return (
+        <ImageBackground
+            source={image}
+            resizeMode="cover"
+            className=" justify-center"
         >
-          {/* Content of the pop-up */}
-          <SafeAreaView className="my-auto mx-auto">
-            <WheelOfFortune
-              options={{
-                rewards: participants,
-                knobSize: 30,
-                borderWidth: 5,
-                borderColor: "#fff",
-                innerRadius: 30,
-                duration: 6000,
-                backgroundColor: "transparent",
-                textAngle: "horizontal",
-                knobSource: require("../assets/images/knob.png"),
-                getWinner: (value, index) => {
-                  // this.setState({
-                  //     winnerValue: value,
-                  //     winnerIndex: index,
-                  // });
-                  console.log(value);
-                  console.log(index);
-                  setPrize(value);
-                },
-                onRef: (ref) => (wheelRef.current = ref),
-              }}
-            />
-          </SafeAreaView>
-          <Text className="mx-auto my-2 mt-14">
-            Stand a chance to win coins and other prizes!
-          </Text>
-          <View className="bg-slate-800 rounded-lg w-auto mx-auto p-2 my-2">
-            <TouchableOpacity
-              className="p-1 px-3"
-              onPress={() => {
-                wheelRef.current._onPress();
-              }}
+            <Modal
+                visible={dailyWheelOpen}
+                animationType="slide"
+                onRequestClose={closeDailyWheel}
             >
-
                 {/* Content of the pop-up */}
                 <View className="my-auto mx-auto">
                     <WheelOfFortune
@@ -104,7 +66,7 @@ export default function Home({ navigation }) {
                         }}
                     />
                 </View>
-                <Text className="mx-auto my-2 mt-14">
+                <Text className="mx-auto my-2">
                     Stand a chance to win coins and other prizes!
                 </Text>
                 <View className="bg-slate-800 rounded-lg w-auto mx-auto p-2 my-2">
