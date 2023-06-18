@@ -31,13 +31,20 @@ export default function ApplyLeave() {
       className=" justify-center"
     >
       <SafeAreaView className="h-[100vh]">
-        <View className="flex-row items-center justify-center mt-8">
+        <TouchableOpacity className="ml-5 flex-row mb-4 mt-2">
+          <Text className="text-white mt-1 mr-2">
+            <FontAwesomeIcon color={"white"} icon={faArrowLeft} size={24} />
+          </Text>
+          <Text className="text-lg font-semibold text-white">Back</Text>
+        </TouchableOpacity>
+
+        <View className="flex-row items-center justify-center">
           <Text className="text-3xl mb-3 font-semibold text-white">
             Apply Leave
           </Text>
         </View>
 
-        <View className="text-white items-center justify-center mb-1 mt-4">
+        <View className="text-white items-center justify-center mb-1 mt-2">
           <Text className="text-white text-base "> Full Name</Text>
         </View>
 
@@ -92,12 +99,14 @@ export default function ApplyLeave() {
           ></TextInput>
         </View>
 
-        <TouchableOpacity className="justify-center mx-auto mt-8 flex-row mb-4">
-          <Text className="text-white mt-1 mr-2">
+        <View className="flex-row justify-center mx-auto">
+          <TouchableOpacity className="justify-center mx-auto mt-8 flex-row mb-4">
+            {/* <Text className="text-white mt-1 mr-2">
             <FontAwesomeIcon color={"white"} icon={faArrowLeft} size={24} />
-          </Text>
-          <Text className="text-xl font-semibold text-white">Back</Text>
-        </TouchableOpacity>
+          </Text> */}
+            <Text className="text-xl font-semibold text-white">Submit</Text>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );

@@ -5,6 +5,7 @@ import {
   ScrollView,
   TextInput,
   ImageBackground,
+  KeyboardAvoidingView,
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUserGroup } from "@fortawesome/free-solid-svg-icons/faUserGroup";
@@ -97,12 +98,14 @@ export default function Forum() {
             </Text>
           </View>
 
-          <TextInput
-            //   onChangeText={onChangeNumber}
-            value={text}
-            placeholder="Leave a Feedback"
-            className="mx-10 rounded-lg bg-blue-100 px-10 py-4 h-[13vh]"
-          ></TextInput>
+          <KeyboardAvoidingView behavior="padding">
+            <TextInput
+              onChangeText={onChangeText}
+              value={text}
+              placeholder="Leave a Feedback"
+              className="mx-10 rounded-lg bg-blue-100 px-10 py-4 h-[13vh]"
+            ></TextInput>
+          </KeyboardAvoidingView>
         </View>
       </SafeAreaView>
     </ImageBackground>
