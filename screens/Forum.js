@@ -19,8 +19,8 @@ import React from "react";
 const image = require("../assets/background.png");
 
 export default function Forum() {
+  const [text, setText] = React.useState("");
 
-  const [text, onChangeText] = React.useState("");
   const announcements = [
     { date: "25 June", event: "Company Retreat" },
     { date: "7 July", event: "Monthly Report" },
@@ -31,8 +31,9 @@ export default function Forum() {
 
   const handleButtonPress = () => {
     Alert.alert("We hear you!", "We appreciate your feedback", [
-      { text: "OK" },
+      { text: "Submit" },
     ]);
+    setText("");
   };
   return (
     <KeyboardAvoidingView
@@ -66,7 +67,6 @@ export default function Forum() {
                   <Text className="text-white text-center mt-5 mb-3">
                     Company Calendar
                   </Text>
-
                 </View>
                 <ScrollView className="mx-10 max-h-[15.5vh] overflow-hidden rounded-lg mt-1 shadow-xl">
                   {announcements.map((item, index) => (
@@ -90,7 +90,6 @@ export default function Forum() {
                 </ScrollView>
               </View>
 
-
               <View>
                 <View className="text-center">
                   <Text className="text-white text-center mt-14 mb-1">
@@ -103,7 +102,7 @@ export default function Forum() {
 
                 <View className="flex-row justify-center mx-auto">
                   <TextInput
-                    onChangeText={onChangeText}
+                    onChangeText={setText}
                     value={text}
                     placeholder="Leave a Feedback"
                     className="mx-2 rounded-lg bg-blue-100 px-10 py-4 h-[11vh] w-[74vw]"
@@ -128,7 +127,6 @@ export default function Forum() {
                     Employee of the Month
                   </Text>
                 </View>
-
 
                 <View className="mx-10 rounded-lg bg-blue-100 px-10 py-5">
                   <View className="text-center">
