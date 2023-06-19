@@ -4,14 +4,10 @@ const image = require("../assets/office_home.png");
 
 export default function Leaderboard() {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ImageBackground
-        source={image}
-        style={{flex: 1}}
-        resizeMode="cover"
-      >
+    <ImageBackground source={image} style={{ flex: 1 }} resizeMode="cover">
+      <SafeAreaView style={{ flex: 1 }}>
         {/* Here you will include the scrollable content of your leaderboard */}
-      </ImageBackground>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
