@@ -34,6 +34,7 @@ export default function Home({ navigation }) {
       source={image}
       resizeMode="cover"
       className=" justify-center"
+      onTouchStart={() => navigation.navigate('Leaderboard')} // navigate on touch
     >
       <Modal
         visible={dailyWheelOpen}
@@ -96,8 +97,10 @@ export default function Home({ navigation }) {
           </TouchableOpacity>
         </ImageBackground>
       </Modal>
-      <SafeAreaView className="h-[100vh]">
-        <View className="flex-row items-center justify-center mt-16">
+      <SafeAreaView className="h-[100vh]" 
+        onTouchStart={() => navigation.navigate('Leaderboard')} // navigate on touch
+      >
+         <View className="flex-row items-center justify-center mt-16">
           <Text className="text-5xl font-bold color-white">Officeverse.</Text>
         </View>
         <View className=" items-center justify-center mt-3">
