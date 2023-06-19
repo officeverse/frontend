@@ -92,17 +92,19 @@ export default function Home({ navigation }) {
             )}
           </View>
           <TouchableOpacity onPress={closeDailyWheel}>
-            <Text className="mx-auto mb-12 pt-4 underline">Close</Text>
+            <Text className="mx-auto mb-16 pt-4 underline">Close</Text>
           </TouchableOpacity>
         </ImageBackground>
       </Modal>
       <SafeAreaView className="h-[100vh]">
-        <View className="flex-row items-center justify-center mt-14">
-          <Text className="text-4xl font-bold color-white">Officeverse.</Text>
+        <View className="flex-row items-center justify-center mt-16">
+          <Text className="text-5xl font-bold color-white">Officeverse.</Text>
         </View>
         <View className=" items-center justify-center mt-3">
-          <Text className="text-xl font-medium color-white">Welcome back,</Text>
-          <Text className="text-xl mb-6 font-medium color-white">
+          <Text className="text-2xl font-medium color-white">
+            Welcome back,
+          </Text>
+          <Text className="text-2xl mb-6 font-medium color-white">
             Babybear380.
           </Text>
         </View>
