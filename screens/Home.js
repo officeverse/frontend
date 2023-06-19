@@ -34,7 +34,6 @@ export default function Home({ navigation }) {
       source={image}
       resizeMode="cover"
       className=" justify-center"
-      onTouchStart={() => navigation.navigate('Leaderboard')} // navigate on touch
     >
       <Modal
         visible={dailyWheelOpen}
@@ -98,7 +97,7 @@ export default function Home({ navigation }) {
         </ImageBackground>
       </Modal>
       <SafeAreaView className="h-[100vh]" 
-        onTouchStart={() => navigation.navigate('Leaderboard')} // navigate on touch
+
       >
          <View className="flex-row items-center justify-center mt-16">
           <Text className="text-5xl font-bold color-white">Officeverse.</Text>
@@ -119,6 +118,28 @@ export default function Home({ navigation }) {
         >
           <FontAwesomeIcon color={"white"} icon={faDharmachakra} size={32} />
           <Text className="text-white mx-2">Daily Spin</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            left: '33.33%', 
+            top: '43%',
+            width: '33.33%',
+            height: '20%',
+            justifyContent: 'flex-end',  // Aligns children at the bottom of the view
+            alignItems: 'center'  // Centers children horizontally
+          }}
+          onPress={() => {
+            navigation.navigate('Leaderboard')
+          }}
+        >
+          <Text style={{
+            color: 'white', 
+            fontWeight: 'semibold', 
+            textAlign: 'center'  // Centers text
+          }}>
+            Tap desk to enter office
+          </Text>
         </TouchableOpacity>
         <Character />
       </SafeAreaView>
