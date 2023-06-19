@@ -30,9 +30,16 @@ export default function Forum() {
   ];
 
   const handleButtonPress = () => {
-    Alert.alert("We hear you!", "We appreciate your feedback", [
-      { text: "Submit" },
-    ]);
+    if (text === "") {
+      Alert.alert("Missing Feedback!", "Do enter your feedback and resubmit", [
+        { text: "OK" },
+      ]);
+    } else {
+      Alert.alert("We hear you!", "We appreciate your feedback", [
+        { text: "Redeem 50 EXP" },
+      ]);
+    }
+
     setText("");
   };
   return (
@@ -105,7 +112,7 @@ export default function Forum() {
                     value={text}
                     placeholder="Feedback and earn 50 EXP!"
                     placeholderTextColor="#6C6B6B"
-                    className="mx-2 rounded-lg bg-blue-100 px-8 py-4 h-[11vh] w-[74vw]"
+                    className="mx-2 rounded-lg bg-blue-100 px-6 py-4 h-[11vh] w-[73vw]"
                   ></TextInput>
 
                   <TouchableOpacity onPress={handleButtonPress} className="">
