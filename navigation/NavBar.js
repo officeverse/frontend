@@ -9,6 +9,7 @@ import { faDumbbell } from "@fortawesome/free-solid-svg-icons/faDumbbell";
 import { faComputer } from "@fortawesome/free-solid-svg-icons/faComputer";
 import { faCommentDots } from "@fortawesome/free-solid-svg-icons/faCommentDots";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
+import { createStackNavigator } from '@react-navigation/stack';
 
 // Screens
 import Home from "../screens/Home";
@@ -17,6 +18,18 @@ import Challenges from "../screens/Challenges";
 import Forum from "../screens/Forum";
 import Profile from "../screens/Profile";
 import Rewards from "../screens/Rewards";
+import Leaderboard from '../screens/Leaderboard';
+
+const HomeStack = createStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator screenOptions={{headerShown: false}}>
+      <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen name="Leaderboard" component={Leaderboard} />
+    </HomeStack.Navigator>
+  );
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -30,7 +43,7 @@ export default function NavBar() {
             >
                 <Tab.Screen
                     name="Home"
-                    component={Home}
+                    component={HomeStackScreen}
                     options={{
                         title: "Home",
                         tabBarIcon: ({ size, color }) => (
