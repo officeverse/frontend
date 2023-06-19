@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons/faPaperPlane";
@@ -16,6 +17,11 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons/faPaperPlane";
 export default function Login({ navigation }) {
   const [number, onChangeNumber] = React.useState("");
   const pressHandler = () => {
+    Alert.alert(
+      "NOTE!",
+      "Do read each section carefully as you are unable to navigate back once you move forward",
+      [{ text: "OK" }]
+    );
     navigation.navigate("StartTour");
   };
   return (

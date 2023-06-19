@@ -31,12 +31,15 @@ export default function Values({ navigation }) {
 
       <TouchableOpacity
         onPress={pressHandler}
-        className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-8 py-2 shadow-lg"
+        className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-8 py-3 shadow-lg"
       >
         <Text className="text-lg text-center font-semibold">
-          Collect My Reward
+          Collect My Reward!
         </Text>
-        <Text className="text-md pt-1 text-center text-gray-500">+ 50 EXP</Text>
+        <Text className="text-md pt-1 text-center text-gray-500">
+          {" "}
+          Redeem 50 EXP
+        </Text>
       </TouchableOpacity>
       <View className="justify-center mx-auto mt-10">
         <Image

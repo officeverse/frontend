@@ -30,16 +30,24 @@ export default function ApplyLeave({ navigation }) {
   const [dept, setDept] = React.useState("");
   const [date, setDate] = React.useState("");
   const handleButtonPress = () => {
-    Alert.alert(
-      "Sucessfully Submitted!",
-      "We will process your leave as soon as possible",
-      [{ text: "OK" }]
-    );
-    setName("");
-    setDept("");
-    setDate("");
-    setValue(null);
-    navigation.goBack();
+    if (name === "" || dept === "" || date === "" || value === null) {
+      Alert.alert(
+        "Missing Information!",
+        "Please ensure that you have filled up all sections",
+        [{ text: "OK" }]
+      );
+    } else {
+      Alert.alert(
+        "Successfully Submitted!",
+        "We will process your leave as soon as possible",
+        [{ text: "OK" }]
+      );
+      setName("");
+      setDept("");
+      setDate("");
+      setValue(null);
+      navigation.goBack();
+    }
   };
 
   const goback = () => {

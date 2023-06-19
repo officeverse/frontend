@@ -7,12 +7,18 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  Alert,
 } from "react-native";
 
-export default function StartTour({navigation}) {
+export default function StartTour({ navigation }) {
   const pressHandler = () => {
-    navigation.navigate('OptionA')
-  }
+    Alert.alert(
+      "Reminder!",
+      "Last reminder to read each section carefully before moving forward, and have fun!",
+      [{ text: "OK" }]
+    );
+    navigation.navigate("OptionA");
+  };
   return (
     <SafeAreaView className="h-[100vh]">
       <View className="mt-10">
@@ -33,8 +39,11 @@ export default function StartTour({navigation}) {
           </View>
         </View>
 
-        <TouchableOpacity onPress={pressHandler} className="justify-center mx-auto bg-blue-200 rounded-lg mt-12">
-          <Text className="text-base px-10 py-2">Start Tour</Text>
+        <TouchableOpacity
+          onPress={pressHandler}
+          className="justify-center mx-auto bg-blue-200 rounded-lg mt-12"
+        >
+          <Text className="text-base px-10 py-3">Start Tour</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
