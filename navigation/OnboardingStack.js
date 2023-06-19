@@ -1,19 +1,21 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-import Login from "../onboarding/Login";
-import StartTour from "../onboarding/StartTour";
-import OptionA from "../onboarding/OptionA";
-import Values from "../onboarding/Values";
-import OptionB from "../onboarding/OptionB";
-import Benefits from "../onboarding/Benefits";
-import OptionC from "../onboarding/OptionC";
-import Team from "../onboarding/Team";
-import EndTour from "../onboarding/EndTour";
-import NavBar from "./NavBar";
-import PaymentHistory from "../screens/PaymentHistory";
-import ApplyLeave from "../screens/ApplyLeave";
-import Leaderboard from "../screens/Leaderboard";
+import Login from '../onboarding/Login';
+import StartTour from '../onboarding/StartTour';
+import OptionA from '../onboarding/OptionA';
+import Values from '../onboarding/Values';
+import OptionB from '../onboarding/OptionB';
+import Benefits from '../onboarding/Benefits';
+import OptionC from '../onboarding/OptionC';
+import Team from '../onboarding/Team';
+import EndTour from '../onboarding/EndTour';
+import NavBar from './NavBar';
+import PaymentHistory from '../screens/PaymentHistory';
+import ApplyLeave from '../screens/ApplyLeave';
+import Leaderboard from '../screens/Leaderboard';
+import PreSignIn from '../screens/PreSignIn';
+import SignUp from '../screens/SignUp';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +27,8 @@ export default function OnboardingStack() {
           headerShown: false,
         }}
       >
+        <Stack.Screen name="PreSignIn" component={PreSignIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="StartTour" component={StartTour} />
         <Stack.Screen name="OptionA" component={OptionA} />

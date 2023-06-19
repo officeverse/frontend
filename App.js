@@ -1,9 +1,7 @@
-import "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import NavBar from "./navigation/NavBar";
-import OnboardingStack from "./navigation/OnboardingStack";
-import Rewards from "./screens/Rewards";
+import 'react-native-gesture-handler';
+import { StatusBar } from 'expo-status-bar';
+import { View } from 'react-native';
+import OnboardingStack from './navigation/OnboardingStack';
 
 export default function App() {
   return (

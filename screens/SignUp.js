@@ -2,10 +2,10 @@ import { ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, View } from 'react-native';
 const image = require('../assets/background.png');
-import LoginForm from '../components/LoginForm';
+import SignUpForm from '../components/SignUpForm';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-export default function PreSignIn({ navigation }) {
+export default function SignUp({ navigation }) {
   return (
     <KeyboardAwareScrollView
       resetScrollToCoords={{ x: 0, y: 0 }}
@@ -20,7 +20,7 @@ export default function PreSignIn({ navigation }) {
           <View className="flex-row items-center justify-center mt-16">
             <Text className="text-5xl font-bold color-white">Officeverse.</Text>
           </View>
-          <LoginForm navigation={navigation} />
+          <SignUpForm navigation={navigation} />
         </SafeAreaView>
       </ImageBackground>
     </KeyboardAwareScrollView>

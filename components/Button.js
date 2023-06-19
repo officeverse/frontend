@@ -1,7 +1,12 @@
 import React from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
 
-export default function Button({ onPress, title = 'Save', type = 'primary' }) {
+export default function Button({
+  onPress,
+  title = 'Save',
+  type = 'primary',
+  disabled = false,
+}) {
   const isPrimary = type === 'primary';
   const styles = StyleSheet.create({
     button: {
@@ -26,7 +31,7 @@ export default function Button({ onPress, title = 'Save', type = 'primary' }) {
   });
 
   return (
-    <Pressable style={styles.button} onPress={onPress}>
+    <Pressable style={styles.button} onPress={onPress} disabled={disabled}>
       <Text style={styles.text}>{title}</Text>
     </Pressable>
   );
