@@ -14,7 +14,7 @@ export default function EndTour({ navigation }) {
   };
   return (
     <SafeAreaView className="h-[100vh]">
-      <View className="px-6 mt-16">
+      <View className="px-6 mt-20">
         <Text className="text-center text-3xl font-semibold">
           Congratulations!
         </Text>
@@ -25,15 +25,18 @@ export default function EndTour({ navigation }) {
       </View>
 
       <View>
-        <Text className="text-base text-center mt-16 px-10 text-gray-600">
+        <Text className="text-base text-center mt-12 px-10 text-gray-600">
           Exchange your tree for 150 EXP now!
         </Text>
       </View>
 
-      <TouchableOpacity onPress={pressHandler} className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-4 py-4 shadow-lg">
+      <TouchableOpacity
+        onPress={pressHandler}
+        className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-4 py-4 shadow-lg"
+      >
         <Text className="text-lg text-center font-semibold">+ 150 EXP</Text>
       </TouchableOpacity>
-      
+
       <View className="justify-center mx-auto mt-16">
         <Image
           style={styles.forest}
