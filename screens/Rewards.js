@@ -1,4 +1,4 @@
-import { StatusBar } from "expo-status-bar";
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -6,6 +6,10 @@ import {
   SafeAreaView,
   ScrollView,
   ImageBackground,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  Alert,
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faGift } from "@fortawesome/free-solid-svg-icons/faGift";
@@ -14,17 +18,62 @@ const image = require("../assets/background.png");
 
 export default function Rewards() {
   const reward = [
-    { title: "$5 Grab Voucher", points: "- 100 exp" },
-    { title: "$5 Food Panda Voucher", points: "- 100 EXP" },
-    { title: "15% OFF Swensons Voucher", points: "- 80 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
-    { title: "$2 KOI Voucher", points: "- 60 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
-    { title: "10% OFF Courts Voucher", points: "- 100 coins" },
+    { id: 1, title: "$5 Grab Voucher", points: 150 },
+    { id: 2, title: "$5 Food Panda Voucher", points: 100 },
+    { id: 3, title: "15% OFF H&M Voucher", points: 80 },
+    { id: 4, title: "10% OFF Courts Voucher", points: 70 },
+    { id: 5, title: "$2 KOI Voucher", points: 60 },
+    { id: 6, title: "10% OFF Courts Voucher", points: 100 },
+    { id: 7, title: "10% OFF Courts Voucher", points: 100 },
+    { id: 8, title: "10% OFF Courts Voucher", points: 100 },
+    { id: 9, title: "10% OFF Courts Voucher", points: 100 },
+    { id: 10, title: "10% OFF Courts Voucher", points: 100 },
   ];
+
+  const renderItem = ({ item }) => (
+    <View
+      className="bg-white rounded-xl w-[46vw] max-w-xs mx-auto my-4"
+      style={[
+        {
+          shadowColor: "black",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
+        },
+      ]}
+    >
+      <TouchableOpacity
+        onPress={() => {
+          Alert.alert(item.title, `Redeem Reward with ${item.points} EXP`, [
+            { text: "Confirm" },
+            { text: "Cancel" },
+          ]);
+        }}
+      >
+        <Image
+          source={require("../assets/voucher.jpg")}
+          className="w-full h-32 rounded-t-lg"
+          resizeMode="cover"
+        />
+        <View className="p-4">
+          <View>
+            <Text className="mb-3  text-sm text-stone-500">
+              {item.points} coins
+            </Text>
+            <View className="">
+              <Text className=" text-slate-900 text-base font-bold">
+                {item.title}
+              </Text>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <ImageBackground
@@ -47,19 +96,14 @@ export default function Rewards() {
             Start exchanging BBC coins for rewards now!
           </Text>
         </View>
-
-        {/* change to ensure navbar doesnt block challenges */}
-        <ScrollView className="max-h-[73vh] overflow-hidden">
-          {reward.map((item, index) => (
-            <View
-              className="mx-10 bg-blue-100 items-center justify-center mb-6 px-5 py-2 rounded-lg"
-              key={index}
-            >
-              <Text className="text-lg mb-1 font-medium">{item.title}</Text>
-              <Text className="text-xs text-gray-600">{item.points}</Text>
-            </View>
-          ))}
-        </ScrollView>
+        <FlatList
+          data={reward}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+          className="row m-0"
+        />
+        {/* </ScrollView> */}
       </SafeAreaView>
     </ImageBackground>
   );
