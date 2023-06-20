@@ -4,8 +4,11 @@ import { Text, View } from 'react-native';
 const image = require('../assets/background.png');
 import SignUpForm from '../components/SignUpForm';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Auth } from 'aws-amplify';
 
 export default function SignUp({ navigation }) {
+  const onSignUp = () => {};
+
   return (
     <KeyboardAwareScrollView
       resetScrollToCoords={{ x: 0, y: 0 }}
@@ -20,7 +23,7 @@ export default function SignUp({ navigation }) {
           <View className="flex-row items-center justify-center mt-16">
             <Text className="text-5xl font-bold color-white">Officeverse.</Text>
           </View>
-          <SignUpForm navigation={navigation} />
+          <SignUpForm navigation={navigation} onSubmit={onSignUp} />
         </SafeAreaView>
       </ImageBackground>
     </KeyboardAwareScrollView>

@@ -5,17 +5,14 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 const loginValidationSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email('Please enter valid email')
-    .required('Email Address is Required'),
+  username: yup.string().required(),
   password: yup
     .string()
     .min(8, ({ min }) => `Password must be at least ${min} characters`)
     .required('Password is required'),
 });
 
-export default function ({ navigation }) {
+export default function ({ navigation, onSubmit }) {
   return (
     <View style={styles.loginContainer} className="mt-16 px-5">
       <View className="flex-row items-center justify-center mt-16">
@@ -25,7 +22,7 @@ export default function ({ navigation }) {
       </View>
       <Formik
         validationSchema={loginValidationSchema}
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ username: '', password: '' }}
         onSubmit={(values) => console.log(values)}
       >
         {({
@@ -38,16 +35,15 @@ export default function ({ navigation }) {
         }) => (
           <>
             <TextInput
-              name="email"
-              placeholder="Email Address"
+              name="username"
+              placeholder="Username"
               style={styles.textInput}
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              value={values.email}
-              keyboardType="email-address"
+              onChangeText={handleChange('username')}
+              onBlur={handleBlur('username')}
+              value={values.username}
             />
-            {errors.email && (
-              <Text style={styles.errorText}>{errors.email}</Text>
+            {errors.username && (
+              <Text style={styles.errorText}>{errors.username}</Text>
             )}
             <TextInput
               name="password"

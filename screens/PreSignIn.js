@@ -6,6 +6,8 @@ import LoginForm from '../components/LoginForm';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function PreSignIn({ navigation }) {
+  const onLogin = () => {};
+
   return (
     <KeyboardAwareScrollView
       resetScrollToCoords={{ x: 0, y: 0 }}
@@ -20,7 +22,7 @@ export default function PreSignIn({ navigation }) {
           <View className="flex-row items-center justify-center mt-16">
             <Text className="text-5xl font-bold color-white">Officeverse.</Text>
           </View>
-          <LoginForm navigation={navigation} />
+          <LoginForm navigation={navigation} onSubmit={onLogin} />
         </SafeAreaView>
       </ImageBackground>
     </KeyboardAwareScrollView>

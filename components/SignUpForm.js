@@ -4,14 +4,25 @@ import Button from './Button';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-const loginValidationSchema = yup.object().shape({
+const signupValidationSchema = yup.object().shape({
+  username: yup
+    .string()
+    .min(6, ({ min }) => `Username must be at least ${min} characters`)
+    .max(20, ({ max }) => `Username cannot exceed ${max} characters`)
+    .matches(
+      new RegExp(/^(?![_.])[a-zA-Z0-9._]+(?<![_.])$/),
+      () =>
+        'Invalid username.\nOnly _ or . is allowed for special characters.\nUsername should not start or end with special characters'
+    )
+    .required(),
   firstName: yup
     .string()
     .min(2, ({ min }) => `First name must be at least ${min} characters`)
     .required(`First name is Required`),
   lastName: yup
     .string()
-    .min(2, ({ min }) => `Last name must be at least ${min} characters`),
+    .min(2, ({ min }) => `Last name must be at least ${min} characters`)
+    .notRequired(),
   dateOfBirth: yup.date().required(),
   email: yup
     .string()
@@ -23,7 +34,7 @@ const loginValidationSchema = yup.object().shape({
     .required('Password is required'),
 });
 
-export default function ({ navigation }) {
+export default function ({ navigation, onSubmit }) {
   return (
     <View style={styles.loginContainer} className="mt-16 px-5">
       <View className="flex-row items-center justify-center mt-16">
@@ -32,7 +43,7 @@ export default function ({ navigation }) {
         </Text>
       </View>
       <Formik
-        validationSchema={loginValidationSchema}
+        validationSchema={signupValidationSchema}
         initialValues={{
           firstName: '',
           lastName: '',
@@ -51,6 +62,17 @@ export default function ({ navigation }) {
           isValid,
         }) => (
           <>
+            <TextInput
+              name="username"
+              placeholder="Username"
+              style={styles.textInput}
+              onChangeText={handleChange('username')}
+              onBlur={handleBlur('username')}
+              value={values.username}
+            />
+            {errors.username && (
+              <Text style={styles.errorText}>{errors.username}</Text>
+            )}
             <TextInput
               name="firstName"
               placeholder="First Name"
