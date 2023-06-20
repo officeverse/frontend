@@ -20,86 +20,110 @@ import Profile from "../screens/Profile";
 import Rewards from "../screens/Rewards";
 import Leaderboard from "../screens/Leaderboard";
 
-const HomeStack = createStackNavigator();
+// const HomeStack = createStackNavigator();
 
-function HomeStackScreen() {
-  return (
-    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-      <HomeStack.Screen name="Home" component={Home} />
-    </HomeStack.Navigator>
-  );
-}
+// function HomeStackScreen() {
+//     return (
+//         <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+//             <HomeStack.Screen name="Home" component={Home} />
+//         </HomeStack.Navigator>
+//     );
+// }
 
 const Tab = createBottomTabNavigator();
 
 export default function NavBar() {
-  return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={HomeStackScreen}
-        options={{
-          title: "Home",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesomeIcon icon={faHouse} size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Rewards"
-        component={Rewards}
-        options={{
-          title: "Rewards",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesomeIcon icon={faGift} size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Challenges"
-        component={Challenges}
-        options={{
-          title: "Challenges",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesomeIcon icon={faDumbbell} size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="AiPal"
-        component={AiPal}
-        options={{
-          title: "AiPal",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesomeIcon icon={faComputer} size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Forum"
-        component={Forum}
-        options={{
-          title: "Forum",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesomeIcon icon={faCommentDots} size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          title: "Profile",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesomeIcon icon={faUser} size={size} color={color} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
+    return (
+        <Tab.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <Tab.Screen
+                name="Home"
+                component={Home}
+                options={{
+                    title: "Home",
+                    tabBarIcon: ({ size, color }) => (
+                        <FontAwesomeIcon
+                            icon={faHouse}
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Rewards"
+                component={Rewards}
+                options={{
+                    title: "Rewards",
+                    tabBarIcon: ({ size, color }) => (
+                        <FontAwesomeIcon
+                            icon={faGift}
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Challenges"
+                component={Challenges}
+                options={{
+                    title: "Challenges",
+                    tabBarIcon: ({ size, color }) => (
+                        <FontAwesomeIcon
+                            icon={faDumbbell}
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="AiPal"
+                component={AiPal}
+                options={{
+                    title: "AiPal",
+                    tabBarIcon: ({ size, color }) => (
+                        <FontAwesomeIcon
+                            icon={faComputer}
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Forum"
+                component={Forum}
+                options={{
+                    title: "Forum",
+                    tabBarIcon: ({ size, color }) => (
+                        <FontAwesomeIcon
+                            icon={faCommentDots}
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Profile"
+                component={Profile}
+                options={{
+                    title: "Profile",
+                    tabBarIcon: ({ size, color }) => (
+                        <FontAwesomeIcon
+                            icon={faUser}
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+        </Tab.Navigator>
+    );
 }

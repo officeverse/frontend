@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Image, Animated, StyleSheet } from "react-native";
+import { View, Image, Animated, StyleSheet, Dimensions } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const Character = () => {
+const screenHeight = Dimensions.get("window").height;
+const screenWidth = Dimensions.get("window").width;
+
+const Character = ({ setCharacterPopupOpen }) => {
     const position = useRef(new Animated.Value(0)).current;
     const [flipped, setFlipped] = useState(false);
     const [direction, setDirection] = useState("right");
@@ -45,7 +49,7 @@ const Character = () => {
     }, []);
 
     return (
-        <View style={styles.characterContainer} className="mt-56 mr-16">
+        <View style={styles.characterContainer} className="absolute">
             <Animated.View
                 style={[
                     styles.character,
@@ -58,10 +62,16 @@ const Character = () => {
                     },
                 ]}
             >
-                <Image
-                    source={require("../assets/game_images/player.png")}
-                    style={styles.characterImage}
-                />
+                <TouchableOpacity
+                    onPress={() => {
+                        setCharacterPopupOpen(true);
+                    }}
+                >
+                    <Image
+                        source={require("../assets/game_images/player.png")}
+                        style={styles.characterImage}
+                    />
+                </TouchableOpacity>
             </Animated.View>
         </View>
     );
@@ -70,6 +80,8 @@ const Character = () => {
 const styles = StyleSheet.create({
     characterContainer: {
         alignItems: "center",
+        marginTop: screenHeight / 2 + 20,
+        marginLeft: screenWidth / 2 - 40,
     },
     character: {
         flexDirection: "row",
