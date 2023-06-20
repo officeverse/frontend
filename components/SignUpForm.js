@@ -23,7 +23,6 @@ const signupValidationSchema = yup.object().shape({
     .string()
     .min(2, ({ min }) => `Last name must be at least ${min} characters`)
     .notRequired(),
-  dateOfBirth: yup.date().required(),
   email: yup
     .string()
     .email('Please enter valid email')
@@ -47,11 +46,11 @@ export default function ({ navigation, onSubmit }) {
         initialValues={{
           firstName: '',
           lastName: '',
-          dateOfBirth: new Date(),
           email: '',
           password: '',
+          username: '',
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={onSubmit}
       >
         {({
           handleChange,
@@ -86,7 +85,7 @@ export default function ({ navigation, onSubmit }) {
             )}
             <TextInput
               name="lastName"
-              placeholder="Last Name"
+              placeholder="Last Name (Optional)"
               style={styles.textInput}
               onChangeText={handleChange('lastName')}
               onBlur={handleBlur('lastName')}

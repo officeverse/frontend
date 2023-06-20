@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-import Login from '../onboarding/Login';
+import OnboardingMain from '../onboarding/OnboardingMain';
 import StartTour from '../onboarding/StartTour';
 import OptionA from '../onboarding/OptionA';
 import Values from '../onboarding/Values';
@@ -16,6 +16,7 @@ import ApplyLeave from '../screens/ApplyLeave';
 import Leaderboard from '../screens/Leaderboard';
 import PreSignIn from '../screens/PreSignIn';
 import SignUp from '../screens/SignUp';
+import SignUpConfirmEmail from '../screens/SignUpConfirmEmail';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +30,11 @@ export default function OnboardingStack() {
       >
         <Stack.Screen name="PreSignIn" component={PreSignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen
+          name="SignUpConfirmEmail"
+          component={SignUpConfirmEmail}
+        />
+        <Stack.Screen name="OnboardingMain" component={OnboardingMain} />
         <Stack.Screen name="StartTour" component={StartTour} />
         <Stack.Screen name="OptionA" component={OptionA} />
         <Stack.Screen name="Values" component={Values} />

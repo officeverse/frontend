@@ -5,9 +5,52 @@ const image = require('../assets/background.png');
 import SignUpForm from '../components/SignUpForm';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Auth } from 'aws-amplify';
+import { useDispatch } from 'react-redux';
+import { createNewUser } from '../src/features/authSlice';
 
 export default function SignUp({ navigation }) {
-  const onSignUp = () => {};
+  const dispatch = useDispatch();
+
+  const onSignUp = async (data) => {
+    const { email, firstName, lastName, password, username } = data;
+    Auth.signUp({
+      username,
+      password,
+      attributes: {
+        email,
+        given_name: firstName,
+        family_name: lastName,
+      },
+      autoSignIn: {
+        enabled: true,
+      },
+    })
+      .then((result) => {
+        const { userSub, userConfirmed } = result;
+        dispatch(
+          createNewUser({
+            signUpResult: {
+              userSub,
+              userConfirmed,
+            },
+            attributes: {
+              email,
+              firstName,
+              lastName,
+              username,
+            },
+          })
+        );
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'SignUpConfirmEmail' }],
+        });
+      })
+      .catch((err) => {
+        console.error('Error occurred during sign up');
+        throw err;
+      });
+  };
 
   return (
     <KeyboardAwareScrollView

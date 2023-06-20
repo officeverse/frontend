@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Text,
   View,
@@ -10,26 +10,31 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-} from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons/faPaperPlane";
+} from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane';
+import { useSelector } from 'react-redux';
 
 export default function Login({ navigation }) {
-  const [number, onChangeNumber] = React.useState("");
+  const [number, onChangeNumber] = React.useState('');
+  const user = useSelector((state) => state.auth.user);
+  const { username } = user.attributes;
   const pressHandler = () => {
     Alert.alert(
-      "NOTE!",
-      "Do read each section carefully as you are unable to navigate back once you move forward",
-      [{ text: "OK" }]
+      'NOTE!',
+      'Do read each section carefully as you are unable to navigate back once you move forward',
+      [{ text: 'OK' }]
     );
-    navigation.navigate("StartTour");
+    navigation.navigate('StartTour');
   };
   return (
     <SafeAreaView className="h-[100vh]">
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
           <View className="mt-32">
-            <Text className="text-center text-3xl font-semibold">Hello!</Text>
+            <Text className="text-center text-3xl font-semibold">
+              Hello, {username}.
+            </Text>
             <Text className="text-center text-lg text-gray-400 mt-3 font-medium">
               Enter your company code
             </Text>
@@ -48,7 +53,7 @@ export default function Login({ navigation }) {
                 <FontAwesomeIcon
                   icon={faPaperPlane}
                   size={28}
-                  color={"#BFE0FF"}
+                  color={'#BFE0FF'}
                   bounce
                 />
               </Text>
@@ -58,7 +63,7 @@ export default function Login({ navigation }) {
           <View>
             <Image
               style={styles.forest}
-              source={require("../assets/LoginForest.png")}
+              source={require('../assets/LoginForest.png')}
             />
           </View>
         </View>
@@ -71,6 +76,6 @@ const styles = StyleSheet.create({
   forest: {
     // width: 350,
     // height: 450,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
 });
