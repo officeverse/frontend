@@ -127,7 +127,7 @@ export default function Challenges() {
         );
     };
 
-    return (
+    return challenges.length >= 1 ? (
         <ImageBackground
             source={image}
             resizeMode="cover"
@@ -160,6 +160,18 @@ export default function Challenges() {
 
                     // extraData={selectedId}
                 />
+            </SafeAreaView>
+        </ImageBackground>
+    ) : (
+        <ImageBackground
+            source={image}
+            resizeMode="cover"
+            className=" justify-center"
+        >
+            <SafeAreaView className="h-[100vh]">
+                <Text className="mx-auto text-white text-xl mt-80">
+                    Loading challenges...
+                </Text>
             </SafeAreaView>
         </ImageBackground>
     );
