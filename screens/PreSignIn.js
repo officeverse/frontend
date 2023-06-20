@@ -1,12 +1,60 @@
-import { ImageBackground } from 'react-native';
+import { Alert, ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, View } from 'react-native';
 const image = require('../assets/background.png');
 import LoginForm from '../components/LoginForm';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Auth } from 'aws-amplify';
+import { loginUser, setUsername } from '../src/features/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function PreSignIn({ navigation }) {
-  const onLogin = () => {};
+  const hasCompletedOnboarding = useSelector(
+    (state) => state.auth.user.hasCompletedOnboarding
+  );
+  const dispatch = useDispatch();
+
+  const onLogin = async (data) => {
+    const { username, password } = data;
+    Auth.signIn(username, password)
+      .then((user) => {
+        const { attributes, username } = user;
+        const {
+          email,
+          family_name: lastName,
+          given_name: firstName,
+          sub,
+        } = attributes;
+        dispatch(
+          loginUser({
+            sub,
+            isEmailVerified: true,
+            attributes: { email, lastName, firstName, username },
+          })
+        );
+        navigation.reset({
+          index: 0,
+          routes: [
+            { name: hasCompletedOnboarding ? 'Home' : 'OnboardingMain' },
+          ],
+        });
+      })
+      .catch(async (err) => {
+        if (err.message === 'User is not confirmed.') {
+          dispatch(setUsername(username));
+          // resend code
+          await Auth.resendSignUp(username).catch((err) => {
+            Alert.alert('Error resending code: ' + err);
+          });
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'SignUpConfirmEmail' }],
+          });
+          return;
+        }
+        Alert.alert('Error: ' + err);
+      });
+  };
 
   return (
     <KeyboardAwareScrollView

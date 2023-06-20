@@ -23,7 +23,7 @@ export default function ({ navigation, onSubmit }) {
       <Formik
         validationSchema={loginValidationSchema}
         initialValues={{ username: '', password: '' }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={onSubmit}
       >
         {({
           handleChange,

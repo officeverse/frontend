@@ -11,6 +11,7 @@ import { setEmailVerified } from '../src/features/authSlice';
 export default function SignUp({ navigation }) {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const { isNewSignUp } = user;
   const { username, email } = user.attributes;
 
   const onSignUpConfirm = async (data) => {
@@ -20,7 +21,12 @@ export default function SignUp({ navigation }) {
         dispatch(setEmailVerified());
         navigation.reset({
           index: 0,
-          routes: [{ name: 'OnboardingMain' }],
+          routes: [
+            {
+              // if user has verified email but not logged in
+              name: isNewSignUp ? 'OnboardingMain' : 'PreSignIn',
+            },
+          ],
         });
       })
       .catch((error) => {

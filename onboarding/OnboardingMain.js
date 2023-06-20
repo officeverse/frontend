@@ -14,6 +14,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane';
 import { useSelector } from 'react-redux';
+import SignOutButton from '../components/SignOutButton';
 
 export default function Login({ navigation }) {
   const [number, onChangeNumber] = React.useState('');
@@ -66,6 +67,8 @@ export default function Login({ navigation }) {
               source={require('../assets/LoginForest.png')}
             />
           </View>
+
+          <SignOutButton />
         </View>
       </TouchableWithoutFeedback>
     </SafeAreaView>

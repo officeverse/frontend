@@ -17,10 +17,19 @@ export default function ({ onSubmit, onRequestResend, email }) {
   return (
     <View style={styles.loginContainer} className="mt-16 px-5">
       <View className="flex-column items-center justify-center mt-16">
-        <Text className="text-lg font-bold color-white mb-3">
-          Please enter your confirmation code sent to:
-        </Text>
-        <Text className="text-md font-bold color-white mb-3">{email}</Text>
+        {!email && (
+          <Text className="text-lg font-bold color-white mb-3">
+            Confirmation code has been sent to your registered email.
+          </Text>
+        )}
+        {email && (
+          <>
+            <Text className="text-lg font-bold color-white mb-3">
+              Please enter your confirmation code sent to:
+            </Text>
+            <Text className="text-md font-bold color-white mb-3">{email}</Text>
+          </>
+        )}
       </View>
       <Formik
         validationSchema={signUpConfirmValidationSchema}
