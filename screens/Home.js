@@ -19,7 +19,7 @@ import { faDharmachakra } from "@fortawesome/free-solid-svg-icons/faDharmachakra
 import Character from "../components/Character";
 
 const image = require("../assets/office_home.png");
-const wheelImage = require("../assets/jason-leung-Xaanw0s0pMk-unsplash.jpg");
+const wheelImage = require("../assets/mockaroon-lgi3W65lmvA-unsplash.jpg");
 
 const min = 0;
 const max = 100;
@@ -47,23 +47,11 @@ export default function Home({ navigation }) {
         setDailyWheelOpen(false);
     };
 
-  return (
-    <ImageBackground
-      source={image}
-      resizeMode="cover"
-      className=" justify-center"
-    >
-      <Modal
-        visible={dailyWheelOpen}
-        animationType="slide"
-        onRequestClose={closeDailyWheel}
-      >
-        {/* Content of the pop-up */}
+    return (
         <ImageBackground
             source={image}
             resizeMode="cover"
             className=" justify-center"
-            // onTouchStart={() => navigation.navigate("Leaderboard")} // navigate on touch
         >
             {/* FORTUNE WHEEL POPUP */}
             <Modal
@@ -81,11 +69,11 @@ export default function Home({ navigation }) {
                             options={{
                                 rewards,
                                 knobSize: 30,
-                                borderWidth: 5,
+                                borderWidth: 4,
                                 borderColor: "#fff",
                                 innerRadius: 30,
                                 duration: 6000,
-                                backgroundColor: "transparent",
+                                backgroundColor: "black",
                                 textAngle: "vertical",
                                 knobSource: require("../assets/images/knob.png"),
                                 getWinner: (value, index) => {
@@ -104,24 +92,8 @@ export default function Home({ navigation }) {
                             }}
                         />
                     </View>
-                    {/* {prize && (
-                        
-                        <View className="flex justify-center items-center">
-                            <Text className="text-white text-xl font-bold">
-                                You won
-                            </Text>
-                            <Text className="text-8xl text-white">{prize}</Text>
-                            <Text className="text-white text-xl font-bold">
-                                Coins
-                            </Text>
-                        </View>
-                        // <Text className="mx-auto text-white text-base mt-2 mb-2">
-                        //     You won {" "}
-                        //     coins!
-                        // </Text>
-                    )} */}
-                    <View className="px-6 ">
-                        <Text className="px-6 text-center text-white text-xl font-semibold mx-auto my-2 mt-12">
+                    <View className="px-6 bg-white">
+                        <Text className="px-6 text-center text-black text-xl font-semibold mx-auto my-2 mt-12">
                             Spin to win coins!
                         </Text>
                         <View className="bg-slate-800 rounded-lg w-auto mx-auto p-2 my-2">
@@ -136,12 +108,12 @@ export default function Home({ navigation }) {
                                 </Text>
                             </TouchableOpacity>
                         </View>
+                        <TouchableOpacity onPress={closeDailyWheel}>
+                            <Text className="mx-auto mb-16 pt-4 underline">
+                                Close
+                            </Text>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity onPress={closeDailyWheel}>
-                        <Text className="mx-auto mb-16 pt-4 underline">
-                            Close
-                        </Text>
-                    </TouchableOpacity>
                 </ImageBackground>
             </Modal>
             {/* CHARACTER POPUP */}
@@ -168,10 +140,7 @@ export default function Home({ navigation }) {
                     </View>
                 </View>
             </Modal>
-            <SafeAreaView
-                className="h-[100vh]"
-                // onTouchStart={() => navigation.navigate("Leaderboard")} // navigate on touch
-            >
+            <SafeAreaView className="h-[100vh]">
                 <View className="flex-row items-center justify-center mt-16">
                     <Text className="text-5xl font-bold color-white">
                         Officeverse.
@@ -198,59 +167,28 @@ export default function Home({ navigation }) {
                     />
                     <Text className="text-white mx-2">Daily Spin</Text>
                 </TouchableOpacity>
-                <Character setCharacterPopupOpen={setCharacterPopupOpen} />
+                <TouchableOpacity
+                    style={{
+                        position: "absolute",
+                        left: "33.33%",
+                        top: "60%",
+                        width: "33.33%",
+                        height: "20%",
+                        justifyContent: "flex-end", // Aligns children at the bottom of the view
+                        alignItems: "center", // Centers children horizontally
+                    }}
+                    onPress={() => {
+                        navigation.navigate("Leaderboard");
+                    }}
+                >
+                    <Text className="text-white font-semibold flex justify-center items-center">
+                        Tap to enter office
+                    </Text>
+                </TouchableOpacity>
+                <Character />
             </SafeAreaView>
         </ImageBackground>
-      </Modal>
-      <SafeAreaView className="h-[100vh]" 
-
-      >
-         <View className="flex-row items-center justify-center mt-16">
-          <Text className="text-5xl font-bold color-white">Officeverse.</Text>
-        </View>
-        <View className=" items-center justify-center mt-3">
-          <Text className="text-2xl font-medium color-white">
-            Welcome back,
-          </Text>
-          <Text className="text-2xl mb-6 font-medium color-white">
-            Babybear380.
-          </Text>
-        </View>
-        <TouchableOpacity
-          onPress={() => {
-            setDailyWheelOpen(true);
-          }}
-          className="mx-auto flex flex-row justify-center items-center bg-slate-800 p-2 px-4 rounded-lg"
-        >
-          <FontAwesomeIcon color={"white"} icon={faDharmachakra} size={32} />
-          <Text className="text-white mx-2">Daily Spin</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            left: '33.33%', 
-            top: '43%',
-            width: '33.33%',
-            height: '20%',
-            justifyContent: 'flex-end',  // Aligns children at the bottom of the view
-            alignItems: 'center'  // Centers children horizontally
-          }}
-          onPress={() => {
-            navigation.navigate('Leaderboard')
-          }}
-        >
-          <Text style={{
-            color: 'white', 
-            fontWeight: 'semibold', 
-            textAlign: 'center'  // Centers text
-          }}>
-            Tap desk to enter office
-          </Text>
-        </TouchableOpacity>
-        <Character />
-      </SafeAreaView>
-    </ImageBackground>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
