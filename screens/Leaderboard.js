@@ -1,8 +1,17 @@
 import React, { useState } from "react";
-import { View, SafeAreaView, ImageBackground, ScrollView, Dimensions, StyleSheet, Text, TouchableOpacity } from "react-native";
-import Modal from 'react-native-modal';
-import { PanGestureHandler, State } from 'react-native-gesture-handler';
-import Animated, { set, cond, eq, add, event } from 'react-native-reanimated';
+import {
+  View,
+  SafeAreaView,
+  ImageBackground,
+  ScrollView,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import Modal from "react-native-modal";
+import { PanGestureHandler, State } from "react-native-gesture-handler";
+import Animated, { set, cond, eq, add, event } from "react-native-reanimated";
 import Character from "../components/Character";
 
 const image = require("../assets/landscape_populated.png");
@@ -18,25 +27,31 @@ export default function Leaderboard({ navigation }) {
   const gestureState = new Animated.Value(-1);
 
   // Reset position on release
-  const onGestureEvent = Animated.event([
-    {
-      nativeEvent: {
-        translationX: dragX,
-        translationY: dragY,
-        state: gestureState,
+  const onGestureEvent = Animated.event(
+    [
+      {
+        nativeEvent: {
+          translationX: dragX,
+          translationY: dragY,
+          state: gestureState,
+        },
       },
-    },
-  ], { useNativeDriver: true });
+    ],
+    { useNativeDriver: true }
+  );
 
   const afterDrag = cond(eq(gestureState, State.END), [
     set(dragX, add(dragX, 0)),
-    set(dragY, add(dragY, 0))
+    set(dragY, add(dragY, 0)),
   ]);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.goBack()}
+        >
           <Text style={styles.buttonText}>Home</Text>
         </TouchableOpacity>
 
@@ -64,7 +79,7 @@ export default function Leaderboard({ navigation }) {
         >
           <ImageBackground
             source={image}
-            style={{flex: 1}}
+            style={{ flex: 1 }}
             resizeMode="cover"
           >
             <Character />
@@ -88,8 +103,8 @@ export default function Leaderboard({ navigation }) {
 const styles = StyleSheet.create({
   modalContent: {
     flex: 1,
-    backgroundColor: 'white',
-    maxHeight: Dimensions.get('window').height * 0.6, // 60% of screen height
+    backgroundColor: "white",
+    maxHeight: Dimensions.get("window").height * 0.6, // 60% of screen height
     padding: 20,
   },
   scrollContent: {
@@ -97,25 +112,24 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     padding: 10,
-    alignContent: "center"
+    alignContent: "center",
   },
   buttonContainer: {
-    position: 'absolute',
-    top: 50,  // Change this value according to your preference
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
+    position: "absolute",
+    top: 50, // Change this value according to your preference
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
     paddingHorizontal: 10,
-    zIndex: 999
-    
+    zIndex: 999,
   },
   button: {
-    backgroundColor: 'rgba(255,255,255,1)',
+    backgroundColor: "rgba(255,255,255,1)",
     padding: 10,
     borderRadius: 0,
   },
   buttonText: {
-    color: '#000',
+    color: "#000",
     fontSize: 16,
   },
 });

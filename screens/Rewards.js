@@ -101,7 +101,6 @@ export default function Rewards() {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           numColumns={2}
-          className="row m-0"
         />
         {/* </ScrollView> */}
       </SafeAreaView>
