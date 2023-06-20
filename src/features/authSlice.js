@@ -1,21 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialAuthState = {
+  user: {
+    sub: '', // unique identifier
+    isEmailVerified: false,
+    attributes: {
+      email: '',
+      firstName: '',
+      lastName: '',
+      username: '',
+    },
+    isNewSignUp: false,
+    hasCompletedOnboarding: false,
+  },
+};
+
 export const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    user: {
-      sub: '', // unique identifier
-      isEmailVerified: false,
-      attributes: {
-        email: '',
-        firstName: '',
-        lastName: '',
-        username: '',
-      },
-      isNewSignUp: false,
-      hasCompletedOnboarding: false,
-    },
-  },
+  initialState: initialAuthState,
   reducers: {
     setEmailVerified: (state) => {
       state.user.isEmailVerified = true;
@@ -33,11 +35,19 @@ export const authSlice = createSlice({
     setUsername: (state, action) => {
       state.user.attributes.username = action.payload;
     },
+    logoutUser: (state) => {
+      state = initialAuthState;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { createNewUser, setEmailVerified, loginUser, setUsername } =
-  authSlice.actions;
+export const {
+  createNewUser,
+  setEmailVerified,
+  loginUser,
+  logoutUser,
+  setUsername,
+} = authSlice.actions;
 
 export default authSlice.reducer;

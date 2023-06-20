@@ -61,14 +61,16 @@ export default function Login({ navigation }) {
             </TouchableOpacity>
           </View>
 
+          <View className="flex-row justify-center ">
+            <SignOutButton navigation={navigation} />
+          </View>
+
           <View>
             <Image
               style={styles.forest}
               source={require('../assets/LoginForest.png')}
             />
           </View>
-
-          <SignOutButton />
         </View>
       </TouchableWithoutFeedback>
     </SafeAreaView>
