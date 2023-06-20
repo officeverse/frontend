@@ -17,7 +17,13 @@ import WheelOfFortune from "react-native-wheel-of-fortune";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faDharmachakra } from "@fortawesome/free-solid-svg-icons/faDharmachakra";
 import Character from "../components/Character";
-
+import Svg, {
+    SvgProps,
+    Defs,
+    LinearGradient,
+    Stop,
+    Path,
+} from "react-native-svg";
 const image = require("../assets/office_home.png");
 const wheelImage = require("../assets/mockaroon-lgi3W65lmvA-unsplash.jpg");
 
@@ -129,9 +135,14 @@ export default function Home({ navigation }) {
                                 source={require("../assets/game_images/player.png")}
                                 className="w-[70px] h-[70px]"
                             />
-                            <Text style={styles.popupText}>
-                                This is a popup!
-                            </Text>
+                            <View>
+                                <Text className="font-bold text-xl">
+                                    BabyBear380
+                                </Text>
+                                <Text className="font-semibold mt-2">
+                                    Senior Software Engineer
+                                </Text>
+                            </View>
                         </View>
                         <Button
                             title="Close"
@@ -185,7 +196,7 @@ export default function Home({ navigation }) {
                         Tap to enter office
                     </Text>
                 </TouchableOpacity>
-                <Character />
+                <Character setCharacterPopupOpen={setCharacterPopupOpen} />
             </SafeAreaView>
         </ImageBackground>
     );
