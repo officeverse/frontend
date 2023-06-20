@@ -99,7 +99,7 @@ export default function Rewards() {
         </View>
     );
 
-    return (
+    return rewards.length >= 1 ? (
         <ImageBackground
             source={image}
             resizeMode="cover"
@@ -132,6 +132,18 @@ export default function Rewards() {
                     className="row m-0"
                 />
                 {/* </ScrollView> */}
+            </SafeAreaView>
+        </ImageBackground>
+    ) : (
+        <ImageBackground
+            source={image}
+            resizeMode="cover"
+            className=" justify-center"
+        >
+            <SafeAreaView className="h-[100vh]">
+                <Text className="mx-auto text-white text-xl mt-80">
+                    Loading rewards...
+                </Text>
             </SafeAreaView>
         </ImageBackground>
     );
