@@ -19,6 +19,14 @@ import { faDharmachakra } from "@fortawesome/free-solid-svg-icons/faDharmachakra
 import Character from "../components/Character";
 import { useSelector } from "react-redux";
 import QRCodeStyled from "react-native-qrcode-styled";
+import Svg, {
+  SvgProps,
+  Defs,
+  LinearGradient,
+  Stop,
+  Path,
+} from "react-native-svg";
+
 import axios from "axios";
 const image = require("../assets/office_home.png");
 const wheelImage = require("../assets/mockaroon-lgi3W65lmvA-unsplash.jpg");
