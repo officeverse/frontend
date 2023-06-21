@@ -1,18 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Image, Animated, StyleSheet, Dimensions, Modal, Text, Button, TouchableOpacity,
+import {
+    View,
+    Image,
+    Animated,
+    StyleSheet,
+    Dimensions,
+    Modal,
+    Text,
+    Button,
+    TouchableOpacity,
     SafeAreaView,
     ScrollView,
     TextInput,
     ImageBackground,
-    Alert,} from "react-native";
+    Alert,
+} from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faCaretLeft } from "@fortawesome/free-solid-svg-icons/faCaretLeft";
+import { faCaretRight } from "@fortawesome/free-solid-svg-icons/faCaretRight";
 import { faPen } from "@fortawesome/free-solid-svg-icons/faPen";
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
-import Player from './Player'; // Import Player component
+import Player from "./Player"; // Import Player component
 
-
-const Customisation = ({ setCustomisationPopupOpen, customisationPopupOpen }) => {
+const Customisation = ({
+    setCustomisationPopupOpen,
+    customisationPopupOpen,
+}) => {
     const [avatarDetails, setAvatarDetails] = useState({
         fit: 1,
         glasses: 1,
@@ -22,17 +36,13 @@ const Customisation = ({ setCustomisationPopupOpen, customisationPopupOpen }) =>
 
     return (
         <View style={styles.Container} className="absolute">
-            
-            <TouchableOpacity className="absolute bottom-0 right-0 z-10"
+            <TouchableOpacity
+                className="absolute bottom-0 right-0 z-10"
                 onPress={() => {
                     setCustomisationPopupOpen(true);
                 }}
             >
-                <FontAwesomeIcon
-                    color={"white"}
-                    icon={faPen}
-                    size={15}
-                />
+                <FontAwesomeIcon color={"white"} icon={faPen} size={15} />
             </TouchableOpacity>
             {/* CHARACTER POPUP */}
             <Modal
@@ -44,30 +54,83 @@ const Customisation = ({ setCustomisationPopupOpen, customisationPopupOpen }) =>
                     <View style={styles.popupContent} className="p-18">
                         <View>
                             <View>
-                                <Text className="mt-4 font-bold text-xl">Customise Your Avatar</Text>
+                                <Text className="my-4 font-bold text-xl">
+                                    Customise Your Avatar
+                                </Text>
                             </View>
-                            <Player avatarDetails={avatarDetails} />
-                            {["base", "fit", "glasses", "hair"].map((property, index) => (
-                                <View key={index}>
-                                    <Button
-                                        title={`Change ${property}`}
-                                        onPress={() => {
-                                            setAvatarDetails(prevState => ({
-                                                ...prevState,
-                                                [property]: prevState[property] % 3 + 1,
-                                            }));
-                                        }}
-                                    />
+                            <View className="flex flex-row">
+                                <View>
+                                    <Player avatarDetails={avatarDetails} />
                                 </View>
-                            ))}
-                            
-                            <Button
-                                title="Save and Close"
+                                <View className="ml-[90px]">
+                                    {["base", "fit", "glasses", "hair"].map(
+                                        (property, index) => (
+                                            <View
+                                                key={index}
+                                                className="flex flex-row justify-between items-center"
+                                            >
+                                                <TouchableOpacity
+                                                    onPress={() => {
+                                                        setAvatarDetails(
+                                                            (prevState) => ({
+                                                                ...prevState,
+                                                                [property]:
+                                                                    (prevState[
+                                                                        property
+                                                                    ] %
+                                                                        3) -
+                                                                    1,
+                                                            })
+                                                        );
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={faCaretLeft}
+                                                        size={40}
+                                                    />
+                                                </TouchableOpacity>
+                                                <View className="p-3 rounded-md flex items-center my-2">
+                                                    <Text className="font-bold">{`${property}`}</Text>
+                                                </View>
+                                                <TouchableOpacity
+                                                    onPress={() => {
+                                                        setAvatarDetails(
+                                                            (prevState) => ({
+                                                                ...prevState,
+                                                                [property]:
+                                                                    (prevState[
+                                                                        property
+                                                                    ] %
+                                                                        3) +
+                                                                    1,
+                                                            })
+                                                        );
+                                                    }}
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={faCaretRight}
+                                                        size={40}
+                                                    />
+                                                </TouchableOpacity>
+                                            </View>
+                                        )
+                                    )}
+                                </View>
+                            </View>
+                            <TouchableOpacity
+                                className="my-4 bg-green-500 p-3 rounded-md items-center"
                                 onPress={() => {
-                                console.log("Avatar details:", avatarDetails);
-                                setCustomisationPopupOpen(false);
+                                    console.log(
+                                        "Avatar details:",
+                                        avatarDetails
+                                    );
+                                    setCustomisationPopupOpen(false);
                                 }}
-                            />
+                            >
+                                <Text className="text-white font-bold">
+                                    Save and Close
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
@@ -85,7 +148,7 @@ const styles = StyleSheet.create({
     },
     popupContent: {
         backgroundColor: "white",
-        padding: 16,
+        padding: 50,
         borderRadius: 8,
     },
 });
