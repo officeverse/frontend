@@ -14,7 +14,7 @@ export default function Team({ navigation }) {
     navigation.navigate("EndTour");
   };
   return (
-    <SafeAreaView className="h-[100vh]">
+    <SafeAreaView className="h-[100vh] justify-around">
       <View className="px-10 mt-10">
         <Text className="text-center text-3xl font-semibold">Our Team</Text>
       </View>
