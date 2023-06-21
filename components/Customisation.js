@@ -16,12 +16,13 @@ const imageMapping = {
     fit3: require("../assets/game_images/male_player/fit3.png"),
     glasses1: require("../assets/game_images/male_player/glasses1.png"),
     glasses2: require("../assets/game_images/male_player/glasses2.png"),
+    glasses3: require("../assets/game_images/male_player/glasses3.png"),
     hair1: require("../assets/game_images/male_player/hair1.png"),
     hair2: require("../assets/game_images/male_player/hair2.png"),
     hair3: require("../assets/game_images/male_player/hair3.png"),
     base1: require("../assets/game_images/male_player/base1.png"),
     base2: require("../assets/game_images/male_player/base2.png"),
-
+    base3: require("../assets/game_images/male_player/base3.png"),
   };
 
 const yOffsetMapping = {
