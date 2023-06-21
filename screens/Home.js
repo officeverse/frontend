@@ -24,6 +24,8 @@ import Svg, {
   Stop,
   Path,
 } from "react-native-svg";
+
+
 const image = require("../assets/office_home.png");
 const wheelImage = require("../assets/mockaroon-lgi3W65lmvA-unsplash.jpg");
 

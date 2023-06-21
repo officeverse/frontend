@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Image, Animated, StyleSheet, Dimensions, Modal, Text, Button, TouchableOpacity } from "react-native";
 import Player from './Player'; // Import Player component
-
-const screenHeight = Dimensions.get("window").height;
-const screenWidth = Dimensions.get("window").width;
-
 const avatarDetails = ({
     fit: 1,
     glasses: 1,
     hair: 1,
     base: 1,
 });
+
+const screenHeight = Dimensions.get("window").height;
+const screenWidth = Dimensions.get("window").width;
+
+
 
 const Character = ({ setCharacterPopupOpen, characterPopupOpen }) => {
     const positionX = useRef(new Animated.Value(0)).current;
@@ -89,10 +90,7 @@ const Character = ({ setCharacterPopupOpen, characterPopupOpen }) => {
                         setCharacterPopupOpen(true);
                     }}
                 >
-                    <Image
-                        source={require("../assets/game_images/player.png")}
-                        style={styles.characterImage}
-                    />
+                    <Player avatarDetails={avatarDetails} />
                 </TouchableOpacity>
             </Animated.View>
             {/* CHARACTER POPUP */}

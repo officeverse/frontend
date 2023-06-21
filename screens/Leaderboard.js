@@ -9,6 +9,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  Button
 } from "react-native";
 import Modal from "react-native-modal";
 import {
@@ -32,11 +33,19 @@ import Animated, {
   call,
 } from "react-native-reanimated";
 
+
 import Character from "../components/Character";
+
+import Player from '../components/Player'; // Import Player component
+const avatarDetails = ({
+    fit: 1,
+    glasses: 1,
+    hair: 1,
+    base: 1,
+});
 
 const image = require("../assets/landscape_populated.png");
 
-// Assume the dimensions of your image
 const imageWidth = 900;
 const imageHeight = 1200;
 
@@ -44,6 +53,7 @@ const imageHeight = 1200;
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 const Leaderboard = ({ navigation }) => {
+  const [selectedPlayer, setSelectedPlayer] = useState(null);  // for the inner modal
   const [characterPopupOpen, setCharacterPopupOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const openModal = () => setVisible(true);
@@ -133,11 +143,12 @@ const Leaderboard = ({ navigation }) => {
             <Modal isVisible={visible} style={styles.modalContent}>
             <ScrollView style={styles.scrollContent}>
                 {players.map((player, index) => (
-                    <TouchableOpacity key={index} style={styles.item} onPress={() => navigation.navigate('Home')}>
-                        <Image source={player.avatar} style={styles.avatar} />
-                        <Text style={styles.username}>{player.username}</Text>
-                        <Text style={styles.weeklyExp}>{player.weeklyExp} EXP</Text>
+                    <TouchableOpacity key={index} style={styles.item} onPress={() => setSelectedPlayer(player)}>
+                      <Player avatarDetails={avatarDetails} />
+                      <Text style={styles.username}>{player.username}</Text>
+                      <Text style={styles.weeklyExp}>{player.weeklyExp} EXP</Text>
                     </TouchableOpacity>
+                
                 ))}
             </ScrollView>
             <View style={styles.centered}>
@@ -145,6 +156,32 @@ const Leaderboard = ({ navigation }) => {
                     <Text style={styles.buttonText}>Close</Text>
                 </TouchableOpacity>
             </View>
+            </Modal>
+          
+            <Modal  // modal inside modal
+                visible={!!selectedPlayer} // visible when selectedPlayer is not null
+                animationType="slide"
+                transparent={true}
+            >
+                <View style={styles.popupContainer}>
+                    <View style={styles.popupContent}>
+                        <View>
+                            <Player avatarDetails={avatarDetails} />
+                            <View>
+                                <View>
+                                    <Text>{selectedPlayer?.username}</Text>
+                                </View>
+                                <Text>
+                                    {selectedPlayer?.weeklyExp} EXP
+                                </Text>
+                            </View>
+                        </View>
+                        <TouchableOpacity
+                            title="Close"
+                            onPress={() => setSelectedPlayer(null)} // reset selectedPlayer to null when closing the modal
+                        />
+                    </View>
+                </View>
             </Modal>
           </ImageBackground>
         </Animated.View>
@@ -202,7 +239,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ddd',
     padding: 10,
   },
-  avatar: {
+  Player: {
     width: 50,
     height: 50,
     borderRadius: 25, // half of width and height to create a circle
@@ -217,6 +254,18 @@ const styles = StyleSheet.create({
   centered: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  popupContainer: { // for inner modal
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    zIndex: 10,
+  },
+  popupContent: {
+    backgroundColor: "white",
+    padding: 16,
+    borderRadius: 8,
   }
 });
 
