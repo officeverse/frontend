@@ -131,14 +131,20 @@ const Leaderboard = ({ navigation }) => {
           >
             <Character  setCharacterPopupOpen={setCharacterPopupOpen}/>
             <Modal isVisible={visible} style={styles.modalContent}>
-              <ScrollView style={styles.scrollContent}>
-                <Text style={styles.menuItem}>Mailey Zyrus</Text>
-                <Text style={styles.menuItem}>Andy Lim</Text>
-                <Text style={styles.menuItem}>Babybear380 (You)</Text>
+            <ScrollView style={styles.scrollContent}>
+                {players.map((player, index) => (
+                    <TouchableOpacity key={index} style={styles.item} onPress={() => navigation.navigate('Home')}>
+                        <Image source={player.avatar} style={styles.avatar} />
+                        <Text style={styles.username}>{player.username}</Text>
+                        <Text style={styles.weeklyExp}>{player.weeklyExp} EXP</Text>
+                    </TouchableOpacity>
+                ))}
+            </ScrollView>
+            <View style={styles.centered}>
                 <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
-                  <Text style={styles.buttonText}>Close</Text>
+                    <Text style={styles.buttonText}>Close</Text>
                 </TouchableOpacity>
-              </ScrollView>
+            </View>
             </Modal>
           </ImageBackground>
         </Animated.View>
@@ -166,7 +172,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    top: 50,  // Change this value according to your preference
+    top: 20,
     flexDirection: 'row',
     justifyContent: "flex-start",
     width: '100%',
@@ -188,4 +194,59 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 16,
   },
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    padding: 10,
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25, // half of width and height to create a circle
+  },
+  username: {
+    flex: 1, // this will allow the name to take up remaining space and push the EXP to the right
+    paddingLeft: 10,
+  },
+  weeklyExp: {
+    paddingRight: 10,
+  },
+  centered: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
+
+
+
+const players = [ //...just hardcoded for now
+    { 
+      position: 1,
+      id: 123,
+      username: "Mailey Zyrus",
+      weeklyExp: 3450,
+      weeklyCoins: 56,
+      avatar: require("../assets/game_images/player.png"),
+      
+    },
+    {
+        position: 3,
+        id: 124,
+        username: "Andy Lim",
+        weeklyExp: 3210,
+        weeklyCoins: 23,
+        avatar: require("../assets/game_images/player.png"),
+    },
+    {
+        position: 2,
+        id: 690,
+        username: "Babybear380",
+        weeklyExp: 3300,
+        weeklyCoins: 94,
+        avatar: require("../assets/game_images/player.png"),
+    },
+    //... more players
+  ];
