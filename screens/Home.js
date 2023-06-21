@@ -43,7 +43,6 @@ export default function Home({ navigation }) {
 
     const user = useSelector((state) => state.auth.user);
     const { username } = user.attributes;
-
     const [dailyWheelOpen, setDailyWheelOpen] = useState(false);
     const [characterPopupOpen, setCharacterPopupOpen] = useState(false);
     const [prize, setPrize] = useState("");
@@ -57,7 +56,7 @@ export default function Home({ navigation }) {
             method: "get",
             maxBodyLength: Infinity,
             url:
-                "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com//users/profile?userId=" +
+                "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com//users/profile?cognitoSub" +
                 sub,
             headers: {},
         };

@@ -37,6 +37,12 @@ export const authSlice = createSlice({
         logoutUser: (state) => {
             state = initialAuthState;
         },
+        updateUserAttributes: (state, action) => {
+            state.user.attributes = {
+                ...state.user.attributes,
+                ...action.payload, // newer will overwrite old data
+            };
+        },
     },
 });
 
@@ -47,6 +53,7 @@ export const {
     loginUser,
     logoutUser,
     setUsername,
+    updateUserAttributes,
 } = authSlice.actions;
 
 export default authSlice.reducer;
