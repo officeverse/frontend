@@ -32,11 +32,11 @@ export default function LinkedInGenerator({ setLinkedInOpen }) {
                         {
                             role: "system",
                             content:
-                                "You are a helpful assistant. Help to generate a professional linkedIn post.",
+                                "You are a helpful assistant. Help to generate a professional linkedIn post. I will tell you what it is about next.",
                         },
                         {
                             role: "user",
-                            content: `The post is about me ${text}`,
+                            content: `It is about ${text}`,
                         },
                     ],
                 },

@@ -18,7 +18,7 @@ const Character = ({ setCharacterPopupOpen }) => {
                     duration: 1000,
                     useNativeDriver: true,
                 }),
-                Animated.delay(2000),
+                Animated.delay(500),
                 Animated.timing(position, {
                     toValue: 0,
                     duration: 1000,
