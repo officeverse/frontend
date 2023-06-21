@@ -37,7 +37,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMedal } from "@fortawesome/free-solid-svg-icons/faMedal";
 
 import Character from "../components/Character";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons/faCamera";
 
 import Player from "../components/Player"; // Import Player component
@@ -167,7 +166,6 @@ const Leaderboard = ({ navigation }) => {
                     </View>
                 </View>
             </View>
-
             <PanGestureHandler
                 maxPointers={1}
                 onGestureEvent={onGestureEvent}
@@ -190,41 +188,78 @@ const Leaderboard = ({ navigation }) => {
                             setCharacterPopupOpen={setCharacterPopupOpen}
                             characterPopupOpen={characterPopupOpen}
                         />
-                        <Modal isVisible={visible} style={styles.modalContent}>
-                            <ScrollView style={styles.scrollContent}>
-                                {players.map((player, index) => (
-                                    <TouchableOpacity
-                                        key={index}
-                                        style={styles.item}
-                                        onPress={() =>
-                                            navigation.navigate("Home")
-                                        }
-                                    >
-                                        <Image
-                                            source={player.avatar}
-                                            style={styles.avatar}
-                                        />
-                                        <Text style={styles.username}>
-                                            {player.username}
-                                        </Text>
-                                        <Text style={styles.weeklyExp}>
-                                            {player.weeklyExp} EXP
-                                        </Text>
-                                    </TouchableOpacity>
-                                ))}
-                            </ScrollView>
-                            <View style={styles.centered}>
-                                <TouchableOpacity
-                                    style={styles.closeButton}
-                                    onPress={closeModal}
-                                >
-                                    <Text style={styles.buttonText}>Close</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </Modal>
                     </ImageBackground>
                 </Animated.View>
             </PanGestureHandler>
+            <Modal
+                isVisible={visible}
+                style={styles.modalContent}
+                className="my-auto"
+            >
+                <ScrollView style={styles.scrollContent}>
+                    {players.map((player, index) => (
+                        <TouchableOpacity
+                            key={index}
+                            style={styles.item}
+                            onPress={() => {
+                                setSelectedPlayer(player);
+                                console.log(player);
+                            }}
+                        >
+                            <FontAwesomeIcon
+                                icon={faMedal}
+                                size={30}
+                                color={
+                                    index === 0
+                                        ? "gold"
+                                        : index === 1
+                                        ? "silver"
+                                        : "brown"
+                                }
+                            />
+
+                            <View className="w-[69px] h-[156px] scale-50">
+                                <Player avatarDetails={avatarDetails} />
+                            </View>
+                            <Text className="font-semibold text-base">
+                                {player.username}
+                            </Text>
+                            <Text className="font-semibold text-base text-stone-400">
+                                {player.weeklyExp} EXP
+                            </Text>
+                        </TouchableOpacity>
+                    ))}
+                </ScrollView>
+                <View style={styles.centered}>
+                    <TouchableOpacity
+                        style={styles.closeButton}
+                        onPress={closeModal}
+                    >
+                        <Text style={styles.buttonText}>Close</Text>
+                    </TouchableOpacity>
+                </View>
+                <Modal // modal inside modal
+                    visible={!!selectedPlayer} // visible when selectedPlayer is not null
+                    animationType="slide"
+                >
+                    <View style={styles.popupContainer}>
+                        <View style={styles.popupContent}>
+                            <View>
+                                <Player avatarDetails={avatarDetails} />
+                                <View>
+                                    <Text>{selectedPlayer?.username}</Text>
+                                    <Text>{selectedPlayer?.weeklyExp} EXP</Text>
+                                </View>
+                            </View>
+                            <TouchableOpacity
+                                onPress={() => setSelectedPlayer(null)} // reset selectedPlayer to null when closing the modal
+                            >
+                                <Text>Close</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
+            </Modal>
         </SafeAreaView>
     );
 };
