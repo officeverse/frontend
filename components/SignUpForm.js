@@ -1,8 +1,8 @@
-import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import Button from './Button';
-import { Formik } from 'formik';
-import * as yup from 'yup';
+import React from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import Button from "./Button";
+import { Formik } from "formik";
+import * as yup from "yup";
 
 const signupValidationSchema = yup.object().shape({
   username: yup
@@ -12,13 +12,13 @@ const signupValidationSchema = yup.object().shape({
     .matches(
       new RegExp(/^(?![_.])[a-zA-Z0-9._]+(?<![_.])$/),
       () =>
-        'Invalid username.\nOnly _ or . is allowed for special characters.\nUsername should not start or end with special characters'
+        "Invalid username.\nOnly _ or . is allowed for special characters.\nUsername should not start or end with special characters"
     )
     .required(),
   email: yup
     .string()
-    .email('Please enter valid email')
-    .required('Email Address is Required'),
+    .email("Please enter valid email")
+    .required("Email Address is Required"),
   password: yup
     .string()
     .min(8, ({ min }) => `Password must be at least ${min} characters`)
@@ -27,21 +27,21 @@ const signupValidationSchema = yup.object().shape({
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
       ),
       () =>
-        'Password should comprise of the following:\n- Uppercase characters\n- Lowercase characters\n- Numbers\n- Special characters (@$!%*?&)'
+        "Password should comprise of the following:\n- Uppercase characters\n- Lowercase characters\n- Numbers\n- Special characters (@$!%*?&)"
     )
-    .required('Password is required'),
+    .required("Password is required"),
   signUpCode: yup
     .string()
     .matches(
       new RegExp(/^\S+$/),
-      'Please ensure that there are no spaces in the code'
+      "Please ensure that there are no spaces in the code"
     )
-    .required('Sign up code is required'),
+    .required("Sign up code is required"),
 });
 
 export default function ({ navigation, onSubmit }) {
   return (
-    <View style={styles.loginContainer} className="mt-16 px-5">
+    <View style={styles.loginContainer} className=" px-5">
       <View className="flex-row items-center justify-center mt-16">
         <Text className="text-2xl font-bold color-white mb-3">
           Register for an account
@@ -50,11 +50,11 @@ export default function ({ navigation, onSubmit }) {
       <Formik
         validationSchema={signupValidationSchema}
         initialValues={{
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
-          username: '',
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          username: "",
         }}
         onSubmit={onSubmit}
       >
@@ -71,8 +71,8 @@ export default function ({ navigation, onSubmit }) {
               name="username"
               placeholder="Username"
               style={styles.textInput}
-              onChangeText={handleChange('username')}
-              onBlur={handleBlur('username')}
+              onChangeText={handleChange("username")}
+              onBlur={handleBlur("username")}
               value={values.username}
             />
             {errors.username && (
@@ -82,8 +82,8 @@ export default function ({ navigation, onSubmit }) {
               name="email"
               placeholder="Email"
               style={styles.textInput}
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
+              onChangeText={handleChange("email")}
+              onBlur={handleBlur("email")}
               value={values.email}
               keyboardType="email-address"
             />
@@ -94,8 +94,8 @@ export default function ({ navigation, onSubmit }) {
               name="password"
               placeholder="Password"
               style={styles.textInput}
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
+              onChangeText={handleChange("password")}
+              onBlur={handleBlur("password")}
               value={values.password}
               secureTextEntry
             />
@@ -106,8 +106,8 @@ export default function ({ navigation, onSubmit }) {
               name="signUpCode"
               placeholder="Sign Up Code"
               style={styles.textInput}
-              onChangeText={handleChange('signUpCode')}
-              onBlur={handleBlur('signUpCode')}
+              onChangeText={handleChange("signUpCode")}
+              onBlur={handleBlur("signUpCode")}
               value={values.signUpCode}
             />
             {errors.signUpCode && (
@@ -119,12 +119,12 @@ export default function ({ navigation, onSubmit }) {
                 title="Sign Up"
                 disabled={!isValid}
               />
-              <Text>{'   '}</Text>
+              <Text>{"   "}</Text>
               <Button // disable going back to login
                 onPress={() =>
                   navigation.reset({
                     index: 0,
-                    routes: [{ name: 'PreSignIn' }],
+                    routes: [{ name: "PreSignIn" }],
                   })
                 }
                 title="Log In"
@@ -140,18 +140,18 @@ export default function ({ navigation, onSubmit }) {
 
 const styles = StyleSheet.create({
   loginContainer: {
-    width: '100%',
-    alignItems: 'center',
-    backgroundColor: 'white',
+    width: "100%",
+    alignItems: "center",
+    backgroundColor: "white",
     padding: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0)',
+    backgroundColor: "rgba(0, 0, 0, 0)",
   },
   textInput: {
     height: 50,
-    width: '100%',
+    width: "100%",
     margin: 10,
-    backgroundColor: 'white',
-    borderColor: 'gray',
+    backgroundColor: "white",
+    borderColor: "gray",
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 10,
     fontSize: 16,
@@ -159,6 +159,6 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: 12,
-    color: 'red',
+    color: "red",
   },
 });

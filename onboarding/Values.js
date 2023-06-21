@@ -14,15 +14,15 @@ export default function Values({ navigation }) {
     navigation.navigate("OptionB");
   };
   return (
-    <SafeAreaView className="h-[100vh]">
-      <View className="px-10 mt-14">
+    <SafeAreaView className="h-[100vh] justify-around">
+      <View className="px-10 mt-8">
         <Text className="text-center text-3xl font-semibold">
           Our Company Values
         </Text>
       </View>
 
       <View>
-        <Text className="text-lg text-center mt-6 px-10">
+        <Text className="text-lg text-center px-10">
           Lorem ipsum dolor sit amet consectetur. Vulputate tortor eu eu quis
           diam. Dolor nulla id amet facilisi quis nibh purus. Iaculis dignissim
           scelerisque in quisque in porttitor amet bibendum est.
@@ -31,7 +31,7 @@ export default function Values({ navigation }) {
 
       <TouchableOpacity
         onPress={pressHandler}
-        className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-8 py-3 shadow-lg"
+        className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl py-3 shadow-lg"
       >
         <Text className="text-lg text-center font-semibold">
           Collect My Reward!
@@ -41,7 +41,7 @@ export default function Values({ navigation }) {
           Redeem 50 EXP
         </Text>
       </TouchableOpacity>
-      <View className="justify-center mx-auto mt-10">
+      <View className="justify-center mx-auto ">
         <Image
           style={styles.forest}
           source={require("../assets/OptionA.png")}

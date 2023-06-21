@@ -13,26 +13,26 @@ export default function EndTour({ navigation }) {
     navigation.navigate("NavBar");
   };
   return (
-    <SafeAreaView className="h-[100vh]">
+    <SafeAreaView className="h-[100vh] justify-around">
       <View className="px-6 mt-20">
         <Text className="text-center text-3xl font-semibold">
           Congratulations!
         </Text>
-        <Text className="text-center text-lg mt-4 text-gray-600">
+        <Text className="text-center text-lg mt-6 text-gray-600">
           Your plant is fully grown! You are now ready to start your journey
           with us
         </Text>
       </View>
 
       <View>
-        <Text className="text-base text-center mt-12 px-10 text-gray-600">
+        <Text className="text-base text-center px-10 mt-12 text-gray-600">
           Exchange your tree for 150 EXP now!
         </Text>
       </View>
 
       <TouchableOpacity
         onPress={pressHandler}
-        className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-4 py-4 shadow-lg"
+        className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-7 py-4 shadow-lg"
       >
         <Text className="text-lg text-center font-semibold">+ 150 EXP</Text>
       </TouchableOpacity>

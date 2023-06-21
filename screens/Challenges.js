@@ -33,7 +33,7 @@ const AvailableChallengesScreen = ({ challenges, renderItem }) => (
     className=" justify-center"
   >
     <SafeAreaView className="h-[100vh]">
-      <View className="h-[15vh]">
+      <View className="h-[8vh] mt-14">
         <View className="flex-row items-center justify-center ">
           <Text className="text-3xl mb-3 font-semibold text-white">
             Challenges
@@ -47,7 +47,7 @@ const AvailableChallengesScreen = ({ challenges, renderItem }) => (
         </View>
       </View>
       <FlatList
-        className="mb-[55px] mt-16"
+        className="mb-[55px] mt-20"
         data={challenges}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
@@ -65,19 +65,21 @@ const CompletedChallengesScreen = ({ challenges, renderItem }) => (
     className=" justify-center"
   >
     <SafeAreaView className="h-[100vh]">
-      <View className="flex-row items-center justify-center mt-8">
-        <Text className="text-3xl mb-3 font-semibold text-white">
-          Challenges
-        </Text>
-        <Text className="mb-2 ml-2">
-          <FontAwesomeIcon icon={faDumbbell} size={32} color="white" />
-        </Text>
-      </View>
-      <View className="flex-row items-center justify-center mb-3 ">
-        <Text className="text-white">Gain EXP and BBC coins today!</Text>
+      <View className="h-[8vh] mt-14">
+        <View className="flex-row items-center justify-center ">
+          <Text className="text-3xl mb-3 font-semibold text-white">
+            Challenge
+          </Text>
+          <Text className="mb-2 ml-2">
+            <FontAwesomeIcon icon={faDumbbell} size={32} color="white" />
+          </Text>
+        </View>
+        <View className="flex-row items-center justify-center mb-3 ">
+          <Text className="text-white">Gain EXP and BBC coins today!</Text>
+        </View>
       </View>
       <FlatList
-        className="mb-[55px] mt-16"
+        className="mb-[55px] mt-20"
         data={challenges}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
@@ -126,7 +128,7 @@ export default function Challenges() {
       className="bg-transparent h-[50px]"
       style={{
         position: "absolute",
-        top: 0,
+        top: 150,
         width: "100%",
       }}
     />
@@ -162,7 +164,7 @@ export default function Challenges() {
     return (
       <TouchableOpacity onPress={openPopup}>
         <View
-          className="bg-white rounded-xl w-full max-w-xs mx-auto my-4"
+          className="bg-white rounded-xl w-full max-w-xs mx-auto my-4 mt-20"
           style={[
             {
               shadowColor: "black",

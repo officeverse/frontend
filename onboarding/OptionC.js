@@ -8,14 +8,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function OptionC({navigation}) {
+export default function OptionC({ navigation }) {
   const [number, onChangeNumber] = React.useState("");
   const pressHandler = () => {
-    navigation.navigate('Team')
-  }
+    navigation.navigate("Team");
+  };
   return (
-    <SafeAreaView className="h-[100vh]">
-      <View className="px-10 mt-14">
+    <SafeAreaView className="h-[100vh] justify-center">
+      <View className="px-10 mt-6">
         <Text className="text-center text-3xl font-semibold">
           Your plant has grown so beautifully!
         </Text>
@@ -28,7 +28,10 @@ export default function OptionC({navigation}) {
         </Text>
       </View>
 
-      <TouchableOpacity onPress={pressHandler} className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-10 py-2 shadow-lg">
+      <TouchableOpacity
+        onPress={pressHandler}
+        className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-14 py-2 shadow-lg"
+      >
         <Text className="text-lg text-center font-semibold">
           Harvest Fruits
         </Text>

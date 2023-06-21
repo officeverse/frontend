@@ -15,7 +15,7 @@ export default function Benefits({ navigation }) {
     navigation.navigate("OptionC");
   };
   return (
-    <SafeAreaView className="h-[100vh]">
+    <SafeAreaView className="h-[100vh] justify-around">
       <View className="px-10 mt-14">
         <Text className="text-center text-3xl font-semibold">
           Your Benefits
@@ -29,7 +29,7 @@ export default function Benefits({ navigation }) {
         </Text>
       </View>
 
-      <View className="bg-white w-[70vw] justify-center mx-auto rounded-2xl shadow-lg mt-4">
+      <View className="bg-white w-[70vw] justify-center mx-auto rounded-2xl shadow-lg mt-8">
         <Text className="text-base text-center text-gray-900 py-3 px-8">
           Payday is on the 1st of every new month.
         </Text>
@@ -37,7 +37,7 @@ export default function Benefits({ navigation }) {
 
       <TouchableOpacity
         onPress={pressHandler}
-        className=" w-[60vw] bg-blue-100 justify-center mx-auto rounded-2xl mt-8 py-3 shadow-lg"
+        className=" w-[60vw] bg-blue-100 justify-center mx-auto rounded-2xl mt-16 py-3 shadow-lg"
       >
         <Text className="text-lg text-center font-semibold">
           Collect My Reward!

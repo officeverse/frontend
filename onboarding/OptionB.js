@@ -8,11 +8,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function OptionB({navigation}) {
+export default function OptionB({ navigation }) {
   const [number, onChangeNumber] = React.useState("");
   const pressHandler = () => {
-    navigation.navigate('Benefits')
-  }
+    navigation.navigate("Benefits");
+  };
   return (
     <SafeAreaView className="h-[100vh]">
       <View className="px-10 mt-20">
@@ -29,7 +29,10 @@ export default function OptionB({navigation}) {
         </Text>
       </View>
 
-      <TouchableOpacity onPress={pressHandler} className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-14 py-2 shadow-lg">
+      <TouchableOpacity
+        onPress={pressHandler}
+        className="bg-blue-100 w-[60vw] justify-center mx-auto rounded-2xl mt-14 py-2 shadow-lg"
+      >
         <Text className="text-lg text-center font-semibold">
           Fertilise My Plant
         </Text>
