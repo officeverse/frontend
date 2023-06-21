@@ -1,57 +1,65 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Image, Animated, StyleSheet, Dimensions, Modal, Text, Button,
-    SafeAreaView,
-    ScrollView,
-    TextInput,
-    ImageBackground,
-    Alert,} from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { View, Image, Animated, StyleSheet, Dimensions, Modal, Text, Button, TouchableOpacity } from "react-native";
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
 
 const Character = ({ setCharacterPopupOpen, characterPopupOpen }) => {
-    const position = useRef(new Animated.Value(0)).current;
+    const positionX = useRef(new Animated.Value(0)).current;
+    const positionY = useRef(new Animated.Value(0)).current;
     const [flipped, setFlipped] = useState(false);
-    const [direction, setDirection] = useState("right");
 
     useEffect(() => {
         const walkingAnimation = Animated.loop(
             Animated.sequence([
-                Animated.timing(position, {
-                    toValue: 50,
-                    duration: 1000,
+                Animated.timing(positionX, {
+                    toValue: 150,  // Increased distance
+                    duration: 3000,  // Increased duration
                     useNativeDriver: true,
                 }),
-                Animated.delay(500),
-                Animated.timing(position, {
+                Animated.delay(Math.random() * 3000 + 1000),
+                Animated.timing(positionY, {
+                    toValue: 150,  // Increased distance
+                    duration: 3000,  // Increased duration
+                    useNativeDriver: true,
+                }),
+                Animated.delay(Math.random() * 3000 + 1000),
+                Animated.timing(positionX, {
                     toValue: 0,
-                    duration: 1000,
+                    duration: 3000,  // Increased duration
                     useNativeDriver: true,
                 }),
+                Animated.delay(Math.random() * 3000 + 1000),
+                Animated.timing(positionY, {
+                    toValue: 0,
+                    duration: 3000,  // Increased duration
+                    useNativeDriver: true,
+                }),
+                Animated.delay(Math.random() * 3000 + 1000),
             ])
         );
-
+    
         walkingAnimation.start();
-
+    
         return () => {
             walkingAnimation.stop();
         };
     }, []);
-
+    
     useEffect(() => {
-        const listener = position.addListener(({ value }) => {
-            if (value === 0) {
+        const listenerX = positionX.addListener(({ value }) => {
+            if (value < 75 && flipped) {  // Adjusted condition
                 setFlipped(false);
-            } else if (value === 50) {
+            } else if (value >= 75 && !flipped) {  // Adjusted condition
                 setFlipped(true);
             }
         });
-
+    
         return () => {
-            position.removeListener(listener);
+            positionX.removeListener(listenerX);
         };
-    }, []);
+    }, [flipped]);
+    
 
     return (
         <View style={styles.characterContainer} className="absolute">
@@ -60,7 +68,8 @@ const Character = ({ setCharacterPopupOpen, characterPopupOpen }) => {
                     styles.character,
                     {
                         transform: [
-                            { translateX: position },
+                            { translateX: positionX },
+                            { translateY: positionY },
                             { scaleX: flipped ? -1 : 1 },
                             { perspective: 1000 }, // For Android devices
                         ],
