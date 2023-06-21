@@ -107,6 +107,7 @@ export default function Challenges() {
         { key: "completed", title: "Completed" },
     ]);
     const [post, setPost] = useState("");
+    const [postLoading, setPostLoading] = useState(false);
 
     const renderScene = SceneMap({
         available: () => (
@@ -276,11 +277,13 @@ export default function Challenges() {
                             <TouchableOpacity
                                 className="bg-green-600 p-2 rounded-lg"
                                 onPress={async () => {
+                                    setPostLoading(true);
                                     openPopup();
                                     const data = await generateLinkedInPost(
                                         item.description
                                     );
                                     setPost(data);
+                                    setPostLoading(false);
                                 }}
                             >
                                 <Text className="font-bold">Claim Rewards</Text>
@@ -310,7 +313,7 @@ export default function Challenges() {
                                 <Text className="text-center text-blue-200 px-5 font-semibold">
                                     Share your achievement!
                                 </Text>
-                                {post ? (
+                                {post && !postLoading ? (
                                     <TextInput
                                         className="text-white mx-auto h-[40vh] p-8"
                                         value={post}
