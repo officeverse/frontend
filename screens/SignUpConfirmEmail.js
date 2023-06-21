@@ -15,7 +15,6 @@ export default function SignUp({ navigation }) {
   const { username, email } = user.attributes;
 
   const onSignUpConfirm = async (data) => {
-    console.log(username, data.confirmationCode);
     return Auth.confirmSignUp(username, data.confirmationCode)
       .then(() => {
         dispatch(setEmailVerified());
@@ -41,6 +40,7 @@ export default function SignUp({ navigation }) {
         Alert.alert('Resent verification code to ' + email);
       })
       .catch((err) => {
+        console.error(err);
         Alert.alert('Error resending code: ' + err);
       });
   };

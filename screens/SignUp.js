@@ -1,4 +1,4 @@
-import { ImageBackground } from 'react-native';
+import { Alert, ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, View } from 'react-native';
 const image = require('../assets/background.png');
@@ -12,33 +12,23 @@ export default function SignUp({ navigation }) {
   const dispatch = useDispatch();
 
   const onSignUp = async (data) => {
-    const { email, firstName, lastName, password, username } = data;
+    const { email, password, username, signUpCode } = data;
     Auth.signUp({
       username,
       password,
       attributes: {
         email,
-        given_name: firstName,
-        family_name: lastName,
+        'custom:sign_up_code': signUpCode,
+        preferred_username: username,
       },
-      autoSignIn: {
-        enabled: true,
-      },
+      autoSignIn: { enabled: true },
     })
       .then((result) => {
         const { userSub, userConfirmed } = result;
         dispatch(
           createNewUser({
-            signUpResult: {
-              userSub,
-              userConfirmed,
-            },
-            attributes: {
-              email,
-              firstName,
-              lastName,
-              username,
-            },
+            signUpResult: { userSub, userConfirmed },
+            attributes: { email, username },
           })
         );
         navigation.reset({
@@ -47,6 +37,17 @@ export default function SignUp({ navigation }) {
         });
       })
       .catch((err) => {
+        if (err.message.includes('Invalid sign up code.')) {
+          return Alert.alert('Invalid sign up code.');
+        }
+        if (err.message.includes('User already exists')) {
+          return Alert.alert(
+            `${username} has been taken. Please choose another username.`
+          );
+        }
+        if (err.message.includes('Email is registered to another account.')) {
+          return Alert.alert('Email is registered to another account.');
+        }
         console.error('Error occurred during sign up');
         throw err;
       });

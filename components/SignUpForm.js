@@ -15,14 +15,6 @@ const signupValidationSchema = yup.object().shape({
         'Invalid username.\nOnly _ or . is allowed for special characters.\nUsername should not start or end with special characters'
     )
     .required(),
-  firstName: yup
-    .string()
-    .min(2, ({ min }) => `First name must be at least ${min} characters`)
-    .required(`First name is Required`),
-  lastName: yup
-    .string()
-    .min(2, ({ min }) => `Last name must be at least ${min} characters`)
-    .notRequired(),
   email: yup
     .string()
     .email('Please enter valid email')
@@ -30,7 +22,21 @@ const signupValidationSchema = yup.object().shape({
   password: yup
     .string()
     .min(8, ({ min }) => `Password must be at least ${min} characters`)
+    .matches(
+      new RegExp(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+      ),
+      () =>
+        'Password should comprise of the following:\n- Uppercase characters\n- Lowercase characters\n- Numbers\n- Special characters (@$!%*?&)'
+    )
     .required('Password is required'),
+  signUpCode: yup
+    .string()
+    .matches(
+      new RegExp(/^\S+$/),
+      'Please ensure that there are no spaces in the code'
+    )
+    .required('Sign up code is required'),
 });
 
 export default function ({ navigation, onSubmit }) {
@@ -73,28 +79,6 @@ export default function ({ navigation, onSubmit }) {
               <Text style={styles.errorText}>{errors.username}</Text>
             )}
             <TextInput
-              name="firstName"
-              placeholder="First Name"
-              style={styles.textInput}
-              onChangeText={handleChange('firstName')}
-              onBlur={handleBlur('firstName')}
-              value={values.firstName}
-            />
-            {errors.firstName && (
-              <Text style={styles.errorText}>{errors.firstName}</Text>
-            )}
-            <TextInput
-              name="lastName"
-              placeholder="Last Name (Optional)"
-              style={styles.textInput}
-              onChangeText={handleChange('lastName')}
-              onBlur={handleBlur('lastName')}
-              value={values.lastName}
-            />
-            {errors.lastName && (
-              <Text style={styles.errorText}>{errors.lastName}</Text>
-            )}
-            <TextInput
               name="email"
               placeholder="Email"
               style={styles.textInput}
@@ -117,6 +101,17 @@ export default function ({ navigation, onSubmit }) {
             />
             {errors.password && (
               <Text style={styles.errorText}>{errors.password}</Text>
+            )}
+            <TextInput
+              name="signUpCode"
+              placeholder="Sign Up Code"
+              style={styles.textInput}
+              onChangeText={handleChange('signUpCode')}
+              onBlur={handleBlur('signUpCode')}
+              value={values.signUpCode}
+            />
+            {errors.signUpCode && (
+              <Text style={styles.errorText}>{errors.signUpCode}</Text>
             )}
             <View className="flex-row items-center justify-center px-2 mt-5">
               <Button

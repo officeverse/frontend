@@ -6,8 +6,6 @@ const initialAuthState = {
     isEmailVerified: false,
     attributes: {
       email: '',
-      firstName: '',
-      lastName: '',
       username: '',
     },
     isNewSignUp: false,
