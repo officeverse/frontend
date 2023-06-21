@@ -125,7 +125,12 @@ export default function Profile({ navigation }) {
                     <View className="h-4 bg-slate-100 rounded-full w-1/2">
                         <View className="h-4 bg-blue-400 rounded-full w-2/5" />
                     </View>
-                    <TouchableOpacity className="flex justify-center items-center mx-2 my-2">
+                    <TouchableOpacity
+                        className="flex justify-center items-center mx-2 my-2"
+                        onPress={() => {
+                            navigation.navigate("Rewards");
+                        }}
+                    >
                         <View className="flex-row">
                             <FontAwesomeIcon
                                 color={"white"}
