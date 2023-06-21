@@ -75,12 +75,13 @@ export default function Forum() {
                     Company Calendar
                   </Text>
                 </View>
+
                 <ScrollView
                   contentOffset={{ x: 0, y: 20 }}
                   className="mx-10 max-h-[15.5vh] overflow-hidden rounded-lg mt-1"
                 >
                   {announcements.map((item, index) => (
-                    <View
+                    <TouchableOpacity
                       onStartShouldSetResponder={() => true}
                       className="bg-white flex-row px-10 py-2 border-b border-gray-300"
                       key={index}
@@ -96,7 +97,7 @@ export default function Forum() {
                           {item.event}
                         </Text>
                       </View>
-                    </View>
+                    </TouchableOpacity>
                   ))}
                 </ScrollView>
               </View>
