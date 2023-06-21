@@ -115,7 +115,7 @@ const Character = ({ setCharacterPopupOpen, characterPopupOpen }) => {
                         </View>
                         <View className="mx-auto justify-center">
                             <QRCodeStyled
-                                data={`${username}`}
+                                data={`${user.sub}`}
                                 style={{ backgroundColor: "white" }}
                                 padding={20}
                                 pieceSize={8}
