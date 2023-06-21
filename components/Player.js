@@ -1,7 +1,7 @@
 // Player.js
 
-import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Image, StyleSheet } from "react-native";
 
 const imageMapping = {
     fit1: require("../assets/game_images/male_player/fit1.png"),
@@ -23,7 +23,9 @@ const Player = ({ avatarDetails }) => (
         {["base", "fit", "glasses", "hair"].map((property, index) => (
             <View key={index} style={styles.avatarImageContainer}>
                 <Image
-                    source={imageMapping[`${property}${avatarDetails[property]}`]}
+                    source={
+                        imageMapping[`${property}${avatarDetails[property]}`]
+                    }
                     style={styles.avatarImage}
                 />
             </View>
@@ -33,13 +35,13 @@ const Player = ({ avatarDetails }) => (
 
 const styles = StyleSheet.create({
     avatarImageContainer: {
-        position: 'absolute',
+        position: "absolute",
         zIndex: 10,
         top: 30,
         left: 0,
     },
     avatarImage: {
-        width: 69, 
+        width: 69,
         height: 156,
     },
 });

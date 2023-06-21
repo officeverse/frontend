@@ -15,7 +15,13 @@ import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 import { faPen } from "@fortawesome/free-solid-svg-icons/faPen";
 import { faCoins } from "@fortawesome/free-solid-svg-icons/faCoins";
 import Customisation from "../components/Customisation";
-
+import Player from '../components/Player'; // Import Player component
+const avatarDetails = ({
+    fit: 1,
+    glasses: 1,
+    hair: 1,
+    base: 1,
+});
 
 const image = require("../assets/background.png");
 
@@ -82,10 +88,7 @@ export default function Profile({ navigation }) {
                     <View>
                         
                         <Customisation setCustomisationPopupOpen={setCustomisationPopupOpen} customisationPopupOpen={customisationPopupOpen}/>
-                        <Image
-                            className="w-28 h-28 rounded-full mx-auto"
-                            source={require("../assets/game_images/player.png")}
-                        />
+                        <Player avatarDetails={avatarDetails} />
                     </View>
                     <Text className="text-white my-2 font-semibold">
                         Senior Software Engineer
