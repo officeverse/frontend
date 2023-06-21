@@ -109,28 +109,28 @@ export default function Forum() {
                     We value your voice
                   </Text>
                 </View>
+                                <View className="mx-10 rounded-lg bg-blue-100 px-10 py-5">
+                                    <TextInput
+                                        onChangeText={setText}
+                                        value={text}
+                                        placeholder="Feedback for 50 EXP!"
+                                        placeholderTextColor="#6C6B6B"
+                                        className="mx-2 rounded-lg bg-blue-100 px-6 py-8"
+                                    ></TextInput>
 
-                <View className="flex-row justify-center mx-auto">
-                  <TextInput
-                    onChangeText={setText}
-                    value={text}
-                    placeholder="Feedback and earn 50 EXP!"
-                    placeholderTextColor="#6C6B6B"
-                    className="mx-2 rounded-lg bg-white px-6 py-4 h-[11vh] w-[73vw]"
-                  ></TextInput>
-
-                  <TouchableOpacity onPress={handleButtonPress} className="">
-                    <Text className="mt-12 ">
-                      <FontAwesomeIcon
-                        icon={faPaperPlane}
-                        size={24}
-                        color={"white"}
-                        bounce
-                      />
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
+                                    <TouchableOpacity
+                                        onPress={handleButtonPress}
+                                        className="absolute bottom-2 right-2 bg-slate-800 p-2 rounded-full"
+                                    >
+                                        <FontAwesomeIcon
+                                            icon={faPaperPlane}
+                                            size={15}
+                                            color={"white"}
+                                            bounce
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
 
               <View>
                 <View className="text-center">
