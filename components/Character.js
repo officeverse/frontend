@@ -1,8 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Image, Animated, StyleSheet, Dimensions, Modal, Text, Button, TouchableOpacity } from "react-native";
+import Player from './Player'; // Import Player component
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
+
+const avatarDetails = ({
+    fit: 1,
+    glasses: 1,
+    hair: 1,
+    base: 1,
+});
 
 const Character = ({ setCharacterPopupOpen, characterPopupOpen }) => {
     const positionX = useRef(new Animated.Value(0)).current;
@@ -96,10 +104,7 @@ const Character = ({ setCharacterPopupOpen, characterPopupOpen }) => {
                 <View style={styles.popupContainer}>
                     <View style={styles.popupContent} className="p-18">
                         <View className="flex-row">
-                            <Image
-                                source={require("../assets/game_images/player.png")}
-                                className="mt-4 mr-4 w-[70px] h-[70px]"
-                            />
+                            <Player avatarDetails={avatarDetails} />
                             <View>
                                 <View>
                                     <Text className="mt-4 font-bold text-xl">BabyBear380</Text>
