@@ -5,8 +5,13 @@ import { setChallenges } from "../src/features/challengesSlice";
 import { setRewards } from "../src/features/rewardsSlice";
 import { useEffect } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function Splash({ setAppIsReady }) {
+    const user = useSelector((state) => state.auth.user);
+    const sub = user.sub;
+    console.log(sub);
+    console.log(user);
     const challengesUrl =
         "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com/challenges?page=1&limit=100";
     const rewardsUrl =
