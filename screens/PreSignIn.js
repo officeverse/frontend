@@ -63,6 +63,7 @@ export default function PreSignIn({ navigation }) {
         <KeyboardAwareScrollView
             resetScrollToCoords={{ x: 0, y: 0 }}
             scrollEnabled={true}
+            keyboardShouldPersistTaps="always"
         >
             <ImageBackground
                 source={image}
