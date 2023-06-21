@@ -8,14 +8,11 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Image,
-  Button,
 } from "react-native";
 import Modal from "react-native-modal";
 import {
   PanGestureHandler,
   State,
-  PanGestureHandlerStateChangeEvent,
 } from "react-native-gesture-handler";
 import Animated, {
   Value,
@@ -25,12 +22,10 @@ import Animated, {
   cond,
   eq,
   and,
-  not,
   greaterThan,
   lessThan,
   add,
   useCode,
-  call,
 } from "react-native-reanimated";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -40,12 +35,7 @@ import Character from "../components/Character";
 import { faCamera } from "@fortawesome/free-solid-svg-icons/faCamera";
 
 import Player from "../components/Player"; // Import Player component
-const avatarDetails = {
-  fit: 1,
-  glasses: 1,
-  hair: 1,
-  base: 1,
-};
+import { useSelector } from "react-redux";
 
 const image = require("../assets/landscape_populated.png");
 
@@ -56,6 +46,7 @@ const imageHeight = 1200;
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 const Leaderboard = ({ navigation }) => {
+  const players = useSelector(state => state.leaderboard.allTime);
   const [selectedPlayer, setSelectedPlayer] = useState(null); // for the inner modal
   const [characterPopupOpen, setCharacterPopupOpen] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -104,6 +95,7 @@ const Leaderboard = ({ navigation }) => {
     ]);
   }, []);
 
+  console.log(players);
   const onGestureEvent = event(
     [
       {
@@ -196,11 +188,11 @@ const Leaderboard = ({ navigation }) => {
               />
 
               <View className="w-[69px] h-[156px] scale-50">
-                <Player avatarDetails={avatarDetails} />
+                <Player avatarDetails={player.avatar} />
               </View>
               <Text className="font-semibold text-base">{player.username}</Text>
               <Text className="font-semibold text-base text-stone-400">
-                {player.weeklyExp} EXP
+                {player.totalExp} EXP
               </Text>
             </View>
           ))}
@@ -307,31 +299,31 @@ const styles = StyleSheet.create({
   },
 });
 
-const players = [
-  //...just hardcoded for now
-  {
-    position: 1,
-    id: 123,
-    username: "Mailey Zyrus",
-    weeklyExp: 3450,
-    weeklyCoins: 56,
-    avatar: require("../assets/game_images/player.png"),
-  },
-  {
-    position: 3,
-    id: 124,
-    username: "Andy Lim",
-    weeklyExp: 3210,
-    weeklyCoins: 23,
-    avatar: require("../assets/game_images/player.png"),
-  },
-  {
-    position: 2,
-    id: 690,
-    username: "Babybear380",
-    weeklyExp: 3300,
-    weeklyCoins: 94,
-    avatar: require("../assets/game_images/player.png"),
-  },
-  //... more players
-];
+// const players = [
+//   //...just hardcoded for now
+//   {
+//     position: 1,
+//     id: 123,
+//     username: "Mailey Zyrus",
+//     weeklyExp: 3450,
+//     weeklyCoins: 56,
+//     avatar: require("../assets/game_images/player.png"),
+//   },
+//   {
+//     position: 3,
+//     id: 124,
+//     username: "Andy Lim",
+//     weeklyExp: 3210,
+//     weeklyCoins: 23,
+//     avatar: require("../assets/game_images/player.png"),
+//   },
+//   {
+//     position: 2,
+//     id: 690,
+//     username: "Babybear380",
+//     weeklyExp: 3300,
+//     weeklyCoins: 94,
+//     avatar: require("../assets/game_images/player.png"),
+//   },
+//   //... more players
+// ];
