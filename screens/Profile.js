@@ -62,7 +62,7 @@ export default function Profile({ navigation }) {
             resizeMode="cover"
             className=" justify-center"
         >
-            <SafeAreaView className="h-[100vh]">
+            <ScrollView className="h-[100vh]">
                 <View className="flex-row items-center justify-center mb-5 mt-14">
                     <Text className="text-white text-2xl mb-3 font-semibold">
                         Hello, Babybear380!
@@ -142,7 +142,7 @@ export default function Profile({ navigation }) {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <ScrollView>
+                <View>
                     <TouchableOpacity
                         onPress={pressHandlerPaymentHistory}
                         className="bg-white items-center justify-center p-3 rounded-lg w-3/4 my-2 mx-auto"
@@ -193,8 +193,8 @@ export default function Profile({ navigation }) {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                </ScrollView>
-            </SafeAreaView>
+                </View>
+            </ScrollView>
         </ImageBackground>
     );
 }
