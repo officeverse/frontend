@@ -86,16 +86,16 @@ const CompletedChallengesScreen = ({ challenges, renderItem }) => (
 );
 
 export default function Challenges() {
-    const [isPopupVisible, setPopupVisible] = useState(false);
-    const [isCompletedPopupVisible, setCompletedPopupVisible] = useState(false);
-    const [challenges, setChallenges] = useState([]);
-    const [index, setIndex] = useState(0);
-    const [routes] = useState([
-        { key: "available", title: "Available" },
-        { key: "completed", title: "Completed" },
-    ]);
-    const [post, setPost] = useState("");
-    const [postLoading, setPostLoading] = useState(false);
+  const [isPopupVisible, setPopupVisible] = useState(false);
+  const [isCompletedPopupVisible, setCompletedPopupVisible] = useState(false);
+  const [challenges, setChallenges] = useState([]);
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: "available", title: "Available" },
+    { key: "completed", title: "Completed" },
+  ]);
+  const [post, setPost] = useState("");
+  const [postLoading, setPostLoading] = useState(false);
 
   const renderScene = SceneMap({
     available: () => (
@@ -244,7 +244,7 @@ export default function Challenges() {
     return (
       <View>
         <View
-          className="bg-slate-700 rounded-xl w-full max-w-xs mx-auto my-4"
+          className="bg-slate-600 rounded-xl w-full max-w-xs mx-auto my-4"
           style={[
             {
               shadowColor: "black",
@@ -266,18 +266,16 @@ export default function Challenges() {
                 onPress={async () => {
                   setPostLoading(true);
                   openPopup();
-                  const data = await generateLinkedInPost(
-                  item.description
-                  );
+                  const data = await generateLinkedInPost(item.description);
                   setPost(data);
                   setPostLoading(false);
                 }}
               >
                 <Text className="font-bold">Claim Rewards</Text>
               </TouchableOpacity>
-              {/* <Text className="ml-2 text-sm text-stone-400 ml-20">
+              <Text className="ml-2 text-sm text-stone-200 ml-20">
                 + {item.reward} EXP
-              </Text> */}
+              </Text>
             </View>
           </View>
         </View>
@@ -307,7 +305,7 @@ export default function Challenges() {
                     multiline={true}
                   />
                 ) : (
-                  <Text className="mx-auto text-white p-8">
+                  <Text className="mx-auto text-white p-8 mt-4">
                     Generating your personal LinkedIn post...
                   </Text>
                 )}
@@ -315,11 +313,11 @@ export default function Challenges() {
                   className="py-4 rounded-lg bg-blue-100 w-[150px] mx-auto mt-4"
                   onPress={() => {}}
                 >
-                  <Text className="text-black font-semibold text-center">
+                  <Text className="text-black font-semibold text-center text-base">
                     Share and Claim
                   </Text>
                 </TouchableOpacity>
-                <Text className="text-xs mx-auto mt-2 underline text-stone-200">
+                <Text className="text-base mx-auto mt-2 underline text-stone-200">
                   Claim rewards only
                 </Text>
                 <TouchableOpacity onPress={closePopup} className="mt-4">
