@@ -9,7 +9,7 @@ const initialAuthState = {
       username: '',
     },
     isNewSignUp: false,
-    hasCompletedOnboarding: false,
+    hasCompletedOnboarding: true,
   },
 };
 

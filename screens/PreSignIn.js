@@ -35,7 +35,7 @@ export default function PreSignIn({ navigation }) {
         navigation.reset({
           index: 0,
           routes: [
-            { name: hasCompletedOnboarding ? 'Home' : 'OnboardingMain' },
+            { name: hasCompletedOnboarding ? 'NavBar' : 'OnboardingMain' },
           ],
         });
       })
