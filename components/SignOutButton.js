@@ -20,6 +20,11 @@ export default function ({ navigation }) {
   };
 
   return (
-    <Button className="bg-gray-100" title="Sign out" onPress={onSignOut} />
+    <Button
+      className="bg-gray-100"
+      type="SignOut"
+      title="Sign out"
+      onPress={onSignOut}
+    />
   );
 }

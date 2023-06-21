@@ -3775,6 +3775,13 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@koale/useworker@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.npmjs.org/@koale/useworker/-/useworker-4.0.2.tgz"
+  integrity sha512-xPIPADtom8/3/4FLNj7MvNcBM/Z2FleH85Fdx2O869eoKW8+PoEgtSVvoxWjCWMA46Sm9A5/R1TyzNGc+yM0wg==
+  dependencies:
+    dequal "^1.0.0"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -6158,6 +6165,11 @@ deprecated-react-native-prop-types@^3.0.1:
     invariant "*"
     prop-types "*"
 
+dequal@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/dequal/-/dequal-1.0.1.tgz"
+  integrity sha512-Fx8jxibzkJX2aJgyfSdLhr9tlRoTnHKrRJuu2XHlAgKioN2j19/Bcbe0d4mFXYZ3+wpE2KVobUVTfDutcD17xQ==
+
 destroy@1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz"
@@ -6167,6 +6179,11 @@ didyoumean@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/didyoumean/-/didyoumean-1.2.2.tgz"
   integrity sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==
+
+dijkstrajs@^1.0.1:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/dijkstrajs/-/dijkstrajs-1.0.3.tgz"
+  integrity sha512-qiSlmBq9+BCdCA/L46dw8Uy93mloxsPSbwnm5yrKn2vMPiy8KyAskTF6zuV/j5BMsmOGZDPs7KjU+mjb670kfA==
 
 dir-glob@^3.0.1:
   version "3.0.1"
@@ -6272,6 +6289,11 @@ emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz"
   integrity sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
+
+encode-utf8@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/encode-utf8/-/encode-utf8-1.0.3.tgz"
+  integrity sha512-ucAnuBEhUK4boH2HjVYG5Q2mQyPorvv0u/ocS+zhdw0S8AlHYY+GOFhP1Gio5z4icpP2ivFSvhtFjQi8+T9ppw==
 
 encodeurl@~1.0.2:
   version "1.0.2"
@@ -6479,6 +6501,21 @@ expo-asset@*, expo-asset@~8.9.1:
     path-browserify "^1.0.0"
     url-parse "^1.5.9"
 
+expo-barcode-scanner@~12.3.2:
+  version "12.3.2"
+  resolved "https://registry.npmjs.org/expo-barcode-scanner/-/expo-barcode-scanner-12.3.2.tgz"
+  integrity sha512-6s8r7/H2pP1sscCm4gwIaVaqOTPBn3qDbh0d27Q79Ix5/p+yPVd/hkD0GGooDLHHcdOWTweQzrlRCxOdSVh8ZQ==
+  dependencies:
+    expo-image-loader "~4.1.0"
+
+expo-camera@~13.2.1:
+  version "13.2.1"
+  resolved "https://registry.npmjs.org/expo-camera/-/expo-camera-13.2.1.tgz"
+  integrity sha512-fZdRyF402jJGGmLVlumrLcr5Em9+Y2SO1MIlxLBtHXnybyHbTRMRAbzVapKX1Aryfujqadh+Kl+sdsWYkMuJjg==
+  dependencies:
+    "@koale/useworker" "^4.0.2"
+    invariant "^2.2.4"
+
 expo-constants@~14.2.0, expo-constants@~14.2.1:
   version "14.2.1"
   resolved "https://registry.npmjs.org/expo-constants/-/expo-constants-14.2.1.tgz"
@@ -6515,6 +6552,11 @@ expo-gl@*:
   integrity sha512-Wp4qjtktRWzcv7Lz50inHFZTaukqbmN2Hy3AW6fEiMgVaCwedhOLjrfS2IKsLeS97lk9sgoPBo1i4x221lyIBw==
   dependencies:
     invariant "^2.2.4"
+
+expo-image-loader@~4.1.0:
+  version "4.1.1"
+  resolved "https://registry.npmjs.org/expo-image-loader/-/expo-image-loader-4.1.1.tgz"
+  integrity sha512-ciEHVokU0f6w0eTxdRxLCio6tskMsjxWIoV92+/ZD37qePUJYMfEphPhu1sruyvMBNR8/j5iyOvPFVGTfO8oxA==
 
 expo-keep-awake@~12.0.1:
   version "12.0.1"
@@ -9909,6 +9951,16 @@ qrcode-terminal@0.11.0:
   resolved "https://registry.npmjs.org/qrcode-terminal/-/qrcode-terminal-0.11.0.tgz"
   integrity sha512-Uu7ii+FQy4Qf82G4xu7ShHhjhGahEpCWc3x8UavY3CTcWV+ufmmCtwkr7ZKsX42jdL0kr1B5FKUeqJvAn51jzQ==
 
+qrcode@^1.5.1:
+  version "1.5.3"
+  resolved "https://registry.npmjs.org/qrcode/-/qrcode-1.5.3.tgz"
+  integrity sha512-puyri6ApkEHYiVl4CFzo1tDkAZ+ATcnbJrJ6RiBM1Fhctdn/ix9MTE3hRph33omisEbC/2fcfemsseiKgBPKZg==
+  dependencies:
+    dijkstrajs "^1.0.1"
+    encode-utf8 "^1.0.3"
+    pngjs "^5.0.0"
+    yargs "^15.3.1"
+
 qs@^6.11.0, qs@6.11.0:
   version "6.11.0"
   resolved "https://registry.npmjs.org/qs/-/qs-6.11.0.tgz"
@@ -10140,6 +10192,13 @@ react-native-paper@^5.8.0:
     color "^3.1.2"
     use-latest-callback "^0.1.5"
 
+react-native-qrcode-styled@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/react-native-qrcode-styled/-/react-native-qrcode-styled-0.2.1.tgz"
+  integrity sha512-SxjmUzHGCAyrH2/cWTErbzgfDE+aph4kJOb0EtYDmpL1pPDQ/7sjUIYYomsapf7SYqwGq+eYW5dPKPXT6gntgg==
+  dependencies:
+    qrcode "^1.5.1"
+
 react-native-reanimated@*, react-native-reanimated@2.14.4:
   version "2.14.4"
   resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-2.14.4.tgz"
@@ -10173,6 +10232,14 @@ react-native-safe-area-view@^0.14.9:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-svg@*, react-native-svg@^13.4.0, "react-native-svg@>= 11.x":
+  version "13.4.0"
+  resolved "https://registry.npmjs.org/react-native-svg/-/react-native-svg-13.4.0.tgz"
+  integrity sha512-B3TwK+H0+JuRhYPzF21AgqMt4fjhCwDZ9QUtwNstT5XcslJBXC0FoTkdZo8IEb1Sv4suSqhZwlAY6lwOv3tHag==
+  dependencies:
+    css-select "^5.1.0"
+    css-tree "^1.1.3"
+
 react-native-svg@^9.9.5:
   version "9.13.6"
   resolved "https://registry.npmjs.org/react-native-svg/-/react-native-svg-9.13.6.tgz"
@@ -10180,14 +10247,6 @@ react-native-svg@^9.9.5:
   dependencies:
     css-select "^2.0.2"
     css-tree "^1.0.0-alpha.37"
-
-"react-native-svg@>= 11.x", react-native-svg@13.4.0:
-  version "13.4.0"
-  resolved "https://registry.npmjs.org/react-native-svg/-/react-native-svg-13.4.0.tgz"
-  integrity sha512-B3TwK+H0+JuRhYPzF21AgqMt4fjhCwDZ9QUtwNstT5XcslJBXC0FoTkdZo8IEb1Sv4suSqhZwlAY6lwOv3tHag==
-  dependencies:
-    css-select "^5.1.0"
-    css-tree "^1.1.3"
 
 react-native-tab-view@^3.5.1:
   version "3.5.1"
@@ -10357,6 +10416,15 @@ react@*, "react@^15.5.x || ^16.x || ^17.x || ^18.x", "react@^16.0.0 || ^17.0.0 |
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
   dependencies:
     loose-envify "^1.1.0"
+
+react@^16.8.0:
+  version "16.14.0"
+  resolved "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
+  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
 
 react@^17.0.1, react@17.0.1:
   version "17.0.1"

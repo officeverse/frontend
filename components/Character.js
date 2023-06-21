@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Image, Animated, StyleSheet, Dimensions, Modal, Text, Button, TouchableOpacity } from "react-native";
+import { View, Image, Animated, StyleSheet, Dimensions, Modal, Text, Button, SafeAreaView, ScrollView, TextInput, ImageBackground,
+  Alert, TouchableOpacity } from "react-native";
 import Player from './Player'; // Import Player component
 const avatarDetails = ({
     fit: 1,
@@ -7,6 +8,9 @@ const avatarDetails = ({
     hair: 1,
     base: 1,
 });
+import QRCodeStyled from "react-native-qrcode-styled";
+import { useSelector } from "react-redux";
+
 
 const screenHeight = Dimensions.get("window").height;
 const screenWidth = Dimensions.get("window").width;
@@ -17,6 +21,8 @@ const Character = ({ setCharacterPopupOpen, characterPopupOpen }) => {
     const positionX = useRef(new Animated.Value(0)).current;
     const positionY = useRef(new Animated.Value(0)).current;
     const [flipped, setFlipped] = useState(false);
+    const user = useSelector((state) => state.auth.user);
+    const { username } = user.attributes;
 
     useEffect(() => {
         const walkingAnimation = Animated.loop(
@@ -105,52 +111,62 @@ const Character = ({ setCharacterPopupOpen, characterPopupOpen }) => {
                             <Player avatarDetails={avatarDetails} />
                             <View>
                                 <View>
-                                    <Text className="mt-4 font-bold text-xl">BabyBear380</Text>
+                                    <Text className="mt-4 font-bold text-2xl">{username}</Text>
+                                
                                 </View>
-                                <Text className="font-semibold mt-3 mr-3">
-                                    Senior Software Engineer
-                                </Text>
-                            </View>
-                        </View>
-                        <Button
-                            title="Close"
-                            onPress={() => {
-                                console.log("test");
-                                setCharacterPopupOpen(false);
-                            }}
-                        />
-                    </View>
-                </View>
-            </Modal>
+                <Text className="font-semibold mt-3 text-lg">
+                  Senior Software Engineer
+                </Text>
+              </View>
+            </View>
+            <View className="mx-auto justify-center">
+              <QRCodeStyled
+                data={`${username}`}
+                style={{ backgroundColor: "white" }}
+                padding={20}
+                pieceSize={8}
+              />
+            </View>
+
+            <Button
+              title="Close"
+              onPress={() => {
+                console.log("test");
+                setCharacterPopupOpen(false);
+              }}
+            />
+          </View>
         </View>
-    );
+      </Modal>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-    characterContainer: {
-        alignItems: "center",
-        marginTop: screenHeight / 2 + 20,
-        marginLeft: screenWidth / 2 - 40,
-    },
-    character: {
-        flexDirection: "row",
-        justifyContent: "center",
-    },
-    characterImage: {
-        width: 50,
-        height: 50,
-    },
-    popupContainer: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-      },
-      popupContent: {
-        backgroundColor: "white",
-        padding: 16,
-        borderRadius: 8,
-      }
+  characterContainer: {
+    alignItems: "center",
+    marginTop: screenHeight / 2 + 20,
+    marginLeft: screenWidth / 2 - 40,
+  },
+  character: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  characterImage: {
+    width: 50,
+    height: 50,
+  },
+  popupContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  popupContent: {
+    backgroundColor: "white",
+    padding: 16,
+    borderRadius: 8,
+  },
 });
 
 export default Character;
