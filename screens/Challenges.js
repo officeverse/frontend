@@ -33,16 +33,18 @@ const AvailableChallengesScreen = ({ challenges, renderItem }) => (
     className=" justify-center"
   >
     <SafeAreaView className="h-[100vh]">
-      <View className="flex-row items-center justify-center mt-8">
-        <Text className="text-3xl mb-3 font-semibold text-white">
-          Challenges
-        </Text>
-        <Text className="mb-2 ml-2">
-          <FontAwesomeIcon icon={faDumbbell} size={32} color="white" />
-        </Text>
-      </View>
-      <View className="flex-row items-center justify-center mb-3 ">
-        <Text className="text-white">Gain EXP and BBC coins today!</Text>
+      <View className="h-[15vh]">
+        <View className="flex-row items-center justify-center ">
+          <Text className="text-3xl mb-3 font-semibold text-white">
+            Challenges
+          </Text>
+          <Text className="mb-2 ml-2">
+            <FontAwesomeIcon icon={faDumbbell} size={32} color="white" />
+          </Text>
+        </View>
+        <View className="flex-row items-center justify-center ">
+          <Text className="text-white">Gain EXP and BBC coins today!</Text>
+        </View>
       </View>
       <FlatList
         className="mb-[55px] mt-16"
@@ -124,7 +126,7 @@ export default function Challenges() {
       className="bg-transparent h-[50px]"
       style={{
         position: "absolute",
-        bottom: 450,
+        top: 0,
         width: "100%",
       }}
     />

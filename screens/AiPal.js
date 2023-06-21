@@ -30,23 +30,23 @@ export default function AiPal() {
       className=" justify-center"
     >
       <SafeAreaView className="h-[100vh]">
-        <View className="flex-row items-center justify-center mt-10">
-          <Text className="text-white text-3xl mb-3 font-semibold">
+        <View className="flex-row items-center justify-center mt-14 h-[10vh]">
+          <Text className="text-white text-3xl font-semibold">
             Work Smarter
           </Text>
-          <Text className="mb-2 ml-2">
+          <Text className=" ml-2">
             <FontAwesomeIcon color="white" icon={faBriefcase} size={32} />
           </Text>
         </View>
 
-        <View className="flex-row items-center justify-center mt-4 mb-3 px-10">
+        <View className="flex-row items-center justify-center px-14 mb-8">
           <Text className="text-white text-center">
             Smart insights, gathered from your Officeverse journey.
           </Text>
         </View>
 
-        <ScrollView className="mx-auto mt-14 overflow-hidden">
-          <TouchableOpacity className="mb-14">
+        <View className="mx-auto h-[58vh] justify-content flex justify-around">
+          <TouchableOpacity className="">
             <AiCard desc="Roadmap your progress" icon={faUser} sizing={32} />
           </TouchableOpacity>
 
@@ -96,7 +96,7 @@ export default function AiPal() {
           >
             <LinkedInGenerator setLinkedInOpen={setLinkedInOpen} />
           </Modal> */}
-        </ScrollView>
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
