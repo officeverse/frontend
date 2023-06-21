@@ -68,7 +68,7 @@ const Customisation = ({ setCustomisationPopupOpen, customisationPopupOpen }) =>
                             {["base", "fit", "glasses", "hair"].map((property, index) => (
                                 <View key={index}>
                                     <Button
-                                        title={`${property}->`}
+                                        title={`   -${property}->`}
                                         onPress={() => {
                                             setAvatarDetails(prevState => ({
                                                 ...prevState,
