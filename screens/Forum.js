@@ -75,19 +75,23 @@ export default function Forum() {
                     Company Calendar
                   </Text>
                 </View>
-                <ScrollView className="mx-10 max-h-[15.5vh] overflow-hidden rounded-lg mt-1 shadow-xl">
+                <ScrollView
+                  contentOffset={{ x: 0, y: 20 }}
+                  className="mx-10 max-h-[15.5vh] overflow-hidden rounded-lg mt-1"
+                >
                   {announcements.map((item, index) => (
                     <View
-                      className="bg-blue-100 flex-row px-10 py-2 border-b border-gray-300"
+                      onStartShouldSetResponder={() => true}
+                      className="bg-white flex-row px-10 py-2 border-b border-gray-300"
                       key={index}
                     >
-                      <View className="w-20 ">
+                      <View className="w-20">
                         <Text className="text-left text-base mb-1 font-medium">
                           {item.date}
                         </Text>
                       </View>
 
-                      <View className="">
+                      <View>
                         <Text className="text-left text-base text-gray-600 ">
                           {item.event}
                         </Text>
@@ -105,28 +109,28 @@ export default function Forum() {
                     We value your voice
                   </Text>
                 </View>
+                                <View className="mx-10 rounded-lg bg-blue-100 px-10 py-5">
+                                    <TextInput
+                                        onChangeText={setText}
+                                        value={text}
+                                        placeholder="Feedback for 50 EXP!"
+                                        placeholderTextColor="#6C6B6B"
+                                        className="mx-2 rounded-lg bg-blue-100 px-6 py-8"
+                                    ></TextInput>
 
-                <View className="flex-row justify-center mx-auto">
-                  <TextInput
-                    onChangeText={setText}
-                    value={text}
-                    placeholder="Feedback and earn 50 EXP!"
-                    placeholderTextColor="#6C6B6B"
-                    className="mx-2 rounded-lg bg-blue-100 px-6 py-4 h-[11vh] w-[73vw]"
-                  ></TextInput>
-
-                  <TouchableOpacity onPress={handleButtonPress} className="">
-                    <Text className="mt-12 ">
-                      <FontAwesomeIcon
-                        icon={faPaperPlane}
-                        size={24}
-                        color={"#BFE0FF"}
-                        bounce
-                      />
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
+                                    <TouchableOpacity
+                                        onPress={handleButtonPress}
+                                        className="absolute bottom-2 right-2 bg-slate-800 p-2 rounded-full"
+                                    >
+                                        <FontAwesomeIcon
+                                            icon={faPaperPlane}
+                                            size={15}
+                                            color={"white"}
+                                            bounce
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
 
               <View>
                 <View className="text-center">
@@ -135,7 +139,7 @@ export default function Forum() {
                   </Text>
                 </View>
 
-                <View className="mx-10 rounded-lg bg-blue-100 px-10 py-5">
+                <View className="mx-10 rounded-lg bg-white px-10 py-5">
                   <View className="text-center">
                     <Text className="text-center text-md mb-1">
                       Let us congratulate

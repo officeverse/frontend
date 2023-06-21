@@ -45,26 +45,37 @@ export default function AiPal() {
           </Text>
         </View>
 
-        <ScrollView className=" overflow-hidden">
-          <View className="flex-row justify-between mt-8 ">
+        <ScrollView className="mx-auto mt-14 overflow-hidden">
+          <TouchableOpacity className="mb-14">
+            <AiCard desc="Roadmap your progress" icon={faUser} sizing={32} />
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <AiCard
+              desc="Upskill yourself today"
+              icon={faGraduationCap}
+              sizing={43}
+            />
+          </TouchableOpacity>
+          {/* <View className=" justify-between mt-8 ">
             <AiCard desc="Roadmap your progress" icon={faUser} sizing={32} />
             <AiCard
               desc="Upskill yourself today"
               icon={faGraduationCap}
               sizing={43}
             />
-          </View>
+          </View> */}
 
-          <View className="flex-row justify-between mt-8 ">
+          {/* <View className="flex-row justify-between mt-8 ">
             <AiCard desc="Recommended break timer" icon={faClock} sizing={34} />
             <AiCard
               desc="Connect with fellow colleagues"
               icon={faMugHot}
               sizing={38}
             />
-          </View>
+          </View> */}
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             className="items-center mt-5"
             onPress={() => {
               setLinkedInOpen(true);
@@ -84,7 +95,7 @@ export default function AiPal() {
             }}
           >
             <LinkedInGenerator setLinkedInOpen={setLinkedInOpen} />
-          </Modal>
+          </Modal> */}
         </ScrollView>
       </SafeAreaView>
     </ImageBackground>

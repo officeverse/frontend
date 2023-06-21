@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,9 +10,14 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  Button,
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faGift } from "@fortawesome/free-solid-svg-icons/faGift";
+import axios from "axios";
+
+const rewardsUrl =
+  "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com/rewards?page=1&limit=100";
 
 const image = require("../assets/background.png");
 
@@ -29,6 +34,24 @@ export default function Rewards() {
     { id: 9, title: "10% OFF Courts Voucher", points: 100 },
     { id: 10, title: "10% OFF Courts Voucher", points: 100 },
   ];
+
+  const [rewards, setRewards] = useState([]);
+
+  const getRewards = () => {
+    axios
+      .get(rewardsUrl)
+      .then((response) => {
+        setRewards([...response.data.data.rewards]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    console.log("Loading rewards");
+    getRewards();
+  }, []);
 
   const renderItem = ({ item }) => (
     <View
@@ -48,25 +71,25 @@ export default function Rewards() {
     >
       <TouchableOpacity
         onPress={() => {
-          Alert.alert(item.title, `Redeem Reward with ${item.points} EXP`, [
+          Alert.alert(item.name, `Redeem Reward with ${item.cost} EXP`, [
             { text: "Confirm" },
             { text: "Cancel" },
           ]);
         }}
       >
         <Image
-          source={require("../assets/voucher.jpg")}
-          className="w-full h-32 rounded-t-lg"
+          source={{ uri: item.imageDataUrl }}
+          className="w-full h-32 rounded-t-lg p-4"
           resizeMode="cover"
         />
         <View className="p-4">
           <View>
             <Text className="mb-3  text-sm text-stone-500">
-              {item.points} coins
+              {item.cost} coins
             </Text>
             <View className="">
               <Text className=" text-slate-900 text-base font-bold">
-                {item.title}
+                {item.name}
               </Text>
             </View>
           </View>
@@ -75,7 +98,7 @@ export default function Rewards() {
     </View>
   );
 
-  return (
+  return rewards.length >= 1 ? (
     <ImageBackground
       source={image}
       resizeMode="cover"
@@ -97,13 +120,25 @@ export default function Rewards() {
           </Text>
         </View>
         <FlatList
-          data={reward}
+          data={rewards}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           numColumns={2}
-          className="row m-0"
+          className="row  mb-16"
         />
         {/* </ScrollView> */}
+      </SafeAreaView>
+    </ImageBackground>
+  ) : (
+    <ImageBackground
+      source={image}
+      resizeMode="cover"
+      className=" justify-center"
+    >
+      <SafeAreaView className="h-[100vh]">
+        <Text className="mx-auto text-white text-xl mt-80">
+          Loading rewards...
+        </Text>
       </SafeAreaView>
     </ImageBackground>
   );
