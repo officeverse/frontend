@@ -114,27 +114,25 @@ export default function Forum() {
                                     </Text>
                                 </View>
 
-                                <View className="flex-row justify-center mx-auto">
+                                <View className="mx-10 rounded-lg bg-blue-100 px-10 py-5">
                                     <TextInput
                                         onChangeText={setText}
                                         value={text}
-                                        placeholder="Feedback and earn 50 EXP!"
+                                        placeholder="Feedback for 50 EXP!"
                                         placeholderTextColor="#6C6B6B"
-                                        className="mx-2 rounded-lg bg-blue-100 px-6 py-4 h-[11vh] w-[73vw]"
+                                        className="mx-2 rounded-lg bg-blue-100 px-6 py-8"
                                     ></TextInput>
 
                                     <TouchableOpacity
                                         onPress={handleButtonPress}
-                                        className=""
+                                        className="absolute bottom-2 right-2 bg-slate-800 p-2 rounded-full"
                                     >
-                                        <Text className="mt-12 ">
-                                            <FontAwesomeIcon
-                                                icon={faPaperPlane}
-                                                size={24}
-                                                color={"#BFE0FF"}
-                                                bounce
-                                            />
-                                        </Text>
+                                        <FontAwesomeIcon
+                                            icon={faPaperPlane}
+                                            size={15}
+                                            color={"white"}
+                                            bounce
+                                        />
                                     </TouchableOpacity>
                                 </View>
                             </View>

@@ -11,7 +11,7 @@ export default function App() {
     const [isRegistered, setIsRegistered] = useState(true);
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-            <View className="flex-1 ">
+            <View className="flex-1">
                 <OnboardingStack
                     isRegistered={isRegistered}
                     setIsRegistered={setIsRegistered}
