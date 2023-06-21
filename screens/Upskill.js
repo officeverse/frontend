@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { OPENAI_SECRET_KEY } from "@env";
 
-export default function RoadMapGenerator({ setRoadmapOpen }) {
+export default function Upskill({ setUpskillOpen }) {
   const [text, onChangeText] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
@@ -35,11 +35,11 @@ export default function RoadMapGenerator({ setRoadmapOpen }) {
             {
               role: "system",
               content:
-                "You are a helpful assistant. Help to generate a roadmap to guide me on my learning journey. I will tell you what it is about next.",
+                "You are a helpful assistant. Help to generate a list of upskilling course recommendations. I will tell you what it is about next.",
             },
             {
               role: "user",
-              content: `I wan to learn about ${text}`,
+              content: `My interests lies in ${text}`,
             },
           ],
         },
@@ -62,7 +62,7 @@ export default function RoadMapGenerator({ setRoadmapOpen }) {
         <ScrollView className="h-screen">
           <TouchableOpacity
             onPress={() => {
-              setRoadmapOpen(false);
+              setUpskillOpen(false);
             }}
             className="mt-8"
           >
@@ -70,17 +70,17 @@ export default function RoadMapGenerator({ setRoadmapOpen }) {
           </TouchableOpacity>
 
           <Text className="text-2xl my-4 text-center font-semibold">
-            Personalized Learning Roadmaps{" "}
+            Personalised Course Recommendations
           </Text>
           <Text className="text-center text-base">
-            Your Guided Path to Knowledge
+            Get recommendations tailored to your interests today
           </Text>
           <View className="my-4 w-3/4 mx-auto">
             <TextInput
               placeholderTextColor={"gray"}
               onChangeText={onChangeText}
               value={text}
-              placeholder="eg. I want to learn about..."
+              placeholder="eg. My interest lies in..."
               className="mx-2 rounded-lg bg-gray-200 px-6 py-4"
             ></TextInput>
           </View>
@@ -89,7 +89,7 @@ export default function RoadMapGenerator({ setRoadmapOpen }) {
             className="mx-auto bg-blue-200 p-2 px-8 rounded-md my-1 shadow-xl"
           >
             <Text className="text-lg text-slate-800 font-semibold">
-              Generate Roadmap
+              Generate Courses
             </Text>
           </TouchableOpacity>
           {loading && <ActivityIndicator />}
