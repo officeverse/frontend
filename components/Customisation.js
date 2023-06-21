@@ -16,14 +16,21 @@ const imageMapping = {
     fit3: require("../assets/game_images/male_player/fit3.png"),
     glasses1: require("../assets/game_images/male_player/glasses1.png"),
     glasses2: require("../assets/game_images/male_player/glasses2.png"),
+    glasses3: require("../assets/game_images/male_player/glasses3.png"),
     hair1: require("../assets/game_images/male_player/hair1.png"),
     hair2: require("../assets/game_images/male_player/hair2.png"),
     hair3: require("../assets/game_images/male_player/hair3.png"),
     base1: require("../assets/game_images/male_player/base1.png"),
     base2: require("../assets/game_images/male_player/base2.png"),
-
+    base3: require("../assets/game_images/male_player/base3.png"),
   };
 
+const yOffsetMapping = {
+    fit: -37,
+    glasses: -74,
+    hair: -112,
+    base: 0,
+};
 const Customisation = ({ setCustomisationPopupOpen, customisationPopupOpen }) => {
     const [avatarDetails, setAvatarDetails] = useState({
         fit: 1,
@@ -58,21 +65,23 @@ const Customisation = ({ setCustomisationPopupOpen, customisationPopupOpen }) =>
                                 <Text className="mt-4 font-bold text-xl">Customise Your Avatar</Text>
                             </View>
 
-                            {["fit", "glasses", "hair", "base"].map((property, index) => (
-                                <View className="flex-row" key={index}>
+                            {["base", "fit", "glasses", "hair"].map((property, index) => (
+                                <View key={index}>
                                     <Button
-                                    title={`Change ${property}`}
-                                    onPress={() => {
-                                        setAvatarDetails(prevState => ({
-                                        ...prevState,
-                                        [property]: prevState[property] % 3 + 1,
-                                        }));
-                                    }}
+                                        title={`   -${property}->`}
+                                        onPress={() => {
+                                            setAvatarDetails(prevState => ({
+                                                ...prevState,
+                                                [property]: prevState[property] % 3 + 1,
+                                            }));
+                                        }}
                                     />
-                                    <Image
-                                    source={imageMapping[`${property}${avatarDetails[property]}`]}
-                                    className="mt-4 mr-4 w-[70px] h-[70px]"
-                                    />
+                                    <View style={[styles.avatarImageContainer, {top: yOffsetMapping[property]}]}>
+                                        <Image
+                                            source={imageMapping[`${property}${avatarDetails[property]}`]}
+                                            style={styles.avatarImage}
+                                        />
+                                    </View>
                                 </View>
                             ))}
                             
@@ -97,15 +106,22 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
-        },
+    },
     popupContent: {
         backgroundColor: "white",
         padding: 16,
         borderRadius: 8,
-        }
+    },
+    avatarImageContainer: {
+        position: 'absolute', // set position as absolute
+        zIndex: 10, // for iOS, you may also need to set the zIndex
+        top: 0, // adjust the position as you need
+        left: 0, // adjust the position as you need
+    },
+    avatarImage: {
+        width: 69, 
+        height: 156,
+    },
 });
 
 export default Customisation;
-
-
-
