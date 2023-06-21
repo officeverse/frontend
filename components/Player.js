@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     avatarImageContainer: {
         position: "absolute",
         zIndex: 10,
-        top: 30,
         left: 0,
     },
     avatarImage: {
