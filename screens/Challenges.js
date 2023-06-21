@@ -42,7 +42,7 @@ const AvailableChallengesScreen = ({ challenges, renderItem, insets }) => (
           marginTop: insets.bottom,
         }}
       >
-        <View className="flex-row items-center justify-center mt-4">
+        <View className="flex-row items-center justify-center mt-20">
           <Text className="text-3xl mb-3 font-semibold text-white">
             Challenges
           </Text>
@@ -54,7 +54,9 @@ const AvailableChallengesScreen = ({ challenges, renderItem, insets }) => (
           <Text className="text-white">Gain EXP and coins today!</Text>
         </View>
       </View>
+
       <FlatList
+        className="mb-[55px]"
         data={challenges}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
@@ -81,7 +83,7 @@ const CompletedChallengesScreen = ({ challenges, renderItem, insets }) => (
           marginTop: insets.bottom,
         }}
       >
-        <View className="flex-row items-center justify-center mt-4">
+        <View className="flex-row items-center justify-center mt-20">
           <Text className="text-3xl mb-3 font-semibold text-white">
             Completed
           </Text>
