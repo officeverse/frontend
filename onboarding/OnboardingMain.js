@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Text,
   View,
@@ -10,23 +10,23 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-} from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons/faPaperPlane';
-import { useSelector } from 'react-redux';
-import SignOutButton from '../components/SignOutButton';
+} from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
+import { useSelector } from "react-redux";
+import SignOutButton from "../components/SignOutButton";
 
 export default function Login({ navigation }) {
-  const [number, onChangeNumber] = React.useState('');
+  const [number, onChangeNumber] = React.useState("");
   const user = useSelector((state) => state.auth.user);
   const { username } = user.attributes;
   const pressHandler = () => {
     Alert.alert(
-      'NOTE!',
-      'Do read each section carefully as you are unable to navigate back once you move forward',
-      [{ text: 'OK' }]
+      "NOTE!",
+      "Do read each section carefully as you are unable to navigate back once you move forward",
+      [{ text: "OK" }]
     );
-    navigation.navigate('StartTour');
+    navigation.navigate("StartTour");
   };
   return (
     <SafeAreaView className="h-[100vh]">
@@ -36,39 +36,41 @@ export default function Login({ navigation }) {
             <Text className="text-center text-3xl font-semibold">
               Hello, {username}.
             </Text>
-            <Text className="text-center text-lg text-gray-400 mt-3 font-medium">
-              Enter your company code
-            </Text>
-          </View>
-          <View className="flex-row justify-center ">
-            <TextInput
-              onChangeText={onChangeNumber}
-              value={number}
-              placeholder="eg. 120348"
-              keyboardType="numeric"
-              className=" rounded-lg bg-blue-100 px-4 py-4 w-[55vw] mt-5 mb-20 "
-            />
-
-            <TouchableOpacity onPress={pressHandler} className="">
-              <Text className="mt-9 ml-4">
-                <FontAwesomeIcon
-                  icon={faPaperPlane}
-                  size={28}
-                  color={'#BFE0FF'}
-                  bounce
-                />
+            <View className="mx-auto justify-center ">
+              <Text className="text-center text-2xl text-gray-400 mb-6 mt-8 font-medium ">
+                Welcome to Officeverse.
               </Text>
-            </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={pressHandler}
+                className=" mx-auto justify-center flex-row mb-20 mt-2"
+              >
+                <Text
+                  className=" text-2xl font-bold"
+                  style={{ color: "#72CCFF" }}
+                >
+                  Proceed
+                </Text>
+                <Text className="mt-1 ml-2">
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    size={28}
+                    color={"#72CCFF"}
+                    bounce
+                  />
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
 
-          <View className="flex-row justify-center ">
+          {/* <View className="flex-row justify-center mb-8">
             <SignOutButton navigation={navigation} />
-          </View>
+          </View> */}
 
           <View>
             <Image
               style={styles.forest}
-              source={require('../assets/LoginForest.png')}
+              source={require("../assets/LoginForest.png")}
             />
           </View>
         </View>
@@ -81,6 +83,6 @@ const styles = StyleSheet.create({
   forest: {
     // width: 350,
     // height: 450,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
 });

@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux';
-import Button from './Button';
-import { logoutUser } from '../src/features/authSlice';
-import { Auth } from 'aws-amplify';
+import { useDispatch } from "react-redux";
+import Button from "./Button";
+import { logoutUser } from "../src/features/authSlice";
+import { Auth } from "aws-amplify";
 
 export default function ({ navigation }) {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export default function ({ navigation }) {
         dispatch(logoutUser);
         navigation.reset({
           index: 0,
-          routes: [{ name: 'PreSignIn' }],
+          routes: [{ name: "PreSignIn" }],
         });
       })
       .catch((err) => {
@@ -19,5 +19,7 @@ export default function ({ navigation }) {
       });
   };
 
-  return <Button title="Sign out" onPress={onSignOut} />;
+  return (
+    <Button className="bg-gray-100" title="Sign out" onPress={onSignOut} />
+  );
 }
