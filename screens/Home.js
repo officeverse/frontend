@@ -12,20 +12,15 @@ import {
     Image,
     Alert,
 } from "react-native";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import WheelOfFortune from "react-native-wheel-of-fortune";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faDharmachakra } from "@fortawesome/free-solid-svg-icons/faDharmachakra";
 import Character from "../components/Character";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import QRCodeStyled from "react-native-qrcode-styled";
-import Svg, {
-  SvgProps,
-  Defs,
-  LinearGradient,
-  Stop,
-  Path,
-} from "react-native-svg";
+import { updateUserAttributes } from "../src/features/authSlice";
+import { useFocusEffect } from "@react-navigation/native";
 
 import axios from "axios";
 const image = require("../assets/office_home.png");
@@ -55,30 +50,33 @@ export default function Home({ navigation }) {
     const [characterPopupOpen, setCharacterPopupOpen] = useState(false);
     const [prize, setPrize] = useState("");
     const [userData, setUserData] = useState("");
-
+    const dispatch = useDispatch();
     const sub = user.sub;
 
-    useEffect(() => {
-        console.log("getting details");
-        let config = {
-            method: "get",
-            maxBodyLength: Infinity,
-            url:
-                "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com//users/profile?cognitoSub" +
-                sub,
-            headers: {},
-        };
+    useFocusEffect(
+        useCallback(() => {
+            console.log("Screen is focused");
+            console.log("getting details on home");
+            let config = {
+                method: "get",
+                maxBodyLength: Infinity,
+                url:
+                    "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com//users/profile?cognitoSub" +
+                    sub,
+                headers: {},
+            };
 
-        axios
-            .request(config)
-            .then((response) => {
-                console.log(response.data);
-                setUserData(response.data.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
+            axios
+                .request(config)
+                .then((response) => {
+                    setUserData(response.data.data);
+                    dispatch(updateUserAttributes(response.data.data));
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }, [])
+    );
 
     const closeDailyWheel = () => {
         setDailyWheelOpen(false);
@@ -109,15 +107,39 @@ export default function Home({ navigation }) {
                                 borderWidth: 4,
                                 borderColor: "#fff",
                                 innerRadius: 30,
-                                duration: 6000,
+                                duration: 3000,
                                 backgroundColor: "black",
                                 textAngle: "vertical",
                                 knobSource: require("../assets/images/knob.png"),
                                 getWinner: (value, index) => {
-                                    // this.setState({
-                                    //     winnerValue: value,
-                                    //     winnerIndex: index,
-                                    // });
+                                    let data = JSON.stringify({
+                                        coins: value,
+                                    });
+
+                                    let config = {
+                                        method: "post",
+                                        maxBodyLength: Infinity,
+                                        url:
+                                            "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com//users/" +
+                                            user.attributes.userId +
+                                            "/updateCoins",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        data: data,
+                                    };
+
+                                    axios
+                                        .request(config)
+                                        .then((response) => {
+                                            console.log(
+                                                JSON.stringify(response.data)
+                                            );
+                                        })
+                                        .catch((error) => {
+                                            console.log(error);
+                                        });
+
                                     setPrize(value);
                                     Alert.alert(
                                         "Congratulations!",

@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
     StyleSheet,
     Text,
@@ -26,6 +26,7 @@ const avatarDetails = {
 import SignOutButton from "../components/SignOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { useFocusEffect } from "@react-navigation/native";
 const image = require("../assets/background.png");
 
 export default function Profile({ navigation }) {
@@ -43,6 +44,31 @@ export default function Profile({ navigation }) {
         navigation.navigate("ApplyLeave");
     };
     const dispatch = useDispatch();
+
+    useFocusEffect(
+        useCallback(() => {
+            console.log("Screen is focused");
+            console.log("getting details on profile");
+            let config = {
+                method: "get",
+                maxBodyLength: Infinity,
+                url:
+                    "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com//users/profile?cognitoSub" +
+                    sub,
+                headers: {},
+            };
+
+            axios
+                .request(config)
+                .then((response) => {
+                    setUserData(response.data.data);
+                    dispatch(updateUserAttributes(response.data.data));
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }, [])
+    );
 
     useEffect(() => {
         console.log("getting details");
