@@ -14,10 +14,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 import { faPen } from "@fortawesome/free-solid-svg-icons/faPen";
 import { faCoins } from "@fortawesome/free-solid-svg-icons/faCoins";
+import Customisation from "../components/Customisation";
+
 
 const image = require("../assets/background.png");
 
 export default function Profile({ navigation }) {
+    const [customisationPopupOpen, setCustomisationPopupOpen] = useState(false);
     const [countdown, setCountdown] = useState("");
     const pressHandlerPaymentHistory = () => {
         navigation.navigate("PaymentHistory");
@@ -77,13 +80,8 @@ export default function Profile({ navigation }) {
                 </View>
                 <View className="flex justify-center items-center">
                     <View>
-                        <TouchableOpacity className="absolute bottom-0 right-0 z-10">
-                            <FontAwesomeIcon
-                                color={"white"}
-                                icon={faPen}
-                                size={15}
-                            />
-                        </TouchableOpacity>
+                        
+                        <Customisation setCustomisationPopupOpen={setCustomisationPopupOpen} customisationPopupOpen={customisationPopupOpen}/>
                         <Image
                             className="w-28 h-28 rounded-full mx-auto"
                             source={require("../assets/game_images/player.png")}

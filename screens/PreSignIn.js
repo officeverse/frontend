@@ -13,7 +13,6 @@ export default function PreSignIn({ navigation }) {
         (state) => state.auth.user.hasCompletedOnboarding
     );
     const dispatch = useDispatch();
-
     const onLogin = async (data) => {
         const { username, password } = data;
         Auth.signIn(username, password)
