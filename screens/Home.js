@@ -182,9 +182,9 @@ export default function Home({ navigation }) {
                     style={{
                         position: "absolute",
                         left: "33.33%",
-                        top: "60%",
+                        top: "43%",
                         width: "33.33%",
-                        height: "20%",
+                        height: "30%",
                         justifyContent: "flex-end", // Aligns children at the bottom of the view
                         alignItems: "center", // Centers children horizontally
                     }}
