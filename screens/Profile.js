@@ -16,6 +16,7 @@ import { faPen } from "@fortawesome/free-solid-svg-icons/faPen";
 import { faCoins } from "@fortawesome/free-solid-svg-icons/faCoins";
 import Customisation from "../components/Customisation";
 import Player from "../components/Player"; // Import Player component
+import { updateUserAttributes } from "../src/features/authSlice";
 const avatarDetails = {
     fit: 1,
     glasses: 1,
@@ -23,7 +24,7 @@ const avatarDetails = {
     base: 1,
 };
 import SignOutButton from "../components/SignOutButton";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 const image = require("../assets/background.png");
 
@@ -31,6 +32,7 @@ export default function Profile({ navigation }) {
     const [customisationPopupOpen, setCustomisationPopupOpen] = useState(false);
     const [countdown, setCountdown] = useState("");
     const [userData, setUserData] = useState("");
+    const [avatarDetails, setAvatarDetails] = useState("");
     const user = useSelector((state) => state.auth.user);
     const sub = user.sub;
     const { username } = user.attributes;
@@ -40,13 +42,16 @@ export default function Profile({ navigation }) {
     const pressHandlerApplyLeave = () => {
         navigation.navigate("ApplyLeave");
     };
+    const dispatch = useDispatch();
 
     useEffect(() => {
         console.log("getting details");
         let config = {
             method: "get",
             maxBodyLength: Infinity,
-            url: "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com/users/profile?userId=6491d156c9de6fe45b9581cb",
+            url:
+                "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com//users/profile?cognitoSub" +
+                sub,
             headers: {},
         };
 
@@ -55,6 +60,8 @@ export default function Profile({ navigation }) {
             .then((response) => {
                 console.log(response.data);
                 setUserData(response.data.data);
+                setAvatarDetails(response.data.data.avatar);
+                dispatch(updateUserAttributes(response.data.data));
             })
             .catch((error) => {
                 console.log(error);
@@ -117,10 +124,15 @@ export default function Profile({ navigation }) {
                                 setCustomisationPopupOpen
                             }
                             customisationPopupOpen={customisationPopupOpen}
+                            avatarDetails={avatarDetails}
+                            setAvatarDetails={setAvatarDetails}
                         />
-                        {userData && (
+                        {avatarDetails && (
                             <View className="w-[69px] h-[156px]">
-                                <Player avatarDetails={userData.avatar} />
+                                <Player
+                                    avatarDetails={avatarDetails}
+                                    setAvatarDetails={setAvatarDetails}
+                                />
                             </View>
                         )}
                     </View>
