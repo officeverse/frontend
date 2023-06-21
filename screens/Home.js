@@ -116,35 +116,6 @@ export default function Home({ navigation }) {
           </View>
         </ImageBackground>
       </Modal>
-      {/* CHARACTER POPUP */}
-      <Modal
-        visible={characterPopupOpen}
-        animationType="slide"
-        transparent={true}
-      >
-        <View style={styles.popupContainer}>
-          <View style={styles.popupContent} className="p-18">
-            <View className="flex-row">
-              <Image
-                source={require("../assets/game_images/player.png")}
-                className="mt-4 mr-4 w-[70px] h-[70px]"
-              />
-              <View>
-                <View>
-                  <Text className="mt-4 font-bold text-xl">BabyBear380</Text>
-                </View>
-                <Text className="font-semibold mt-3 mr-3">
-                  Senior Software Engineer
-                </Text>
-              </View>
-            </View>
-            <Button
-              title="Close"
-              onPress={() => setCharacterPopupOpen(false)}
-            />
-          </View>
-        </View>
-      </Modal>
       <SafeAreaView className="h-[100vh]">
         <View className="flex-row items-center justify-center mt-16">
           <Text className="text-5xl font-bold color-white">Officeverse.</Text>
@@ -184,7 +155,7 @@ export default function Home({ navigation }) {
             Tap to enter office
           </Text>
         </TouchableOpacity>
-        <Character setCharacterPopupOpen={setCharacterPopupOpen} />
+        <Character setCharacterPopupOpen={setCharacterPopupOpen} characterPopupOpen={characterPopupOpen}/>
       </SafeAreaView>
     </ImageBackground>
   );

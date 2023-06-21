@@ -1,0 +1,27 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-officeverse-dev-22452-authRole",
+      "UnauthRoleArn": "arn:aws:iam::753464259617:role/amplify-officeverse-dev-22452-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::753464259617:role/amplify-officeverse-dev-22452-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-officeverse-dev-22452-deployment",
+      "UnauthRoleName": "amplify-officeverse-dev-22452-unauthRole",
+      "StackName": "amplify-officeverse-dev-22452",
+      "StackId": "arn:aws:cloudformation:ap-south-1:753464259617:stack/amplify-officeverse-dev-22452/c05e2de0-0f97-11ee-b062-0a71ea843ac2",
+      "AmplifyAppId": "d1lpzvz0o4scmz"
+    },
+    "categories": {
+      "auth": {
+        "officeverse": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "AdminQueriese9e3f429": {
+          "deploymentBucketName": "amplify-officeverse-dev-22452-deployment",
+          "s3Key": "amplify-builds/AdminQueriese9e3f429-4a427170765071344679-build.zip"
+        }
+      }
+    }
+  }
+}

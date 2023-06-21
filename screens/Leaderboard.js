@@ -107,10 +107,10 @@ const Leaderboard = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.closeButton} onPress={() => navigation.goBack()}>
+        <TouchableOpacity className="bg-white mt-2 p-2 rounded-lg bg-white" onPress={() => navigation.goBack()}>
           <Text style={styles.buttonText}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.leaderButton} onPress={openModal}>
+        <TouchableOpacity className="bg-white mt-2 p-2 ml-4 rounded-lg" onPress={openModal}>
           <Text style={styles.buttonText}>Leaderboard</Text>
         </TouchableOpacity>
       </View>
@@ -129,7 +129,7 @@ const Leaderboard = ({ navigation }) => {
             source={image}
             style={{ width: imageWidth, height: imageHeight }}
           >
-            <Character  setCharacterPopupOpen={setCharacterPopupOpen}/>
+            <Character setCharacterPopupOpen={setCharacterPopupOpen} characterPopupOpen={characterPopupOpen}/>
             <Modal isVisible={visible} style={styles.modalContent}>
               <ScrollView style={styles.scrollContent}>
                 <Text style={styles.menuItem}>Mailey Zyrus</Text>
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    top: 50,  // Change this value according to your preference
+    top: 10,  // Change this value according to your preference
     flexDirection: 'row',
     justifyContent: "flex-start",
     width: '100%',
