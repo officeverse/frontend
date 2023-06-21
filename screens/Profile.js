@@ -14,29 +14,39 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 import { faPen } from "@fortawesome/free-solid-svg-icons/faPen";
 import { faCoins } from "@fortawesome/free-solid-svg-icons/faCoins";
+import Customisation from "../components/Customisation";
+import Player from '../components/Player'; // Import Player component
+const avatarDetails = ({
+    fit: 1,
+    glasses: 1,
+    hair: 1,
+    base: 1,
+});
 import SignOutButton from "../components/SignOutButton";
 import { useSelector } from "react-redux";
+
 
 const image = require("../assets/background.png");
 
 export default function Profile({ navigation }) {
-  const [countdown, setCountdown] = useState("");
-  const user = useSelector((state) => state.auth.user);
-  const { username } = user.attributes;
-  const pressHandlerPaymentHistory = () => {
-    navigation.navigate("PaymentHistory");
-  };
-  const pressHandlerApplyLeave = () => {
-    navigation.navigate("ApplyLeave");
-  };
-  useEffect(() => {
-    // Calculate the remaining time until the first day of the next month
-    const calculateCountdown = () => {
-      const now = new Date();
-      const year = now.getFullYear();
-      const nextMonth = now.getMonth() === 11 ? 0 : now.getMonth() + 1;
-      const firstDayNextMonth = new Date(year, nextMonth, 1);
-      const timeRemaining = firstDayNextMonth.getTime() - now.getTime();
+    const [customisationPopupOpen, setCustomisationPopupOpen] = useState(false);
+    const [countdown, setCountdown] = useState("");
+    const user = useSelector((state) => state.auth.user);
+    const { username } = user.attributes;
+    const pressHandlerPaymentHistory = () => {
+        navigation.navigate("PaymentHistory");
+    };
+    const pressHandlerApplyLeave = () => {
+        navigation.navigate("ApplyLeave");
+    };
+    useEffect(() => {
+        // Calculate the remaining time until the first day of the next month
+        const calculateCountdown = () => {
+            const now = new Date();
+            const year = now.getFullYear();
+            const nextMonth = now.getMonth() === 11 ? 0 : now.getMonth() + 1;
+            const firstDayNextMonth = new Date(year, nextMonth, 1);
+            const timeRemaining = firstDayNextMonth.getTime() - now.getTime();
 
       // Convert the remaining time to hours, minutes, seconds
       const seconds = Math.floor((timeRemaining / 1000) % 60);
@@ -51,73 +61,90 @@ export default function Profile({ navigation }) {
       setCountdown(countdownString);
     };
 
-    // Update the countdown every second
-    const interval = setInterval(calculateCountdown, 1000);
-    // Cleanup the interval on component unmount
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-  return (
-    <ImageBackground
-      source={image}
-      resizeMode="cover"
-      className=" justify-center"
-    >
-      <ScrollView className="h-[100vh]">
-        <View className="flex-row items-center justify-center mb-5 mt-14">
-          <Text className="text-white text-2xl mb-3 font-semibold">
-            Hello, {username}!
-          </Text>
-          <Text className="mb-2 ml-2">
-            <FontAwesomeIcon color={"white"} icon={faUser} size={32} />
-          </Text>
-        </View>
-        <View className="flex justify-center items-center">
-          <View>
-            <TouchableOpacity className="absolute bottom-0 right-0 z-10">
-              <FontAwesomeIcon color={"white"} icon={faPen} size={15} />
-            </TouchableOpacity>
-            <Image
-              className="w-28 h-28 rounded-full mx-auto"
-              source={require("../assets/game_images/player.png")}
-            />
-          </View>
-          <Text className="text-white my-2 font-semibold">
-            Senior Software Engineer
-          </Text>
-          {/* Personal Badges */}
-          <ScrollView
-            contentOffset={{ x: 20, y: 0 }}
-            className="flex-row w-3/4"
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          >
-            <View className="bg-red-700 px-2 py-1 rounded-md mx-2">
-              <Text className="text-xs text-red-50 font-bold">Veteran</Text>
-            </View>
-            <View className="bg-orange-700 px-2 py-1 rounded-md mx-2">
-              <Text className="text-xs text-red-50 font-bold">Project MVP</Text>
-            </View>
-            <View className="bg-green-700 px-2 py-1 rounded-md mx-2">
-              <Text className="text-xs text-red-50 font-bold">
-                Certified Scrum Master
-              </Text>
-            </View>
-            <View className="bg-blue-700 px-2 py-1 rounded-md mx-2">
-              <Text className="text-xs text-red-50 font-bold">Mentor</Text>
-            </View>
-          </ScrollView>
-          {/* EXP and Coins */}
-          <Text className="text-white my-2 font-bold">EXP</Text>
-          <View className="h-4 bg-slate-100 rounded-full w-1/2">
-            <View className="h-4 bg-blue-400 rounded-full w-2/5" />
-          </View>
-          <TouchableOpacity className="flex justify-center items-center mx-2 my-2">
-            <View className="flex-row">
-              <FontAwesomeIcon color={"white"} icon={faCoins} size={15} />
-              <Text className="text-white mx-2 font-bold">150 coins</Text>
-            </View>
+        // Update the countdown every second
+        const interval = setInterval(calculateCountdown, 1000);
+        // Cleanup the interval on component unmount
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+    return (
+        <ImageBackground
+            source={image}
+            resizeMode="cover"
+            className=" justify-center"
+        >
+            <ScrollView className="h-[100vh]">
+                <View className="flex-row items-center justify-center mb-5 mt-14">
+                     <Text className="text-white text-2xl mb-3 font-semibold">
+                        Hello, {username}!
+                      </Text>
+                    <Text className="mb-2 ml-2">
+                        <FontAwesomeIcon
+                            color={"white"}
+                            icon={faUser}
+                            size={32}
+                        />
+                    </Text>
+                </View>
+                <View className="flex justify-center items-center">
+                    <View>
+                        
+                        <Customisation setCustomisationPopupOpen={setCustomisationPopupOpen} customisationPopupOpen={customisationPopupOpen}/>
+                        <Player avatarDetails={avatarDetails} />
+                    </View>
+                    <Text className="text-white my-2 font-semibold">
+                        Senior Software Engineer
+                    </Text>
+                    {/* Personal Badges */}
+                    <ScrollView
+                        contentOffset={{ x: 20, y: 0 }}
+                        className="flex-row w-3/4"
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                    >
+                        <View className="bg-red-700 px-2 py-1 rounded-md mx-2">
+                            <Text className="text-xs text-red-50 font-bold">
+                                Veteran
+                            </Text>
+                        </View>
+                        <View className="bg-orange-700 px-2 py-1 rounded-md mx-2">
+                            <Text className="text-xs text-red-50 font-bold">
+                                Project MVP
+                            </Text>
+                        </View>
+                        <View className="bg-green-700 px-2 py-1 rounded-md mx-2">
+                            <Text className="text-xs text-red-50 font-bold">
+                                Certified Scrum Master
+                            </Text>
+                        </View>
+                        <View className="bg-blue-700 px-2 py-1 rounded-md mx-2">
+                            <Text className="text-xs text-red-50 font-bold">
+                                Mentor
+                            </Text>
+                        </View>
+                    </ScrollView>
+                    {/* EXP and Coins */}
+                    <Text className="text-white my-2 font-bold">EXP</Text>
+                    <View className="h-4 bg-slate-100 rounded-full w-1/2">
+                        <View className="h-4 bg-blue-400 rounded-full w-2/5" />
+                    </View>
+                    <TouchableOpacity
+                        className="flex justify-center items-center mx-2 my-2"
+                        onPress={() => {
+                            navigation.navigate("Rewards");
+                        }}
+                    >
+                        <View className="flex-row">
+                            <FontAwesomeIcon
+                                color={"white"}
+                                icon={faCoins}
+                                size={15}
+                            />
+                            <Text className="text-white mx-2 font-bold">
+                                150 coins
+                            </Text>
+                        </View>
 
             <Text className="text-white mx-2 text-xs">
               Exchange for rewards

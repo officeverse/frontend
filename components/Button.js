@@ -1,11 +1,11 @@
 import React from "react";
-import { Text, StyleSheet, Pressable } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function Button({
-  onPress,
-  title = "Save",
-  type = "primary",
-  disabled = false,
+    onPress,
+    title = "Save",
+    type = "primary",
+    disabled = false,
 }) {
   const isPrimary = type === "primary";
   const isSignOut = type === "SignOut";
@@ -36,9 +36,13 @@ export default function Button({
     }),
   });
 
-  return (
-    <Pressable style={styles.button} onPress={onPress} disabled={disabled}>
-      <Text style={styles.text}>{title}</Text>
-    </Pressable>
-  );
+    return (
+        <TouchableOpacity
+            style={styles.button}
+            onPress={onPress}
+            disabled={disabled}
+        >
+            <Text style={styles.text}>{title}</Text>
+        </TouchableOpacity>
+    );
 }

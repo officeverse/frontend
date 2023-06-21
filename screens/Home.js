@@ -27,6 +27,8 @@ import Svg, {
   Stop,
   Path,
 } from "react-native-svg";
+
+
 const image = require("../assets/office_home.png");
 const wheelImage = require("../assets/mockaroon-lgi3W65lmvA-unsplash.jpg");
 
@@ -148,9 +150,9 @@ export default function Home({ navigation }) {
         <TouchableOpacity
           style={{
             position: "absolute",
-            left: "33.33%",
+            left: "20%",
             top: "42%",
-            width: "33.33%",
+            width: "60%",
             height: "30%",
             justifyContent: "flex-end", // Aligns children at the bottom of the view
             alignItems: "center", // Centers children horizontally

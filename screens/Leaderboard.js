@@ -1,44 +1,52 @@
 import React, { useState, useRef } from "react";
 import {
-  View,
-  SafeAreaView,
-  ImageBackground,
-  ScrollView,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Image,
+    View,
+    SafeAreaView,
+    ImageBackground,
+    ScrollView,
+    Dimensions,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    Image,
+    Button,
 } from "react-native";
 import Modal from "react-native-modal";
 import {
-  PanGestureHandler,
-  State,
-  PanGestureHandlerStateChangeEvent,
+    PanGestureHandler,
+    State,
+    PanGestureHandlerStateChangeEvent,
 } from "react-native-gesture-handler";
 import Animated, {
-  Value,
-  event,
-  block,
-  set,
-  cond,
-  eq,
-  and,
-  not,
-  greaterThan,
-  lessThan,
-  add,
-  useCode,
-  call,
+    Value,
+    event,
+    block,
+    set,
+    cond,
+    eq,
+    and,
+    not,
+    greaterThan,
+    lessThan,
+    add,
+    useCode,
+    call,
 } from "react-native-reanimated";
 
 import Character from "../components/Character";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons/faCamera";
 
+import Player from "../components/Player"; // Import Player component
+const avatarDetails = {
+    fit: 1,
+    glasses: 1,
+    hair: 1,
+    base: 1,
+};
+
 const image = require("../assets/landscape_populated.png");
 
-// Assume the dimensions of your image
 const imageWidth = 900;
 const imageHeight = 1200;
 
@@ -46,65 +54,74 @@ const imageHeight = 1200;
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 const Leaderboard = ({ navigation }) => {
-  const [characterPopupOpen, setCharacterPopupOpen] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const openModal = () => setVisible(true);
-  const closeModal = () => setVisible(false);
+    const [selectedPlayer, setSelectedPlayer] = useState(null); // for the inner modal
+    const [characterPopupOpen, setCharacterPopupOpen] = useState(false);
+    const [visible, setVisible] = useState(false);
+    const openModal = () => setVisible(true);
+    const closeModal = () => setVisible(false);
 
-  const offsetX = useRef(new Value(-(imageWidth - screenWidth) / 2)).current;
-  const offsetY = useRef(new Value(-(imageHeight - screenHeight) / 2)).current;
-  const translationX = useRef(new Value(0)).current;
-  const translationY = useRef(new Value(0)).current;
-  const gestureState = useRef(new Value(-1)).current;
+    const offsetX = useRef(new Value(-(imageWidth - screenWidth) / 2)).current;
+    const offsetY = useRef(
+        new Value(-(imageHeight - screenHeight) / 2)
+    ).current;
+    const translationX = useRef(new Value(0)).current;
+    const translationY = useRef(new Value(0)).current;
+    const gestureState = useRef(new Value(-1)).current;
 
-  const translateX = cond(
-    and(
-      greaterThan(add(translationX, offsetX), -(imageWidth - screenWidth)),
-      lessThan(add(translationX, offsetX), 0)
-    ),
-    add(translationX, offsetX),
-    cond(
-      lessThan(add(translationX, offsetX), -(imageWidth - screenWidth)),
-      -(imageWidth - screenWidth),
-      0
-    )
-  );
+    const translateX = cond(
+        and(
+            greaterThan(
+                add(translationX, offsetX),
+                -(imageWidth - screenWidth)
+            ),
+            lessThan(add(translationX, offsetX), 0)
+        ),
+        add(translationX, offsetX),
+        cond(
+            lessThan(add(translationX, offsetX), -(imageWidth - screenWidth)),
+            -(imageWidth - screenWidth),
+            0
+        )
+    );
 
-  const translateY = cond(
-    and(
-      greaterThan(add(translationY, offsetY), -(imageHeight - screenHeight)),
-      lessThan(add(translationY, offsetY), 0)
-    ),
-    add(translationY, offsetY),
-    cond(
-      lessThan(add(translationY, offsetY), -(imageHeight - screenHeight)),
-      -(imageHeight - screenHeight),
-      0
-    )
-  );
+    const translateY = cond(
+        and(
+            greaterThan(
+                add(translationY, offsetY),
+                -(imageHeight - screenHeight)
+            ),
+            lessThan(add(translationY, offsetY), 0)
+        ),
+        add(translationY, offsetY),
+        cond(
+            lessThan(add(translationY, offsetY), -(imageHeight - screenHeight)),
+            -(imageHeight - screenHeight),
+            0
+        )
+    );
 
-  useCode(() => {
-    return block([
-      cond(
-        eq(gestureState, State.END),
-        [set(offsetX, translateX), set(offsetY, translateY)],
-        [set(offsetX, offsetX), set(offsetY, offsetY)]
-      ),
-    ]);
-  }, []);
+    useCode(() => {
+        return block([
+            cond(
+                eq(gestureState, State.END),
+                [set(offsetX, translateX), set(offsetY, translateY)],
+                [set(offsetX, offsetX), set(offsetY, offsetY)]
+            ),
+        ]);
+    }, []);
 
-  const onGestureEvent = event(
-    [
-      {
-        nativeEvent: {
-          translationX: translationX,
-          translationY: translationY,
-          state: gestureState,
-        },
-      },
-    ],
-    { useNativeDriver: true }
-  );
+    const onGestureEvent = event(
+        [
+            {
+                nativeEvent: {
+                    translationX: translationX,
+                    translationY: translationY,
+                    state: gestureState,
+                },
+            },
+        ],
+        { useNativeDriver: true }
+    );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -194,6 +211,7 @@ const Leaderboard = ({ navigation }) => {
 export default Leaderboard;
 
 const styles = StyleSheet.create({
+
   modalContent: {
     flex: 1,
     backgroundColor: "white",

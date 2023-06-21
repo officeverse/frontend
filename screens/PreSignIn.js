@@ -13,7 +13,6 @@ export default function PreSignIn({ navigation }) {
         (state) => state.auth.user.hasCompletedOnboarding
     );
     const dispatch = useDispatch();
-
     const onLogin = async (data) => {
         const { username, password } = data;
         Auth.signIn(username, password)
@@ -64,6 +63,7 @@ export default function PreSignIn({ navigation }) {
         <KeyboardAwareScrollView
             resetScrollToCoords={{ x: 0, y: 0 }}
             scrollEnabled={true}
+            keyboardShouldPersistTaps="always"
         >
             <ImageBackground
                 source={image}
