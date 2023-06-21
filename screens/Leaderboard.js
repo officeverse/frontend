@@ -33,6 +33,8 @@ import Animated, {
 } from "react-native-reanimated";
 
 import Character from "../components/Character";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faCamera } from "@fortawesome/free-solid-svg-icons/faCamera";
 
 const image = require("../assets/landscape_populated.png");
 
@@ -50,7 +52,7 @@ const Leaderboard = ({ navigation }) => {
   const closeModal = () => setVisible(false);
 
   const offsetX = useRef(new Value(-(imageWidth - screenWidth) / 2)).current;
-  const offsetY = useRef(new Value(-(imageHeight - screenHeight) / 2)).current;  
+  const offsetY = useRef(new Value(-(imageHeight - screenHeight) / 2)).current;
   const translationX = useRef(new Value(0)).current;
   const translationY = useRef(new Value(0)).current;
   const gestureState = useRef(new Value(-1)).current;
@@ -107,13 +109,39 @@ const Leaderboard = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity className="bg-white mt-2 p-2 rounded-lg bg-white" onPress={() => navigation.goBack()}>
-          <Text style={styles.buttonText}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="bg-white mt-2 p-2 ml-4 rounded-lg" onPress={openModal}>
-          <Text style={styles.buttonText}>Leaderboard</Text>
-        </TouchableOpacity>
+        <View className="">
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("CameraScan");
+            }}
+            className="bg-slate-900 p-2 rounded-xl"
+          >
+            <View className="justify-center mx-auto">
+              <FontAwesomeIcon color={"white"} icon={faCamera} size={24} />
+            </View>
+            <Text className="text-center text-white text-base font-normal mx-2">
+              Friends Scanner
+            </Text>
+          </TouchableOpacity>
+          <View className="flex-row justify-between">
+            <TouchableOpacity
+              className="bg-slate-900 mt-2 p-2 rounded-lg w-[44vw]"
+              onPress={() => navigation.navigate("NavBar")}
+            >
+              <Text className="text-white text-center text-base">Home</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className="bg-slate-900 mt-2 p-2 rounded-lg w-[44vw]"
+              onPress={openModal}
+            >
+              <Text className="text-white text-center text-base">
+                Leaderboard
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
+
       <PanGestureHandler
         maxPointers={1}
         onGestureEvent={onGestureEvent}
@@ -129,22 +157,32 @@ const Leaderboard = ({ navigation }) => {
             source={image}
             style={{ width: imageWidth, height: imageHeight }}
           >
-            <Character setCharacterPopupOpen={setCharacterPopupOpen} characterPopupOpen={characterPopupOpen}/>
+            <Character
+              setCharacterPopupOpen={setCharacterPopupOpen}
+              characterPopupOpen={characterPopupOpen}
+            />
             <Modal isVisible={visible} style={styles.modalContent}>
-            <ScrollView style={styles.scrollContent}>
+              <ScrollView style={styles.scrollContent}>
                 {players.map((player, index) => (
-                    <TouchableOpacity key={index} style={styles.item} onPress={() => navigation.navigate('Home')}>
-                        <Image source={player.avatar} style={styles.avatar} />
-                        <Text style={styles.username}>{player.username}</Text>
-                        <Text style={styles.weeklyExp}>{player.weeklyExp} EXP</Text>
-                    </TouchableOpacity>
+                  <TouchableOpacity
+                    key={index}
+                    style={styles.item}
+                    onPress={() => navigation.navigate("Home")}
+                  >
+                    <Image source={player.avatar} style={styles.avatar} />
+                    <Text style={styles.username}>{player.username}</Text>
+                    <Text style={styles.weeklyExp}>{player.weeklyExp} EXP</Text>
+                  </TouchableOpacity>
                 ))}
-            </ScrollView>
-            <View style={styles.centered}>
-                <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
-                    <Text style={styles.buttonText}>Close</Text>
+              </ScrollView>
+              <View style={styles.centered}>
+                <TouchableOpacity
+                  style={styles.closeButton}
+                  onPress={closeModal}
+                >
+                  <Text style={styles.buttonText}>Close</Text>
                 </TouchableOpacity>
-            </View>
+              </View>
             </Modal>
           </ImageBackground>
         </Animated.View>
@@ -155,12 +193,11 @@ const Leaderboard = ({ navigation }) => {
 
 export default Leaderboard;
 
-
 const styles = StyleSheet.create({
   modalContent: {
     flex: 1,
-    backgroundColor: 'white',
-    maxHeight: Dimensions.get('window').height * 0.6, // 60% of screen height
+    backgroundColor: "white",
+    maxHeight: Dimensions.get("window").height * 0.6, // 60% of screen height
     padding: 20,
   },
   scrollContent: {
@@ -168,38 +205,38 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     padding: 10,
-    alignContent: "center"
+    alignContent: "center",
   },
   buttonContainer: {
-    position: 'absolute',
-    top: 20,
-    flexDirection: 'row',
-    justifyContent: "flex-start",
-    width: '100%',
-    paddingHorizontal: 0,
-    zIndex: 999
+    position: "absolute",
+    top: 50,
+    justifyContent: "flex-end",
+    width: "100%",
+    paddingHorizontal: 20,
+
+    zIndex: 999,
   },
   leaderButton: {
-    backgroundColor: 'rgba(255,255,255,1)',
+    backgroundColor: "rgba(255,255,255,1)",
     padding: 110,
-    paddingVertical:10,
+    paddingVertical: 10,
     borderRadius: 0,
   },
   closeButton: {
-    backgroundColor: 'rgba(255,255,255,1)',
+    backgroundColor: "rgba(255,255,255,1)",
     padding: 10,
     borderRadius: 0,
   },
   buttonText: {
-    color: '#000',
+    color: "#000",
     fontSize: 16,
   },
   item: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderBottomColor: "#ddd",
     padding: 10,
   },
   avatar: {
@@ -215,38 +252,36 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   centered: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
-
-
-const players = [ //...just hardcoded for now
-    { 
-      position: 1,
-      id: 123,
-      username: "Mailey Zyrus",
-      weeklyExp: 3450,
-      weeklyCoins: 56,
-      avatar: require("../assets/game_images/player.png"),
-      
-    },
-    {
-        position: 3,
-        id: 124,
-        username: "Andy Lim",
-        weeklyExp: 3210,
-        weeklyCoins: 23,
-        avatar: require("../assets/game_images/player.png"),
-    },
-    {
-        position: 2,
-        id: 690,
-        username: "Babybear380",
-        weeklyExp: 3300,
-        weeklyCoins: 94,
-        avatar: require("../assets/game_images/player.png"),
-    },
-    //... more players
-  ];
+const players = [
+  //...just hardcoded for now
+  {
+    position: 1,
+    id: 123,
+    username: "Mailey Zyrus",
+    weeklyExp: 3450,
+    weeklyCoins: 56,
+    avatar: require("../assets/game_images/player.png"),
+  },
+  {
+    position: 3,
+    id: 124,
+    username: "Andy Lim",
+    weeklyExp: 3210,
+    weeklyCoins: 23,
+    avatar: require("../assets/game_images/player.png"),
+  },
+  {
+    position: 2,
+    id: 690,
+    username: "Babybear380",
+    weeklyExp: 3300,
+    weeklyCoins: 94,
+    avatar: require("../assets/game_images/player.png"),
+  },
+  //... more players
+];

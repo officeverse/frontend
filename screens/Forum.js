@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  Image,
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUserGroup } from "@fortawesome/free-solid-svg-icons/faUserGroup";
@@ -42,6 +43,7 @@ export default function Forum() {
 
     setText("");
   };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -55,7 +57,7 @@ export default function Forum() {
       >
         <SafeAreaView className="h-[100vh]">
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View>
+            <ScrollView>
               <View className="flex-row items-center justify-center mt-10">
                 <Text className="text-white text-3xl mb-3 font-semibold">
                   Our Forum
@@ -83,6 +85,13 @@ export default function Forum() {
                   {announcements.map((item, index) => (
                     <TouchableOpacity
                       onStartShouldSetResponder={() => true}
+                      onPress={() => {
+                        Alert.alert(
+                          `${item.event} on ${item.date}`,
+                          "Add this event to your calendar?",
+                          [{ text: "Add" }, { text: "Cancel" }]
+                        );
+                      }}
                       className="bg-white flex-row px-10 py-2 border-b border-gray-300"
                       key={index}
                     >
@@ -110,28 +119,28 @@ export default function Forum() {
                     We value your voice
                   </Text>
                 </View>
-                                <View className="mx-10 rounded-lg bg-blue-100 px-10 py-5">
-                                    <TextInput
-                                        onChangeText={setText}
-                                        value={text}
-                                        placeholder="Feedback for 50 EXP!"
-                                        placeholderTextColor="#6C6B6B"
-                                        className="mx-2 rounded-lg bg-blue-100 px-6 py-8"
-                                    ></TextInput>
+                <View className="mx-10 rounded-lg bg-white px-10 py-5">
+                  <TextInput
+                    onChangeText={setText}
+                    value={text}
+                    placeholder="Feedback for 50 EXP!"
+                    placeholderTextColor="#6C6B6B"
+                    className="rounded-lg bg-white py-8"
+                  ></TextInput>
 
-                                    <TouchableOpacity
-                                        onPress={handleButtonPress}
-                                        className="absolute bottom-2 right-2 bg-slate-800 p-2 rounded-full"
-                                    >
-                                        <FontAwesomeIcon
-                                            icon={faPaperPlane}
-                                            size={15}
-                                            color={"white"}
-                                            bounce
-                                        />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
+                  <TouchableOpacity
+                    onPress={handleButtonPress}
+                    className="absolute bottom-2 right-2 bg-slate-800 p-2 rounded-full"
+                  >
+                    <FontAwesomeIcon
+                      icon={faPaperPlane}
+                      size={15}
+                      color={"white"}
+                      bounce
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
 
               <View>
                 <View className="text-center">
@@ -140,8 +149,14 @@ export default function Forum() {
                   </Text>
                 </View>
 
-                <View className="mx-10 rounded-lg bg-white px-10 py-5">
-                  <View className="text-center">
+                <View className="mx-10 flex-row rounded-lg bg-white px-8 py-5 mb-14">
+                  <View>
+                    <Image
+                      source={require("../assets/game_images/player.png")}
+                      className="mt-2 mr-2 w-[70px] h-[70px]"
+                    />
+                  </View>
+                  <View className="text-center mt-2 ">
                     <Text className="text-center text-md mb-1">
                       Let us congratulate
                     </Text>
@@ -154,7 +169,7 @@ export default function Forum() {
                   </View>
                 </View>
               </View>
-            </View>
+            </ScrollView>
           </TouchableWithoutFeedback>
         </SafeAreaView>
       </ImageBackground>

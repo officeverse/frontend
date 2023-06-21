@@ -15,8 +15,11 @@ import {
 import { useState, useRef } from "react";
 import WheelOfFortune from "react-native-wheel-of-fortune";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faCamera } from "@fortawesome/free-solid-svg-icons/faCamera";
 import { faDharmachakra } from "@fortawesome/free-solid-svg-icons/faDharmachakra";
 import Character from "../components/Character";
+import { useSelector } from "react-redux";
+import QRCodeStyled from "react-native-qrcode-styled";
 import Svg, {
   SvgProps,
   Defs,
@@ -44,6 +47,9 @@ const rewards = generateRandomNumbers(min, max, count);
 
 export default function Home({ navigation }) {
   const wheelRef = useRef(null);
+
+  const user = useSelector((state) => state.auth.user);
+  const { username } = user.attributes;
 
   const [dailyWheelOpen, setDailyWheelOpen] = useState(false);
   const [characterPopupOpen, setCharacterPopupOpen] = useState(false);
@@ -117,7 +123,7 @@ export default function Home({ navigation }) {
         </ImageBackground>
       </Modal>
       <SafeAreaView className="h-[100vh]">
-        <View className="flex-row items-center justify-center mt-16">
+        <View className="items-center justify-center mt-16">
           <Text className="text-5xl font-bold color-white">Officeverse.</Text>
         </View>
         <View className=" items-center justify-center mt-3">
@@ -125,9 +131,10 @@ export default function Home({ navigation }) {
             Welcome back,
           </Text>
           <Text className="text-2xl mb-6 font-medium color-white">
-            Babybear380.
+            {username}.
           </Text>
         </View>
+
         <TouchableOpacity
           onPress={() => {
             setDailyWheelOpen(true);
@@ -137,6 +144,7 @@ export default function Home({ navigation }) {
           <FontAwesomeIcon color={"white"} icon={faDharmachakra} size={32} />
           <Text className="text-white mx-2">Daily Spin</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           style={{
             position: "absolute",
@@ -155,7 +163,10 @@ export default function Home({ navigation }) {
             Tap to enter office
           </Text>
         </TouchableOpacity>
-        <Character setCharacterPopupOpen={setCharacterPopupOpen} characterPopupOpen={characterPopupOpen}/>
+        <Character
+          setCharacterPopupOpen={setCharacterPopupOpen}
+          characterPopupOpen={characterPopupOpen}
+        />
       </SafeAreaView>
     </ImageBackground>
   );

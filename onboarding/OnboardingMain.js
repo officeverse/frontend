@@ -63,10 +63,6 @@ export default function Login({ navigation }) {
             </View>
           </View>
 
-          {/* <View className="flex-row justify-center mb-8">
-            <SignOutButton navigation={navigation} />
-          </View> */}
-
           <View>
             <Image
               style={styles.forest}

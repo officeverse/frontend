@@ -47,7 +47,7 @@ export default function AiPal() {
 
         <View className="mx-auto h-[58vh] justify-content flex justify-around">
           <TouchableOpacity className="">
-            <AiCard desc="Roadmap your progress" icon={faUser} sizing={32} />
+            <AiCard desc="Roadmap your progress" icon={faUser} sizing={33} />
           </TouchableOpacity>
 
           <TouchableOpacity>

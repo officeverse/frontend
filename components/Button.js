@@ -8,6 +8,7 @@ export default function Button({
   disabled = false,
 }) {
   const isPrimary = type === "primary";
+  const isSignOut = type === "SignOut";
   const styles = StyleSheet.create({
     button: {
       alignItems: "center",
@@ -16,14 +17,19 @@ export default function Button({
       paddingHorizontal: isPrimary ? 38 : 32,
       borderRadius: 5,
       elevation: 3,
-      backgroundColor: isPrimary ? "black" : "#ffffff",
+      backgroundColor: isPrimary
+        ? "black"
+        : isSignOut
+        ? "transparent"
+        : "#ffffff",
     },
     text: {
-      fontSize: 16,
+      fontSize: isSignOut ? 20 : 16,
+      textDecorationLine: isSignOut ? "underline" : "none",
       lineHeight: 21,
-      fontWeight: "bold",
+      fontWeight: isSignOut ? "normal" : "bold",
       letterSpacing: 0.25,
-      color: isPrimary ? "#ffffff" : "black",
+      color: isPrimary ? "#ffffff" : isSignOut ? "#E7E2E2" : "black",
     },
     ...(!isPrimary && {
       border: { width: 5, style: "solid", color: "black" },
