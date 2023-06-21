@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Text, View, StyleSheet, Button, Alert } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 
 export default function CameraScan({ navigation }) {
@@ -37,6 +44,16 @@ export default function CameraScan({ navigation }) {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
+      <View className="">
+        <Button
+          title={"Back"}
+          color="grey"
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        />
+      </View>
+
       {scanned && (
         <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
       )}

@@ -28,7 +28,6 @@ import Svg, {
   Path,
 } from "react-native-svg";
 
-
 const image = require("../assets/office_home.png");
 const wheelImage = require("../assets/mockaroon-lgi3W65lmvA-unsplash.jpg");
 
@@ -161,7 +160,7 @@ export default function Home({ navigation }) {
             navigation.navigate("Leaderboard");
           }}
         >
-          <Text className="text-white font-semibold flex justify-center items-center">
+          <Text className="text-white text-base font-semibold flex justify-center items-center">
             Tap to enter office
           </Text>
         </TouchableOpacity>
