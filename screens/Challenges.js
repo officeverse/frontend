@@ -86,15 +86,16 @@ const CompletedChallengesScreen = ({ challenges, renderItem }) => (
 );
 
 export default function Challenges() {
-  const [isPopupVisible, setPopupVisible] = useState(false);
-  const [isCompletedPopupVisible, setCompletedPopupVisible] = useState(false);
-  const [challenges, setChallenges] = useState([]);
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    { key: "available", title: "Available" },
-    { key: "completed", title: "Completed" },
-  ]);
-  const [post, setPost] = useState("");
+    const [isPopupVisible, setPopupVisible] = useState(false);
+    const [isCompletedPopupVisible, setCompletedPopupVisible] = useState(false);
+    const [challenges, setChallenges] = useState([]);
+    const [index, setIndex] = useState(0);
+    const [routes] = useState([
+        { key: "available", title: "Available" },
+        { key: "completed", title: "Completed" },
+    ]);
+    const [post, setPost] = useState("");
+    const [postLoading, setPostLoading] = useState(false);
 
   const renderScene = SceneMap({
     available: () => (
@@ -263,9 +264,13 @@ export default function Challenges() {
               <TouchableOpacity
                 className="bg-white p-2 rounded-lg "
                 onPress={async () => {
+                  setPostLoading(true);
                   openPopup();
-                  const data = await generateLinkedInPost(item.description);
+                  const data = await generateLinkedInPost(
+                  item.description
+                  );
                   setPost(data);
+                  setPostLoading(false);
                 }}
               >
                 <Text className="font-bold">Claim Rewards</Text>
