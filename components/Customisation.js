@@ -75,11 +75,13 @@ const Customisation = ({
                                                             (prevState) => ({
                                                                 ...prevState,
                                                                 [property]:
-                                                                    (prevState[
+                                                                    prevState[
                                                                         property
-                                                                    ] %
-                                                                        3) -
-                                                                    1,
+                                                                    ] > 1
+                                                                        ? prevState[
+                                                                              property
+                                                                          ] - 1
+                                                                        : 3,
                                                             })
                                                         );
                                                     }}

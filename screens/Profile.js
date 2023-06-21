@@ -1,30 +1,29 @@
 import { StatusBar } from "expo-status-bar";
 import { useState, useEffect } from "react";
 import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  ImageBackground,
-  Image,
-  ScrollView,
+    StyleSheet,
+    Text,
+    View,
+    SafeAreaView,
+    TouchableOpacity,
+    ImageBackground,
+    Image,
+    ScrollView,
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 import { faPen } from "@fortawesome/free-solid-svg-icons/faPen";
 import { faCoins } from "@fortawesome/free-solid-svg-icons/faCoins";
 import Customisation from "../components/Customisation";
-import Player from '../components/Player'; // Import Player component
-const avatarDetails = ({
+import Player from "../components/Player"; // Import Player component
+const avatarDetails = {
     fit: 1,
     glasses: 1,
     hair: 1,
     base: 1,
-});
+};
 import SignOutButton from "../components/SignOutButton";
 import { useSelector } from "react-redux";
-
 
 const image = require("../assets/background.png");
 
@@ -48,18 +47,20 @@ export default function Profile({ navigation }) {
             const firstDayNextMonth = new Date(year, nextMonth, 1);
             const timeRemaining = firstDayNextMonth.getTime() - now.getTime();
 
-      // Convert the remaining time to hours, minutes, seconds
-      const seconds = Math.floor((timeRemaining / 1000) % 60);
-      const minutes = Math.floor((timeRemaining / 1000 / 60) % 60);
-      const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
+            // Convert the remaining time to hours, minutes, seconds
+            const seconds = Math.floor((timeRemaining / 1000) % 60);
+            const minutes = Math.floor((timeRemaining / 1000 / 60) % 60);
+            const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
 
-      // Format the countdown string
-      const countdownString = `${hours.toString().padStart(2, "0")}:${minutes
-        .toString()
-        .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+            // Format the countdown string
+            const countdownString = `${hours
+                .toString()
+                .padStart(2, "0")}:${minutes
+                .toString()
+                .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 
-      setCountdown(countdownString);
-    };
+            setCountdown(countdownString);
+        };
 
         // Update the countdown every second
         const interval = setInterval(calculateCountdown, 1000);
@@ -76,9 +77,9 @@ export default function Profile({ navigation }) {
         >
             <ScrollView className="h-[100vh]">
                 <View className="flex-row items-center justify-center mb-5 mt-14">
-                     <Text className="text-white text-2xl mb-3 font-semibold">
+                    <Text className="text-white text-2xl mb-3 font-semibold">
                         Hello, {username}!
-                      </Text>
+                    </Text>
                     <Text className="mb-2 ml-2">
                         <FontAwesomeIcon
                             color={"white"}
@@ -89,9 +90,15 @@ export default function Profile({ navigation }) {
                 </View>
                 <View className="flex justify-center items-center">
                     <View>
-                        
-                        <Customisation setCustomisationPopupOpen={setCustomisationPopupOpen} customisationPopupOpen={customisationPopupOpen}/>
-                        <Player avatarDetails={avatarDetails} />
+                        <Customisation
+                            setCustomisationPopupOpen={
+                                setCustomisationPopupOpen
+                            }
+                            customisationPopupOpen={customisationPopupOpen}
+                        />
+                        <View className="w-[69px] h-[156px]">
+                            <Player avatarDetails={avatarDetails} />
+                        </View>
                     </View>
                     <Text className="text-white my-2 font-semibold">
                         Senior Software Engineer
@@ -146,47 +153,67 @@ export default function Profile({ navigation }) {
                             </Text>
                         </View>
 
-            <Text className="text-white mx-2 text-xs">
-              Exchange for rewards
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity
-            onPress={pressHandlerPaymentHistory}
-            className="bg-white items-center justify-center p-3 rounded-lg w-3/4 my-2 mx-auto"
-          >
-            <Text className="text-2xl font-semibold mb-2 p-2">Paycheck in</Text>
-            <Text className="text-4xl font-semibold text-blue-400">
-              {countdown}
-            </Text>
-            <Text className="text-sm  text-gray-600">View History</Text>
-          </TouchableOpacity>
-          <View className="flex-row w-3/4 justify-evenly mx-auto ">
-            <TouchableOpacity
-              onPress={pressHandlerApplyLeave}
-              className="bg-white items-center justify-center p-3 rounded-lg w-[50%] mx-2 m-4"
-            >
-              <Text className="text-2xl font-semibold mb-2">MCs</Text>
-              <Text className="text-4xl font-semibold text-blue-400">3</Text>
-              <Text className="text-base font-semibold">remaining</Text>
-              <Text className="text-sm  text-gray-600">Apply Now</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={pressHandlerApplyLeave}
-              className="bg-white items-center justify-center p-3 rounded-lg w-[50%] mx-2 m-4"
-            >
-              <Text className="text-2xl font-semibold mb-2">Off Days</Text>
-              <Text className="text-4xl font-semibold text-blue-400">2</Text>
-              <Text className="text-base font-semibold">remaining</Text>
-              <Text className="text-sm  text-gray-600">Apply Now</Text>
-            </TouchableOpacity>
-          </View>
-          <View className="mb-10">
-            <SignOutButton navigation={navigation} />
-          </View>
-        </View>
-      </ScrollView>
-    </ImageBackground>
-  );
+                        <Text className="text-white mx-2 text-xs">
+                            Exchange for rewards
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View>
+                    <TouchableOpacity
+                        onPress={pressHandlerPaymentHistory}
+                        className="bg-white items-center justify-center p-3 rounded-lg w-3/4 my-2 mx-auto"
+                    >
+                        <Text className="text-2xl font-semibold mb-2 p-2">
+                            Paycheck in
+                        </Text>
+                        <Text className="text-4xl font-semibold text-blue-400">
+                            {countdown}
+                        </Text>
+                        <Text className="text-sm  text-gray-600">
+                            View History
+                        </Text>
+                    </TouchableOpacity>
+                    <View className="flex-row w-3/4 justify-evenly mx-auto ">
+                        <TouchableOpacity
+                            onPress={pressHandlerApplyLeave}
+                            className="bg-white items-center justify-center p-3 rounded-lg w-[50%] mx-2 m-4"
+                        >
+                            <Text className="text-2xl font-semibold mb-2">
+                                MCs
+                            </Text>
+                            <Text className="text-4xl font-semibold text-blue-400">
+                                3
+                            </Text>
+                            <Text className="text-base font-semibold">
+                                remaining
+                            </Text>
+                            <Text className="text-sm  text-gray-600">
+                                Apply Now
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={pressHandlerApplyLeave}
+                            className="bg-white items-center justify-center p-3 rounded-lg w-[50%] mx-2 m-4"
+                        >
+                            <Text className="text-2xl font-semibold mb-2">
+                                Off Days
+                            </Text>
+                            <Text className="text-4xl font-semibold text-blue-400">
+                                2
+                            </Text>
+                            <Text className="text-base font-semibold">
+                                remaining
+                            </Text>
+                            <Text className="text-sm  text-gray-600">
+                                Apply Now
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View className="mb-10">
+                        <SignOutButton navigation={navigation} />
+                    </View>
+                </View>
+            </ScrollView>
+        </ImageBackground>
+    );
 }
