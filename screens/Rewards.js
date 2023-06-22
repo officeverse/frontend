@@ -14,12 +14,15 @@ import {
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faGift } from "@fortawesome/free-solid-svg-icons/faGift";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const image = require("../assets/background.png");
 
 export default function Rewards() {
     const rewards = useSelector((state) => state.rewards);
+    const [refresh, setRefresh] = useState(false);
+    const user = useSelector((state) => state.auth.user);
     const renderItem = ({ item }) => (
         <View
             className="bg-white rounded-xl w-[46vw] max-w-xs mx-auto my-4"
@@ -41,7 +44,41 @@ export default function Rewards() {
                     Alert.alert(
                         item.name,
                         `Redeem Reward with ${item.cost} EXP`,
-                        [{ text: "Confirm" }, { text: "Cancel" }]
+                        [
+                            {
+                                text: "Confirm",
+                                onPress: () => {
+                                    let data = JSON.stringify({
+                                        coins: item.cost * -1,
+                                    });
+
+                                    let config = {
+                                        method: "post",
+                                        maxBodyLength: Infinity,
+                                        url:
+                                            "https://12khg2a8xi.execute-api.ap-south-1.amazonaws.com//users/" +
+                                            user.attributes.userId +
+                                            "/updateCoins",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        data: data,
+                                    };
+
+                                    axios
+                                        .request(config)
+                                        .then((response) => {
+                                            console.log(
+                                                JSON.stringify(response.data)
+                                            );
+                                        })
+                                        .catch((error) => {
+                                            console.log(error);
+                                        });
+                                },
+                            },
+                            { text: "Cancel" },
+                        ]
                     );
                 }}
             >
@@ -91,6 +128,12 @@ export default function Rewards() {
                     </Text>
                 </View>
                 <FlatList
+                    onRefresh={() => {
+                        console.log("yes");
+                        setRefresh(true);
+                        setRefresh(false);
+                    }}
+                    refreshing={refresh}
                     data={rewards}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}

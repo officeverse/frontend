@@ -25,7 +25,13 @@ const image = require("../assets/background.png");
 
 const initialLayout = { width: Dimensions.get("window").width };
 
-const AvailableChallengesScreen = ({ challenges, renderItem, insets }) => (
+const AvailableChallengesScreen = ({
+    challenges,
+    renderItem,
+    insets,
+    refresh,
+    setRefresh,
+}) => (
     <ImageBackground
         source={image}
         resizeMode="cover"
@@ -62,6 +68,12 @@ const AvailableChallengesScreen = ({ challenges, renderItem, insets }) => (
             </View>
 
             <FlatList
+                onRefresh={() => {
+                    console.log("yes");
+                    setRefresh(true);
+                    setRefresh(false);
+                }}
+                refreshing={refresh}
                 className="mb-[55px]"
                 data={challenges}
                 renderItem={renderItem}
@@ -72,7 +84,13 @@ const AvailableChallengesScreen = ({ challenges, renderItem, insets }) => (
         </SafeAreaView>
     </ImageBackground>
 );
-const CompletedChallengesScreen = ({ challenges, renderItem, insets }) => (
+const CompletedChallengesScreen = ({
+    challenges,
+    renderItem,
+    insets,
+    refreshComplete,
+    setRefreshComplete,
+}) => (
     <ImageBackground
         source={image}
         resizeMode="cover"
@@ -106,6 +124,12 @@ const CompletedChallengesScreen = ({ challenges, renderItem, insets }) => (
                 </View>
             </View>
             <FlatList
+                onRefresh={() => {
+                    console.log("yes");
+                    setRefreshComplete(true);
+                    setRefreshComplete(false);
+                }}
+                refreshing={refreshComplete}
                 className="mb-[55px]"
                 data={challenges}
                 renderItem={renderItem}
@@ -128,6 +152,8 @@ export default function Challenges() {
     ]);
     const [post, setPost] = useState("");
     const [postLoading, setPostLoading] = useState(false);
+    const [refresh, setRefresh] = useState(false);
+    const [refreshComplete, setRefreshComplete] = useState(false);
 
     const renderScene = SceneMap({
         available: () => (
@@ -135,6 +161,8 @@ export default function Challenges() {
                 challenges={challenges}
                 renderItem={renderItem}
                 insets={insets}
+                refresh={refresh}
+                setRefresh={setRefresh}
             />
         ),
         completed: () => (
@@ -142,6 +170,8 @@ export default function Challenges() {
                 challenges={challenges}
                 renderItem={renderCompletedItem}
                 insets={insets}
+                refreshComplete={refreshComplete}
+                setRefreshComplete={setRefreshComplete}
             />
         ),
     });
